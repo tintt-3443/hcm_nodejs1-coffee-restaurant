@@ -1,0 +1,26 @@
+<div class="container d-flex flex-row justify-content-center align-items-center h-100">
+    <div class="form-profile-signin position-relative">
+        <img src="/images/auth/x.svg" alt="login" class="img-cancel-login" />
+        <p class="text-center fw-bold fs-2 ">{{t 'auth.signin' }}</p>
+        <form action="/signin" method="post">
+
+            <div class="form-group py-2">
+                <label for="email">{{t 'auth.email' }}</label>
+                <input type="email" class="form-control" id="email" placeholder={{t 'auth.placeholder-email' }}
+                    name="email">
+            </div>
+            <div class="form-group py-2">
+                <label for="pwd">{{t 'auth.password' }}</label>
+                <input type="password" class="form-control" id="pwd" placeholder={{t 'auth.placeholder-password' }}
+                    name="password">
+            </div>
+
+            <button type="submit" class="btn btn-submit w-100 mt-3">{{t 'auth.singin' }}</button>
+            <div class="text-redirect-login">
+                <p class="mr-p-130">{{t 'auth.already-account' }}<a href="/auth/register">{{t 'auth.signup' }}</a></p>
+                <p class="">{{t 'auth.forgotpw' }}</p>
+
+            </div>
+    </div>
+
+</div>

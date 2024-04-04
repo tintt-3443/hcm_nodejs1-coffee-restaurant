@@ -1,0 +1,21 @@
+{
+  "auth": {
+    "password-not-match": "Password not match",
+    "user_valid-name": "Name is required",
+    "user_invalid-email": "Invalid email",
+    "user_invalid-password": "Password at least 8 characters and contain at least one uppercase",
+    "signup": "Sign up",
+    "name": "Name",
+    "placeholder-name": "Enter your name",
+    "email": "Email",
+    "placeholder-email": "Enter your email",
+    "password": "Password",
+    "placeholder-password": "Enter your password",
+    "repassword": "Confirm password",
+    "placeholder-repassword": "Enter your password again",
+    "submit-signup": "Sign up",
+    "signin": "Sign in",
+    "already-account": "Already have an account?",
+    "forgotpw": "Forgot password?"
+  }
+}
