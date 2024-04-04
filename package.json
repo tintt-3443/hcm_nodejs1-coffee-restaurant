@@ -19,6 +19,7 @@
   "dependencies": {
     "@types/connect-flash": "^0.0.40",
     "@types/express-session": "^1.18.0",
+    "@types/hbs": "^4.0.4",
     "@types/mime": "^4.0.0",
     "bcrypt": "^5.1.1",
     "bootstrap": "5.3.3",
@@ -32,6 +33,7 @@
     "express-handlebars": "^7.1.2",
     "express-session": "^1.18.0",
     "express-validator": "^7.0.1",
+    "hbs": "^4.2.0",
     "helmet": "^7.1.0",
     "i18next": "^23.10.1",
     "i18next-fs-backend": "^2.3.1",

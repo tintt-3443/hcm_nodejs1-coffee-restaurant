@@ -10,6 +10,7 @@ import i18next from 'i18next';
 import i18nextMiddleware from 'i18next-http-middleware';
 import i18nextBackend from 'i18next-fs-backend';
 import { engine } from 'express-handlebars';
+import hbs from 'hbs';
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -62,6 +63,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
+hbs.registerPartials(path.join(__dirname, 'views/partials'), () => {});
 app.use(logger('dev'));
 
 app.use(router);

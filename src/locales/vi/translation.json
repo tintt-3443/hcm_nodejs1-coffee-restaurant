@@ -17,5 +17,26 @@
     "signin": "Đăng nhập",
     "already-account": "Đã có tài khoản?",
     "forgotpw": "Quên mật khẩu?"
+  },
+
+  "header": {
+    "story": "Câu chuyện",
+    "menu": "Thực đơn",
+    "blog": "Blog",
+    "contact": "Liên hệ"
+  },
+  "footer": {
+    "text-intro": "Morii gợi nhớ tới các vị khách dừng chân rằng thế giới ngoài kia dù nhanh hay chậm, dù quay cuồng hay mệt mỏi, vẫn có đâu đó những khoảnh khắc, những điều dù bé nhỏ nhưng đủ để xua tan một chút cái áp lực trong cuộc sống vội vã tấp nập ngoài kia. Và hãy để Morii là nơi lưu giữ những cảm giác và kí ức đó.",
+    "pricing": "Giá",
+    "setting": "Cài đặt",
+    "orders": "Đơn hàng",
+    "help": "Trợ giúp",
+    "product": "Sản phẩm",
+    "service": "Dịch vụ",
+    "contact": "Liên hệ"
+  },
+  "home": {
+    "more-btn": "Xem thêm",
+    "menu": "Thực đơn"
   }
 }

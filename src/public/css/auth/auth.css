@@ -9,6 +9,7 @@
     justify-content: center;
 
 }
+
 .form-profile-signin {
     height: 40vh;
     border: 1px solid #ccc;
@@ -62,12 +63,43 @@
 
 }
 
-.mw-xl{
+.mw-xl {
     max-width: 86%;
     margin: 0 auto;
 }
 
-.nav-item-text{
+.nav-item-text {
     font-size: 1.6rem;
     padding: 0 20px
+}
+
+.header-position {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+
+
+}
+
+.z-index-dropdown{
+    z-index: 9999999;
+}
+
+.btn-dropdown-border{
+    border: none;
+}
+
+.btn-login{
+    background-color: #146d4d;
+    color: #fff;
+    border-radius: 10px;
+    padding: 6px 16px;
+    font-size: 0.8rem;
+    border:none;
+}
+
+.mr-17{
+    margin-right:17px;
 }
