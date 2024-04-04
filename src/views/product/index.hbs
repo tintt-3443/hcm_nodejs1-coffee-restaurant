@@ -1,0 +1,42 @@
+<div class="product">
+    <div>
+        <p class="text-center text-color title-menu pb-0 pt-30">{{t 'product.product'}}</p>
+    </div>
+    <div class="mw-xl product-all">
+        <div class="w-10">
+            <div class="fs-2 fw-medium cursor-pointer">{{t 'product.menu'}}</div>
+            <div id="drink" class="my-2 fs-5 cursor-pointer btn-menu active-menu">{{t 'product.drinks'}}</div>
+            <div id="cake" class="my-2 fs-5 cursor-pointer btn-menu">{{t 'product.cakes'}}</div>
+            <div id="topping" class="my-2 fs-5 cursor-pointer btn-menu">{{t 'product.others'}}</div>
+
+        </div>
+        <div class="w-100">
+            <div class="list-item d-flex justify-content-end">
+                <div class="row row-cols-4 w-100 g-5 ">
+                    {{#each products}}
+                    <div class="">
+                        <div class="card card-product col height-fluid">
+                            <img src="{{this.image}}" class="card-img-top img-fluid" alt="...">
+                            <div class="card-body">
+                                <p class="card-text title-product">{{this.name}}</p>
+                                <p class="card-text price-product">{{this.price}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="mw-xl pagination mt-5">
+        <nav aria-label="Page navigation example ">
+            <div class="pagination" id="pagination">
+                {{{pagination}}}
+            </div>
+        </nav>
+    </div>
+
+</div>
+<script src='/js/product/product.js'></script>
