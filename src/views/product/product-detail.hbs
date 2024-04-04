@@ -1,0 +1,66 @@
+<div class='product-detail'>
+    <div class='mw-lg product-detail'>
+        <div class='row row-cols-2'>
+            <div class='col'>
+                <div class='left-detail'>
+                    <img src='{{product.image}}' class='img-detail' alt='...' />
+                </div>
+            </div>
+            <div class='col'>
+                <div>
+                    <div class='mb-4'>
+                        <p class='title-detail mb-0'>{{product.name}}</p>
+                        <p class='price-product-detail'>{{VND product.price}}</p>
+                    </div>
+                </div>
+                <div class='mb-4'>
+                    <p class='mb-1 fs-5'>{{t 'product.pick-size'}}</p>
+                    <div class=''>
+                        <button id='1' type='button' class='btn-size size-select selected'>M</button>
+                        <button id='2' type='button' class='btn-size size-select'>L +
+                            {{VND UP_SIZE_PRICE}}</button>
+                    </div>
+                </div>
+                <div class='mb-10'>
+                    <p class='mb-1 fs-5'>{{t 'product.pick-topping'}}</p>
+                    <div class='list-topping'>
+                        {{#each toppings}}
+                        <button id='{{this.id}}' type='button' class='btn-size topping-select'>{{this.name}}
+                            +
+                            {{this.VNDFormat this.price}}</button>
+                        {{/each}}
+                    </div>
+                </div>
+                <div>
+                    <button type='button' class='btn-add'>{{t
+                        'product.add-to-card'
+                        }}</button>
+                </div>
+            </div>
+        </div>
+        <div class='description-product'>
+            <p class='title-intro'>{{t 'product.des-product'}}</p>
+            <span>{{product.description}}</span>
+        </div>
+        <div class='relative-product'>
+            <p class='title-intro'>{{t 'product.relation-product'}}</p>
+            <div class='list-relation row row-cols-4'>
+                {{#each products}}
+                <div>
+                    <div class='card height-fluid' style='width: 16rem;'>
+                        <img src='{{this.image}}' class='card-img-top img-fluid' alt='...' />
+                        <div class='card-body'>
+                            <p class='card-text title-product'>{{this.name}}</p>
+                            <p class='card-text price-product'>{{this.VNDFormat
+                                this.price
+                                }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src='/js/product/product-detail.js'></script>

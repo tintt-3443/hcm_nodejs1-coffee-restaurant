@@ -62,3 +62,11 @@ export const createPagination = (totalPages: number, currentPage: number) => {
 
   return paginationHTML;
 };
+
+export const VNDFormat = (num: number): string => {
+  const VND = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+  });
+  return VND.format(num);
+};
