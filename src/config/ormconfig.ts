@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
 dotenv.config();
+
 const port: number = process.env.PORTDB ? parseInt(process.env.PORTDB) : 3306;
 
 export const AppDataSource = new DataSource({

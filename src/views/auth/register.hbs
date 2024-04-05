@@ -1,0 +1,35 @@
+<div class="container d-flex flex-row justify-content-center align-items-center h-100">
+  <div class="form-profile-register position-relative">
+    <img src="/images/auth/x.svg" alt="login" class="img-cancel-login" />
+    <p class="text-center fw-bold fs-3 ">{{t 'auth.signup'}}</p>
+    <div class='flash-messages'>
+
+      {{#if flash.error}}
+      <p class='flash flash-error'>{{flash.error}}</p>
+      {{/if}}
+    </div>
+    <form action="/auth/register" method="post">
+      <div class="form-group py-2">
+        <label for="name">{{t 'auth.name'}}</label>
+        <input type="name" class="form-control" id="name" placeholder={{t 'auth.placeholder-name' }} name="name">
+      </div>
+      <div class="form-group py-2">
+        <label for="email">{{t 'auth.email'}}</label>
+        <input type="email" class="form-control" id="email" placeholder={{t 'auth.placeholder-email' }} name="email">
+      </div>
+      <div class="form-group py-2">
+        <label for="pwd">{{t 'auth.password' }}</label>
+        <input type="password" class="form-control" id="pwd" placeholder={{t 'auth.placeholder-password' }}
+          name="password">
+      </div>
+      <div class="form-group py-2">
+        <label for="pwd">{{t 'auth.repassword' }}</label>
+        <input type="password" class="form-control" id="pwd" placeholder="{{t 'auth.placeholder-repassword' }}"
+          name="repassword">
+      </div>
+      <button type="submit" class="btn btn-submit w-100 mt-3">{{t 'auth.submit-signup' }}</button>
+      <p class=" text-redirect">{{t 'auth.already-account' }} <a href="/auth/login">{{t 'auth.signin' }}</a></p>
+
+  </div>
+
+</div>

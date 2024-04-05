@@ -1,0 +1,21 @@
+{
+  "auth": {
+    "password-not-match": "Mật khẩu không khớp",
+    "user-valid-name": "Tên không hợp lệ",
+    "user-invalid-email": "Email không hợp lệ",
+    "user-invalid-password": "Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất 1 chữ cái in hoa",
+    "signup": "Đăng ký tài khoản",
+    "name": "Tên",
+    "placeholder-name": "Nhập tên của bạn",
+    "email": "Email",
+    "placeholder-email": "Nhập email của bạn",
+    "password": "Mật khẩu",
+    "placeholder-password": "Nhập mật khẩu của bạn",
+    "repassword": "Xác nhận mật khẩu",
+    "placeholder-repassword": "Nhập lại mật khẩu của bạn",
+    "submit-signup": "Đăng ký",
+    "signin": "Đăng nhập",
+    "already-account": "Đã có tài khoản?",
+    "forgotpw": "Quên mật khẩu?"
+  }
+}

@@ -9,6 +9,7 @@ import { AppDataSource } from './config/ormconfig';
 import i18next from 'i18next';
 import i18nextMiddleware from 'i18next-http-middleware';
 import i18nextBackend from 'i18next-fs-backend';
+import { engine } from 'express-handlebars';
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -48,19 +49,25 @@ app.use(cookieParser('secretString'));
 app.use(
   session({
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     secret: 'morricoffee',
     cookie: { maxAge: 60000 },
-  })
+  }),
 );
 app.use(flash());
+
+app.set('views', path.join(__dirname, 'views'));
+// Template engine
+// app.engine('handlebars', exphbs());
+app.engine('.hbs', engine({ extname: '.hbs' }));
+app.set('view engine', '.hbs');
 
 app.use(logger('dev'));
 
 app.use(router);
 
 AppDataSource.initialize()
-  .then(async () => {
+  .then(() => {
     console.log('Database initialized');
   })
   .catch((error: Error) => console.log('Database connect failed: ', error));
