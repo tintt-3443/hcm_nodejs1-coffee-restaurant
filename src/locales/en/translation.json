@@ -17,5 +17,26 @@
     "signin": "Sign in",
     "already-account": "Already have an account?",
     "forgotpw": "Forgot password?"
+  },
+
+  "header": {
+    "story": "Story",
+    "menu": "Menu",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "footer": {
+    "text-intro": "Morii reminds the guests that in the world outside, whether fast or slow, whether tumultuous or weary, there are still somewhere those moments, those little things that are enough to dispel a bit of the pressure in the hurried and bustling life out there. And let Morii be the place to preserve those feelings and memories.",
+    "pricing": "Pricing",
+    "setting": "Setting",
+    "orders": "Orders",
+    "help": "Help",
+    "product": "Product",
+    "service": "Service",
+    "contact": "Contact"
+  },
+  "home": {
+    "more-btn": "More",
+    "menu": "Menu"
   }
 }

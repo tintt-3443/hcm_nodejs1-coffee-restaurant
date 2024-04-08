@@ -10,7 +10,7 @@ import { UserRegisterDto } from '../dto/auth/user_register.dto';
 const authService = new AuthService();
 
 export const registerGet = asyncHandler((req: Request, res: Response) => {
-  res.render('auth/register');
+  res.render('auth/register', { isLoggedIn: true });
 });
 
 export const postUserCreateForm = [
@@ -61,7 +61,7 @@ export const postUserCreateForm = [
 ];
 
 export const LoginGet = asyncHandler((req: Request, res: Response) => {
-  res.render('auth/signin');
+  res.render('auth/signin', { isLoggedIn: true });
 });
 
 export const Login = [
@@ -96,7 +96,6 @@ export const Login = [
       //set cookie
       res.cookie('token', token, {
         maxAge: 86400,
-        httpOnly: true,
       });
       res.redirect('/');
     } catch (error) {
