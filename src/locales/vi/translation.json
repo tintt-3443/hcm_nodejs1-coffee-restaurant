@@ -38,5 +38,12 @@
   "home": {
     "more-btn": "Xem thêm",
     "menu": "Thực đơn"
+  },
+  "product": {
+    "menu": "Thực đơn",
+    "drinks": "Đồ uống",
+    "cakes": "Bánh ngọt",
+    "others": "Khác",
+    "product": "Sản phẩm"
   }
 }

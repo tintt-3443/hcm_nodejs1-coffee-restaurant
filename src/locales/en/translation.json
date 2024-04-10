@@ -38,5 +38,12 @@
   "home": {
     "more-btn": "More",
     "menu": "Menu"
+  },
+  "product": {
+    "menu": "Menu",
+    "drinks": "Drinks",
+    "cakes": "Cakes",
+    "others": "Others",
+    "product": "Product"
   }
 }

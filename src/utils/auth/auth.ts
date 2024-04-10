@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { CONSTANT } from '../../constant/variable';
 const jwtSecret = process.env.ACCESS_TOKEN_SECRET || '';
 
 export const checkPassword = async (
@@ -13,7 +14,7 @@ export const checkPassword = async (
 export const generateToken = (email: string): string => {
   try {
     const token = jwt.sign({ user: { email } }, 'jwtSecret', {
-      expiresIn: 86400,
+      expiresIn: CONSTANT.TOKEN_EXPIRATION,
     });
     return token;
   } catch (error) {
