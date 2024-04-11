@@ -44,6 +44,11 @@
     "drinks": "Drinks",
     "cakes": "Cakes",
     "others": "Others",
-    "product": "Product"
+    "product": "Product",
+    "pick-size": "Pick Size",
+    "pick-topping": "Pick Topping",
+    "add-to-card": "Add to card",
+    "des-product": "Description",
+    "relation-product": "Related Product"
   }
 }

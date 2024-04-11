@@ -44,6 +44,11 @@
     "drinks": "Đồ uống",
     "cakes": "Bánh ngọt",
     "others": "Khác",
-    "product": "Sản phẩm"
+    "product": "Sản phẩm",
+    "pick-size": "Chọn Size",
+    "pick-topping": "Chọn Topping",
+    "add-to-card": "Thêm vào giỏ hàng",
+    "des-product": "Mô tả sản phẩm",
+    "relation-product": "Sản phẩm liên quan"
   }
 }

@@ -26,3 +26,9 @@ export enum STATUS_ORDER {
   CANCEL = 'cancel',
   REJECT = 'reject',
 }
+
+export const enum TYPE_PRODUCT {
+  DRINK = 1,
+  CAKE = 2,
+  TOPPING = 3,
+}
