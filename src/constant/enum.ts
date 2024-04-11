@@ -30,5 +30,4 @@ export enum STATUS_ORDER {
 export const enum TYPE_PRODUCT {
   DRINK = 1,
   CAKE = 2,
-  TOPPING = 3,
 }

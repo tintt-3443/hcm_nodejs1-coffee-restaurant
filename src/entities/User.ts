@@ -1,8 +1,9 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { Common } from './Common';
 import { ROLE_USER, SEX_USER } from '../constant/enum';
 import { Invoice } from './Invoice';
 import { Rating } from './Rating';
+import { Cart } from './Cart';
 
 @Entity()
 export class User extends Common {
@@ -50,8 +51,10 @@ export class User extends Common {
   @OneToMany(() => Rating, (rating: Rating) => rating.user)
   ratings: Rating[];
 
+  @OneToOne(() => Cart, (cart: Cart) => cart.user)
+  @JoinColumn()
+  cart: Cart;
   // METHOD
-
   url(): string {
     return `/user/${this.id}`;
   }

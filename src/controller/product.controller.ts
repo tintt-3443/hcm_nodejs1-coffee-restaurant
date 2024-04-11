@@ -24,7 +24,7 @@ export const getAllProducts = asyncHandler(
         pagination: createPagination(CONSTANT.TOTAL_PAGES, defaultParams.page),
       });
     } catch (error) {
-      req.flash('error', 'Can not get products');
+      req.flash('error', req.t('home.cant-get-product'));
       res.render('product', { flash: req.flash() });
     }
   },
@@ -44,9 +44,8 @@ export const getProductDetail = asyncHandler(
         productService.getAllProducts(param),
         productService.getToppings(),
       ]);
-
       if (!product) {
-        req.flash('error', 'Product not found');
+        req.flash('error', req.t('home.product-not-found'));
         res.render('product', { flash: req.flash() });
       }
       res.render('product/product-detail', {
@@ -57,7 +56,7 @@ export const getProductDetail = asyncHandler(
         UP_SIZE_PRICE: CONSTANT.UP_SIZE_PRICE,
       });
     } catch (error) {
-      req.flash('error', 'Can not get product detail');
+      req.flash('error', req.t('home.cant-get-product'));
       res.render('product', { flash: req.flash() });
     }
   },

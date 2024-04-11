@@ -16,8 +16,8 @@
                 <div class='mb-4'>
                     <p class='mb-1 fs-5'>{{t 'product.pick-size'}}</p>
                     <div class=''>
-                        <button id='1' type='button' class='btn-size size-select selected'>M</button>
-                        <button id='2' type='button' class='btn-size size-select'>L +
+                        <button id='1' type='button' value="false" class='btn-size size-select selected'>M</button>
+                        <button id='2' type='button' value="true" class='btn-size size-select'>L +
                             {{VND UP_SIZE_PRICE}}</button>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div>
-                    <button type='button' class='btn-add'>{{t
+                    <button type='button' class='btn-add' onclick="addToCart(event,'{{product.id}}')">{{t
                         'product.add-to-card'
                         }}</button>
                 </div>
@@ -64,3 +64,4 @@
 </div>
 
 <script src='/js/product/product-detail.js'></script>
+<script src='/js/sweetalert.min.js'></script> 
