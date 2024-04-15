@@ -1,8 +1,8 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { Common } from './Common';
 import { SIZE_PRODUCT } from '../constant/enum';
-import { Product } from './Product';
 import { Invoice } from './Invoice';
+import { ProductInstance } from './ProductInstance';
 
 @Entity()
 export class InvoiceDetail extends Common {
@@ -28,9 +28,14 @@ export class InvoiceDetail extends Common {
   @Column()
   total: number;
 
+  @Column('simple-array')
+  toppingList: number[];
   // FOREIGN KEY
-  @ManyToOne(() => Product, (product: Product) => product.invoiceDetails)
-  product: Product;
+  @ManyToOne(
+    () => ProductInstance,
+    (productInstance: ProductInstance) => productInstance.invoiceDetails,
+  )
+  productInstance: ProductInstance;
 
   @OneToMany(() => Invoice, (invoice: Invoice) => invoice.invoiceDetails)
   invoice: Invoice;

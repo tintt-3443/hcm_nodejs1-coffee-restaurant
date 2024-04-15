@@ -1,0 +1,68 @@
+<div class="cart w-100 mw-xl">
+    <div class="cart-list  ">
+        <p class="fs-3 fw-medium">{{t 'cart.cart'}}</p>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">{{t 'cart.product-detail'}}</th>
+                    <th scope="col">{{t 'cart.quantity'}}</th>
+                    <th scope="col">{{t 'cart.total'}}</th>
+                    <th scope="col">{{t 'cart.remove'}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row-product text-center">
+                    <th scope="row" class="align-middle">
+                        <div class="product-cart height-100 d-flex  align-items-center">
+                            <div>
+                                <img class="product-cart__img"
+                                    src="https://product.hstatic.net/1000075078/product/1675355354_bg-tch-sua-da-no_4fbf208885ed464ab4b5e145336d42a2_large.jpg"
+                                    alt="product image">
+                            </div>
+                            <div class="cart-product">
+                                <p class="cart-name">Hamburgers And Chips Meal</p>
+                                <div class="cart-topping">
+                                    <p>+Trân châu trắng</p>
+                                    <p>+Trân châu đen</p>
+                                </div>
+                                <p class="cart-price mb-0">+33.000 đ</p>
+                            </div>
+                        </div>
+                    </th>
+                    <td class="align-middle">
+                        <div class="form-outline">
+                            <input type="number" id="typeNumber" class="form-control number-input text-center" />
+                        </div>
+                    </td>
+                    <td class="align-middle text-center">
+                        <p class="cart-price mb-0">333.000 đ</p>
+                    </td>
+                    <td class="align-middle text-center">
+                        <i class="fa-sharp fa-solid fa-trash"></i>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="cart-bill">
+        <div class="cart-order">
+            <div class="mw-xs">
+                <div class="order-title fs-4">{{t 'cart.order-summary'}}</div>
+                <div class="d-flex justify-content-between align-items-center pb-14">
+                    <div>{{t 'cart.sub-total'}}</div>
+                    <div>1435$</div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center pt-4  ">
+                    <div>{{t 'cart.total'}}</div>
+                    <div class="">1435$</div>
+                </div>
+                <div class="py-4">
+                    <button class="btn btn-primary w-100 btn-submit">{{t 'cart.order'}}</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -3,6 +3,7 @@ import { Common } from './Common';
 import { InvoiceDetail } from './InvoiceDetail';
 import { Type } from './Type';
 import { Rating } from './Rating';
+import { ProductInstance } from './ProductInstance';
 
 @Entity()
 export class Product extends Common {
@@ -25,10 +26,6 @@ export class Product extends Common {
   rating_overall: number;
 
   // FOREIGN KEY
-  @OneToMany(
-    () => InvoiceDetail,
-    (invoiceDetail: InvoiceDetail) => invoiceDetail.product,
-  )
   invoiceDetails: InvoiceDetail[];
 
   @ManyToOne(() => Type, (type: Type) => type.products)
@@ -37,8 +34,13 @@ export class Product extends Common {
   @ManyToOne(() => Rating, (rating: Rating) => rating.product)
   ratings: Rating[];
 
-  // METHOD
+  @OneToMany(
+    () => ProductInstance,
+    (productInstance: ProductInstance) => productInstance.product,
+  )
+  productInstances: ProductInstance[];
 
+  // METHOD
   url(): string {
     return `/products/${this.id}`;
   }

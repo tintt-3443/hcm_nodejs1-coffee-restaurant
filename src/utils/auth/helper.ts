@@ -23,7 +23,6 @@ export const handleParamsGetAll = (params: {
 export const createPagination = (totalPages: number, currentPage: number) => {
   let paginationHTML = '';
 
-  // Nút trang trước
   paginationHTML += '<li class="page-item">';
   if (currentPage > 1) {
     paginationHTML += `<a class="page-link" href="?page=${
@@ -49,7 +48,6 @@ export const createPagination = (totalPages: number, currentPage: number) => {
     paginationHTML += '</li>';
   }
 
-  // Nút trang tiếp theo
   paginationHTML += '<li class="page-item">';
   if (currentPage < totalPages) {
     paginationHTML += `<a class="page-link" href="?page=${
