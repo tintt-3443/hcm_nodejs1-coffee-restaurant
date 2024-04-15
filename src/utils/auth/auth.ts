@@ -1,6 +1,9 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { CONSTANT } from '../../constant/variable';
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 const jwtSecret = process.env.ACCESS_TOKEN_SECRET || '';
 
 export const checkPassword = async (
@@ -13,7 +16,7 @@ export const checkPassword = async (
 // Method to generate token
 export const generateToken = (email: string): string => {
   try {
-    const token = jwt.sign({ user: { email } }, 'jwtSecret', {
+    const token = jwt.sign({ user: { email } }, jwtSecret, {
       expiresIn: CONSTANT.TOKEN_EXPIRATION,
     });
     return token;
@@ -28,6 +31,7 @@ export const hashPassword = async (password: string): Promise<string> => {
 
 export const decodeJWT = async (token: string) => {
   return new Promise((resolve, reject) => {
+    console.log('SEC', jwtSecret);
     jwt.verify(token, jwtSecret, (err, decoded) => {
       if (err) {
         reject(err);

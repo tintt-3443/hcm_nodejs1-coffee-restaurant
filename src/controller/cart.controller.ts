@@ -1,22 +1,18 @@
 import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import { CartsService } from '../service/cart.service';
-import { ParamsAddCart } from '../interface/interface';
 import { ProductsService } from '../service/product.service';
 import { VNDFormat } from '../utils/auth/helper';
-import { CONSTANT } from '../constant/variable';
+import { CartItemService } from '../service/cartItem.service';
+import { ParamsAddCartDto, ParamsUpdateCartDto } from '../dto/cart/cart.dto';
 
 const cartService = new CartsService();
 const productService = new ProductsService();
+const cartItemService = new CartItemService();
 
 export const addToCart = asyncHandler(async (req: Request, res: Response) => {
   try {
     const userId = req.session?.user?.id;
-    if (!userId) {
-      req.flash('error', req.t('cart.login-to-add-cart'));
-      res.render('product', { flash: req.flash() });
-      return;
-    }
     const productId = Number(req.body?.productId);
     const productExist = await productService.checkProductExist(productId);
     if (!productExist) {
@@ -24,7 +20,7 @@ export const addToCart = asyncHandler(async (req: Request, res: Response) => {
       res.render('product', { flash: req.flash() });
       return;
     }
-    const params: ParamsAddCart = {
+    const params: ParamsAddCartDto = {
       ...req.body,
       productId,
       userId: userId,
@@ -40,18 +36,52 @@ export const addToCart = asyncHandler(async (req: Request, res: Response) => {
 export const getCartByUser = asyncHandler(
   async (req: Request, res: Response) => {
     const userId = req.session?.user?.id;
-    if (!userId) {
-      req.flash('error', req.t('cart.login-to-get-cart'));
-      res.render('product', { flash: req.flash() });
-      return;
-    }
     const cart = await cartService.getCartByUser(userId);
     res.render('cart', {
       cart,
       VNDFormat,
-      MIN_QUANTITY: CONSTANT.MIN_QUANTITY,
-      MAX_QUANTITY: CONSTANT.MAX_QUANTITY,
       flash: req.flash(),
     });
   },
 );
+
+export const updateCart = asyncHandler(async (req: Request, res: Response) => {
+  try {
+    //check logged
+    const quantity = Number(req.body?.quantity);
+    const productInstanceId = Number(req.params?.id);
+    const params: ParamsUpdateCartDto = {
+      quantity,
+      productInstanceId,
+    };
+    await cartItemService.UpdateCartByProduct(params);
+
+    res.json({ success: true });
+  } catch (error) {
+    req.flash('error', req.t('cart.cant-update-cart'));
+    res.render('cart', { flash: req.flash() });
+  }
+});
+
+export const deleteCart = asyncHandler(async (req: Request, res: Response) => {
+  try {
+    //check logged
+    const user = req.session?.user;
+    if (!user) {
+      req.flash('error', req.t('cart.login-to-delete-cart'));
+      res.render('cart', { flash: req.flash() });
+      return;
+    }
+    const productInstanceId = Number(req.params?.id);
+    if (!productInstanceId) {
+      req.flash('error', req.t('cart.cant-delete-cart'));
+      res.render('cart', { flash: req.flash() });
+      return;
+    }
+    await cartItemService.deleteCartByProduct(productInstanceId);
+    res.json({ success: true });
+  } catch (error) {
+    req.flash('error', req.t('cart.cant-delete-cart'));
+    res.render('cart', { flash: req.flash() });
+  }
+});

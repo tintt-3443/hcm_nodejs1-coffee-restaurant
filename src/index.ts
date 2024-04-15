@@ -12,6 +12,7 @@ import i18nextBackend from 'i18next-fs-backend';
 import { engine } from 'express-handlebars';
 import hbs from 'hbs';
 import { initializeTransactionalContext } from 'typeorm-transactional';
+initializeTransactionalContext();
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -68,7 +69,6 @@ hbs.registerPartials(path.join(__dirname, 'views/partials'), () => {});
 app.use(logger('dev'));
 
 app.use(router);
-initializeTransactionalContext();
 AppDataSource.initialize()
   .then(() => {
     console.log('Database initialized');

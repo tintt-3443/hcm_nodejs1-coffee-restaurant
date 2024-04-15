@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
 import {
-    addTransactionalDataSource,
+  addTransactionalDataSource,
   initializeTransactionalContext,
   StorageDriver,
 } from 'typeorm-transactional';

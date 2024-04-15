@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { decodeJWT } from 'src/utils/auth/auth';
+import { decodeJWT } from '../../utils/auth/auth';
 
 interface IUserSession {
   user: {

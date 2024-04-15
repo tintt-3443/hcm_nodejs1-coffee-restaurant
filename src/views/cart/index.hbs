@@ -36,16 +36,17 @@
                     </th>
                     <td class="align-middle">
                         <div class="form-outline">
-                            <input type="number" id="{{this.productIstance.id}}" min="{{MIN_QUANTITY}}"
-                                max="{{MAX_QUANTITY}}" value="{{this.quantity}}"
-                                class="form-control number-input text-center" />
+                            <input type="number" id="{{this.productInstance.idInstance}}" min="{{this.MIN_QUANTITY}}"
+                                max="{{this.MAX_QUANTITY}}" value="{{this.quantity}}"
+                                class="form-control number-input text-center input-quantity" />
                         </div>
                     </td>
                     <td class="align-middle text-center">
                         <p class="cart-price mb-0">{{VNDFormat this.totalProduct}}</p>
                     </td>
                     <td class="align-middle text-center">
-                        <i class="fa-sharp fa-solid fa-trash"></i>
+                        <i id="{{this.productInstance.idInstance}}"
+                            class="fa-sharp fa-solid fa-trash cursor-pointer btn-remove-cart"></i>
                     </td>
                 </tr>
                 {{/each}}
@@ -73,3 +74,6 @@
     </div>
 
 </div>
+
+<script src="/js/cart/cart.js"></script>
+<script src='/js/sweetalert.min.js'></script>
