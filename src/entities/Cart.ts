@@ -1,4 +1,4 @@
-import { Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { Common } from './Common';
 
 import { CartItem } from './CartItem';
@@ -12,4 +12,7 @@ export class Cart extends Common {
   @OneToOne(() => User, (user: User) => user.cart)
   @JoinColumn()
   user: User;
+
+  @Column()
+  total: number;
 }

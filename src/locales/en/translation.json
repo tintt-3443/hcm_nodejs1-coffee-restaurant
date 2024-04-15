@@ -50,5 +50,15 @@
     "add-to-card": "Add to card",
     "des-product": "Description",
     "relation-product": "Related Product"
+  },
+  "cart": {
+    "cart": "Cart",
+    "product-detail": "Product Detail",
+    "quantity": "Quantity",
+    "total": "Total",
+    "remove": "Remove",
+    "order-summary": "Order Summary",
+    "sub-total": "Sub Total",
+    "order": "Order"
   }
 }

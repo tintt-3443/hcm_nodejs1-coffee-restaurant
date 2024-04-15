@@ -68,3 +68,26 @@ export const VNDFormat = (num: number): string => {
   });
   return VND.format(num);
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const flatObject = (input: any): { [key: string]: object } => {
+  const flat = (
+    res: { [key: string]: object },
+    val: any,
+    pre = '',
+  ): { [key: string]: object } => {
+    if (typeof val === 'object' && !Array.isArray(val)) {
+      return Object.keys(val).reduce(
+        (prev, curr) => flat(prev, val[curr], curr),
+        res,
+      );
+    } else {
+      return Object.assign(res, { [pre]: val });
+    }
+  };
+
+  return Object.keys(input).reduce(
+    (prev, curr) => flat(prev, input[curr], curr),
+    {},
+  );
+};
