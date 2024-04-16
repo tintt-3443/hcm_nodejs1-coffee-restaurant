@@ -31,7 +31,6 @@ export const hashPassword = async (password: string): Promise<string> => {
 
 export const decodeJWT = async (token: string) => {
   return new Promise((resolve, reject) => {
-    console.log('SEC', jwtSecret);
     jwt.verify(token, jwtSecret, (err, decoded) => {
       if (err) {
         reject(err);

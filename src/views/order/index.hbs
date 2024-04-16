@@ -1,0 +1,144 @@
+<!-- Navbar -->
+
+<main class=" pt-5">
+    <div class="container">
+        <!-- Heading -->
+        <h2 class="my-5 text-center">Checkout form {{user.name}}</h2>
+
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+                <!--Card-->
+                <div class="card p-4">
+                    <!--Grid row-->
+
+                    <!--Username-->
+                    <p class="mb-0">
+                        Name
+                    </p>
+                    <div class="input-group mb-4">
+                        <input id="name" type="text" value="{{user.name}}" class="form-control" placeholder="Username"
+                            aria-label="Username" aria-describedby="basic-addon1" />
+                    </div>
+
+                    <!--email-->
+                    <p class="mb-0">
+                        Email
+                    </p>
+                    <div class="form-outline mb-4">
+                        <input id="email" type="email" value="{{user.email}}" class="form-control"
+                            placeholder="mail@example.com" aria-label="youremail@example.com"
+                            aria-describedby="basic-addon1" />
+                    </div>
+
+                    <!--address-->
+                    <p class="mb-0">
+                        Address
+                    </p>
+                    <div id="address" class="form-outline mb-4">
+                        <input type="email" class="form-control" value="{{user.address}}" placeholder="1234 Main St"
+                            aria-label="1234 Main St" aria-describedby="basic-addon1" />
+                    </div>
+                    <p class="mb-0">
+                        Note(*)
+                    </p>
+                    <div id="note" class="input-group mb-4">
+                        <input type="text" class="form-control" placeholder="Note" aria-label="Username"
+                            aria-describedby="basic-addon1" />
+                    </div>
+
+
+
+
+                    <div class="my-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                                checked />
+                            <label class="form-check-label" for="flexRadioDefault1"> COD </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault " disabled
+                                id="flexRadioDefault2" />
+                            <label class="form-check-label" for="flexRadioDefault2"> Debit card </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" disabled
+                                id="flexRadioDefault3" />
+                            <label class="form-check-label" for="flexRadioDefault3"> Paypal </label>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3">
+                            <p class="mb-0">
+                                Name on card
+                            </p>
+                            <div class="form-outline">
+                                <input type="text" class="form-control" disabled />
+                                <div class="form-helper">Full name as displayed on card</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <p class="mb-0">
+                                Credit card number
+                            </p>
+                            <div class="form-outline">
+                                <input type="text" class="form-control" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <p class="mb-0">
+                                Expiration
+                            </p>
+                            <div class="form-outline">
+                                <input type="text" class="form-control" disabled />
+
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <p class="mb-0">
+                                CVV
+                            </p>
+                            <div class="form-outline">
+                                <input type="text" class="form-control" disabled />
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--/.Card-->
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="cart-bill col-md-6 col-lg-4 ">
+                <div class="cart-order height-bill">
+                    <div class="mw-xs">
+                        <div class="order-title fs-4">{{t 'cart.order-summary'}}</div>
+                        <div class="d-flex justify-content-between align-items-center pb-14">
+                            <div>{{t 'cart.sub-total'}}</div>
+                            <div>{{VNDFormat cart.total}}</div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center pt-4  ">
+                            <div>{{t 'cart.total'}}</div>
+                            <div class="">{{VNDFormat cart.total}}</div>
+                        </div>
+                        <div class="py-4">
+                            <button id="btn-submit-payment" class="btn btn-primary w-100 btn-submit-payment">{{t
+                                'cart.order'}}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+    </div>
+</main>
+<script src='/js/payment/payment.js'></script>
+<!--Main layout-->

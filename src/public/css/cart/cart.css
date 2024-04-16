@@ -82,3 +82,8 @@
   padding-bottom: 8rem;
   border-bottom: 1px solid #e9ecef;
 }
+
+.height-bill {
+  height: 60% !important;
+  width: 70%;
+}

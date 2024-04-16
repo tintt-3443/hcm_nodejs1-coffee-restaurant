@@ -121,7 +121,7 @@ export class CartsService {
         };
         return cart;
       }
-      return [];
+      return null;
     } catch (error) {
       return null;
     }

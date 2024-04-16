@@ -6,18 +6,11 @@ import { ProductInstance } from './ProductInstance';
 
 @Entity()
 export class InvoiceDetail extends Common {
-  @Column({
-    nullable: true,
-    type: 'enum',
-    enum: SIZE_PRODUCT,
-    default: SIZE_PRODUCT.M,
-  })
-  size: SIZE_PRODUCT;
   @Column()
-  topping: number;
+  up_size: boolean;
 
-  @Column()
-  price_of_topping: number;
+  @Column('simple-array')
+  toppingPriceList: number[];
 
   @Column()
   price_of_product: number;

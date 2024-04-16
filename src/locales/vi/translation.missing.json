@@ -1,5 +1,14 @@
 {
   "home": {
-    "title": "home.title"
+    "title": "home.title",
+    "login-fail": "home.login-fail"
+  },
+  "auth": {
+    "singin": "auth.singin"
+  },
+  "header": {
+    "profile": "header.profile",
+    "order-list": "header.order-list",
+    "logout": "header.logout"
   }
 }
