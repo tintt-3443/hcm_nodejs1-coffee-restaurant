@@ -1,11 +1,11 @@
-import { ParamsAddCart } from '../interface/interface';
 import { CartRepository } from '../repository/cart.repository';
 import { Transactional } from 'typeorm-transactional';
 import { ProductInstanceRepository } from '../repository/product-instance';
 import { CartItemService } from './cartItem.service';
 import { flatObject, VNDFormat } from '../utils/auth/helper';
 import { ProductsService } from './product.service';
-import { CONSTANT } from 'src/constant/variable';
+import { CONSTANT } from '../constant/variable';
+import { ParamsAddCartDto } from '../dto/cart/cart.dto';
 
 export class CartsService {
   private cartItemService: CartItemService;
@@ -22,7 +22,7 @@ export class CartsService {
   }
 
   @Transactional()
-  public async addToCart(params: ParamsAddCart) {
+  public async addToCart(params: ParamsAddCartDto) {
     try {
       const currentCart = await this.cartRepository.findOne({
         where: { user: { id: params.userId } },
@@ -35,7 +35,7 @@ export class CartsService {
           )
         : null;
       if (currentCart && cartExist) {
-        await this.cartItemService.updateNewCart(
+        await this.cartItemService.updateCart(
           cartExist,
           1 + cartExist.quantity,
         );
@@ -96,6 +96,7 @@ export class CartsService {
           VNDFormat,
           totalProduct: totalProduct,
           productInstance: {
+            idInstance: item.productInstance.id,
             price: item.productInstance.product.price,
             toppings: toppings.map((topping) => ({
               ...flatObject(topping),
@@ -103,6 +104,8 @@ export class CartsService {
             })),
             quantity: item.quantity,
           },
+          MIN_QUANTITY: CONSTANT.MIN_QUANTITY,
+          MAX_QUANTITY: CONSTANT.MAX_QUANTITY,
         };
       });
 
@@ -110,7 +113,7 @@ export class CartsService {
         const cartItems = await Promise.all(cartItemsPromise);
         // after calculation cartItems , calculation total cart
         const total = cartItems.reduce((acc, item) => {
-          return acc + item?.productInstance.quantity * item.totalProduct;
+          return acc + item.totalProduct;
         }, 0);
         const cart = {
           total: total,
