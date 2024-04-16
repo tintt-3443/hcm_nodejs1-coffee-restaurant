@@ -94,4 +94,15 @@ export class CartItemService {
       return null;
     }
   }
+
+  public async deleteCartItemByCart(cartId: number) {
+    try {
+      const cartItems = await this.cartItemRepository.find({
+        where: { cart: { id: cartId } },
+      });
+      cartItems ? await this.cartItemRepository.remove(cartItems) : null;
+    } catch (error) {
+      return null;
+    }
+  }
 }

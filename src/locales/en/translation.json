@@ -60,5 +60,15 @@
     "order-summary": "Order Summary",
     "sub-total": "Sub Total",
     "order": "Order"
+  },
+  "order": {
+    "title": "Order",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "note": "Note",
+    "credit-card-number": "Credit Card Number",
+    "expiration": "Expiration"
   }
 }

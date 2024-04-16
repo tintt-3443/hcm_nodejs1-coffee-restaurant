@@ -91,7 +91,11 @@ export const Login = [
         res.redirect('/auth/login');
         return;
       }
-      req.session.user = user_;
+      //except password
+      req.session.user = {
+        ...user_,
+        password: undefined,
+      };
       const token = generateToken(user_.email);
       //set cookie
       res.cookie('token', token, {

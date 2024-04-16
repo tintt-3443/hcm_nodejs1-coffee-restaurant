@@ -26,7 +26,7 @@ export const addToCart = asyncHandler(async (req: Request, res: Response) => {
       userId: userId,
     };
     await cartService.addToCart(params);
-    res.render('cart', { flash: req.flash() });
+    res.render('cart', { VNDFormat: VNDFormat, flash: req.flash() });
   } catch (error) {
     req.flash('error', req.t('cart.cant-add-cart'));
     res.render('product', { flash: req.flash() });
