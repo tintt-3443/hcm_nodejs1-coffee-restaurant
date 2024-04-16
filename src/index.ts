@@ -12,6 +12,11 @@ import i18nextBackend from 'i18next-fs-backend';
 import { engine } from 'express-handlebars';
 import hbs from 'hbs';
 import { initializeTransactionalContext } from 'typeorm-transactional';
+
+interface HandlebarsHelperThis {
+  switch_value: any;
+}
+
 initializeTransactionalContext();
 const app = express();
 const port = process.env.PORT || 3000;
@@ -61,8 +66,20 @@ app.use(flash());
 
 app.set('views', path.join(__dirname, 'views'));
 // Template engine
-// app.engine('handlebars', exphbs());
-app.engine('.hbs', engine({ extname: '.hbs' }));
+app.engine('.hbs', engine({
+  extname: '.hbs',
+  helpers: {
+    switch: function(this: HandlebarsHelperThis, value: any, options: any) {
+      this.switch_value = value;
+      return options.fn(this);
+    },
+    case: function(this: HandlebarsHelperThis, value: any, options: any) {
+      if (value == this.switch_value) {
+        return options.fn(this);
+      }
+    },
+  },
+}));
 app.set('view engine', '.hbs');
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'), () => {});

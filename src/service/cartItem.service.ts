@@ -20,7 +20,7 @@ export class CartItemService {
         cart: { id: idCart },
         productInstance: { id: idProducrI },
         quantity: params.quantity,
-        up_size: params.size,
+        up_size: params.up_size,
         toppingList: params.toppings,
       });
       cartItem ? await this.cartItemRepository.save(cartItem) : null;
@@ -64,11 +64,13 @@ export class CartItemService {
     idCart: number,
     idProductI: number,
     toppings: number[],
+    size: boolean,
   ) {
     try {
       const listCartItem = await this.cartItemRepository.find({
         where: {
           cart: { id: idCart },
+          up_size: size,
         },
         relations: ['productInstance', 'productInstance.product'],
       });

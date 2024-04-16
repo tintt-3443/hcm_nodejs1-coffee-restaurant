@@ -1,0 +1,57 @@
+.status-order {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  padding: 1rem;
+}
+
+.left-col {
+  flex: 1;
+}
+
+.right-col {
+  flex: 1;
+}
+
+.status-btn {
+  font-size: 0.9rem;
+  width: 30%;
+  height: 1.6rem;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+}
+
+.pl-2 {
+  padding-left: 0.6rem;
+}
+
+.pt-history {
+  padding-top: 7rem;
+}
+
+.upper-case {
+  text-transform: uppercase;
+}
+
+.status-pending {
+  background-color: #007bff;
+}
+
+.status-accepted {
+  background-color: #ffc107;
+}
+
+.status-rejected {
+  background-color: #dc3545;
+}
+
+.status-delivered {
+  background-color: #28a745;
+}
+
+.status-cancelled {
+  background-color: orange;
+}

@@ -38,3 +38,58 @@ export const getDefaultInfor = asyncHandler(
     }
   },
 );
+
+export const getOrder = asyncHandler(async (req: Request, res: Response) => {
+  try {
+    const invoice = await invoiceService.getOrder(req.session?.user?.id);
+    if (!invoice) {
+      req.flash('error', req.t('home.cant-get-product'));
+      res.render('product', { flash: req.flash() });
+    }
+    const invoiceFormat = invoice?.map((item) => {
+      return {
+        ...item,
+        total: VNDFormat(item.total),
+        created_at: new Date(item.created_at).toLocaleDateString('vi-VN'),
+      };
+    });
+    res.render('history-order', {
+      invoice: invoiceFormat,
+      flash: req.flash(),
+    });
+  } catch (error) {
+    req.flash('error', req.t('home.cant-get-product'));
+    res.render('product', { flash: req.flash() });
+  }
+});
+
+export const getInvoiceDetail = asyncHandler(
+  async (req: Request, res: Response) => {
+    try {
+      const invoiceId = Number(req.params.id);
+      if (!invoiceId) {
+        req.flash('error', req.t('home.cant-get-product'));
+        res.render('product', { flash: req.flash() });
+      }
+      const data = await invoiceService.getInvoiceDetailByInvoice(invoiceId);
+      if (data?.invoice) {
+        const invoiceFormat = {
+          ...data.invoice,
+          total: VNDFormat(data.invoice.total),
+          created_at: new Date(data.invoice.created_at).toLocaleDateString(
+            'vi-VN',
+          ),
+        };
+        res.render('history-order/detail', {
+          VNDFormat: VNDFormat,
+          invoice: invoiceFormat,
+          invoiceDetails: data?.invoiceDetails,
+          flash: req.flash(),
+        });
+      }
+    } catch (error) {
+      req.flash('error', req.t('home.cant-get-product'));
+      res.render('product', { flash: req.flash() });
+    }
+  },
+);

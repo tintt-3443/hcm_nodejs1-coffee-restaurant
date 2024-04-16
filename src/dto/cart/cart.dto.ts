@@ -11,7 +11,7 @@ export class ParamsAddCartDto {
   quantity: number;
 
   @IsNotEmpty()
-  size: boolean;
+  up_size: boolean;
 
   @IsNotEmpty()
   toppings: number[];

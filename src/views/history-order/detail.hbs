@@ -1,0 +1,98 @@
+<div class="cart w-100 mw-xl">
+    <div class="cart-list  ">
+        <div class="status-order">
+            <div class="left-col">
+                <div class="d-flex">
+                    <p>{{t 'history.id'}}: </p>
+                    <p class="pl-2">{{invoice.id}}</p>
+                </div>
+                <div class="d-flex">
+                    <p>{{t 'history.date-order'}}: </p>
+                    <p class="pl-2">{{invoice.created_at}}</p>
+                </div>
+                <div class="d-flex">
+                    <p>{{t 'history.method'}}: </p>
+                    <p class="pl-2 upper-case fw-bold">{{invoice.payment_method}}</p>
+                </div>
+                <button class="status-btn status-pending">{{invoice.status}}</button>
+            </div>
+            <div class="right-col">
+                <div class="left-col">
+                    <div class="d-flex">
+                        <p>{{t 'history.name'}}: </p>
+                        <p class="pl-2">{{invoice.name}}</p>
+                    </div>
+                    <div class="d-flex">
+                        <p>{{t 'history.phone'}}: </p>
+                        <p class="pl-2">{{invoice.phone}}</p>
+                    </div>
+                    <div class="d-flex">
+                        <p>{{t 'history.address'}}: </p>
+                        <p class="pl-2">{{invoice.address}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <table class="table table-hover mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">{{t 'cart.product-detail'}}</th>
+                    <th scope="col">{{t 'cart.quantity'}}</th>
+                    <th scope="col">{{t 'cart.total'}}</th>
+                    <th scope="col">{{t 'cart.remove'}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each invoiceDetails}}
+                <tr class="row-product text-center">
+                    <th scope="row" class="align-middle">
+                        <div class="product-cart height-100 d-flex  align-items-center">
+                            <div>
+                                <img class="product-cart__img" src="{{this.productInstance.product.image}}"
+                                    alt="product image">
+                            </div>
+                            <div class="cart-product">
+                                <p class="cart-name">{{this.productInstance.product.name}}</p>
+                                <div class="cart-topping">
+                                    {{#if this.up_size}}
+                                    <p class="topping-name">+ Up size +5000</p>
+                                    {{/if}}
+                                </div>
+                                <p class="cart-price mb-0">+{{this.price_of_product}}</p>
+                            </div>
+                        </div>
+                    </th>
+                    <td class="align-middle">
+                        <div class="form-outline">
+                            <input disabled value="{{this.quantity}}" type="number"
+                                class="form-control number-input text-center input-quantity" />
+                        </div>
+                    </td>
+                    <td class="align-middle text-center">
+                        <p class="cart-price mb-0">{{this.total}}</p>
+                    </td>
+                    <td class="align-middle text-center">
+                        <i class="fa-sharp fa-solid fa-trash cursor-pointer btn-remove-cart"></i>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class="cart-bill">
+        <div class="cart-order">
+            <div class="mw-xs">
+                <div class="order-title fs-4">{{t 'cart.order-summary'}}</div>
+                <div class="d-flex justify-content-between align-items-center pb-14">
+                    <div>{{t 'cart.sub-total'}}</div>
+                    <div>{{invoice.total}}</div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center pt-4  ">
+                    <div>{{t 'cart.total'}}</div>
+                    <div class="">{{invoice.total}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

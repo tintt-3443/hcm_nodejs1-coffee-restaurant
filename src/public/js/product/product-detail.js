@@ -29,7 +29,13 @@ if (btntoppings) {
 }
 
 const addToCart = (e, id) => {
-  const size = document.querySelector('.size-select.selected').value;
+  //convert size to boolean
+
+  const size =
+    document.querySelector('.size-select.selected').value === 'true'
+      ? true
+      : false;
+
   const toppings = document.querySelectorAll('.topping-select.selected');
   const list = [];
   toppings.forEach((topping) => {
@@ -37,7 +43,7 @@ const addToCart = (e, id) => {
   });
   const productId = id;
   const data = {
-    size: size,
+    up_size: size ? true : false,
     toppings: list,
     quantity: 1,
     productId: productId,

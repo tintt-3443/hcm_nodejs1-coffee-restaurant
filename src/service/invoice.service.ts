@@ -6,18 +6,22 @@ import { InvoiceDetailRepository } from '../repository/invoice-detail.repository
 import { Topping } from '../entities/Topping';
 import { ProductInstanceRepository } from '../repository/product-instance';
 import { CONSTANT } from '../constant/variable';
+import { ProductsService } from './product.service';
+import { InvoiceDetail } from '../entities/InvoiceDetail';
 
 export class InvoiceService {
   private invoiceRepository: InvoiceRepository;
   private invoiceDetailRepository: InvoiceDetailRepository;
   private cartService: CartsService;
   private productInstanceRepository: ProductInstanceRepository;
+  private productService: ProductsService;
   //create constructor
   constructor() {
     this.invoiceRepository = new InvoiceRepository();
     this.invoiceDetailRepository = new InvoiceDetailRepository();
     this.cartService = new CartsService();
     this.productInstanceRepository = new ProductInstanceRepository();
+    this.productService = new ProductsService();
   }
 
   @Transactional()
@@ -65,6 +69,65 @@ export class InvoiceService {
       await this.invoiceRepository.save(invoice);
       await this.cartService.clearCart(params.user_id);
       return invoice;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  public async getOrder(userId: number) {
+    try {
+      const userExist = await this.invoiceRepository.findOne({
+        where: { user: { id: userId } },
+      });
+      if (!userExist) {
+        return null;
+      }
+      const invoices = await this.invoiceRepository.find({
+        where: { user: { id: userId } },
+      });
+      return invoices;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  public async getInvoiceDetailByInvoice(invoiceId: number) {
+    try {
+      const invoiceExist = await this.invoiceRepository.findOne({
+        where: { id: invoiceId },
+      });
+      if (!invoiceExist) {
+        return {
+          invoice: null,
+          invoiceDetails: null,
+        };
+      }
+      const invoiceDetails: InvoiceDetail[] =
+        await this.invoiceDetailRepository.find({
+          where: { invoice: { id: invoiceId } },
+          relations: ['productInstance', 'productInstance.product'],
+        });
+      if (invoiceDetails) {
+        const invoiceDetailFormatPromises = invoiceDetails.map(async (item) => {
+          const toppings = await this.productService.getToppingByProduct(
+            item?.productInstance?.id,
+          );
+          return {
+            ...item,
+            toppings,
+          };
+        });
+
+        const invoiceDetailFormat = await Promise.all(
+          invoiceDetailFormatPromises,
+        );
+
+
+        return {
+          invoice: invoiceExist,
+          invoiceDetails: invoiceDetailFormat,
+        };
+      }
     } catch (error) {
       return null;
     }
