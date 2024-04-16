@@ -1,6 +1,8 @@
 <div class="cart w-100 mw-xl">
     <div class="cart-list  ">
         <p class="fs-3 fw-medium">{{t 'cart.cart'}}</p>
+        {{#if cart.cartItems }}
+
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -52,9 +54,13 @@
                 {{/each}}
             </tbody>
         </table>
+        {{else}}
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/4e9249104375869.5f61b55c5ebf5.jpg"
+            alt="empty-cart" class="w-100 h-75">
+        {{/if}}
     </div>
     <div class="cart-bill">
-        <div class="cart-order">
+        <div class="cart-order height-bill">
             <div class="mw-xs">
                 <div class="order-title fs-4">{{t 'cart.order-summary'}}</div>
                 <div class="d-flex justify-content-between align-items-center pb-14">
@@ -65,15 +71,17 @@
                     <div>{{t 'cart.total'}}</div>
                     <div class="">{{VNDFormat cart.total}}</div>
                 </div>
+                {{#if cart.cartItems }}
                 <div class="py-4">
                     <a href="/order"><button class="btn btn-primary w-100 btn-submit">{{t 'cart.order'}}</button></a>
                 </div>
-
+                {{/if}}
             </div>
         </div>
     </div>
 
 </div>
 
+{{! Path: public/js/cart/cart.js }}
 <script src="/js/cart/cart.js"></script>
 <script src='/js/sweetalert.min.js'></script>

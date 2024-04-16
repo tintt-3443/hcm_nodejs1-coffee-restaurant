@@ -1,3 +1,5 @@
+const locale = getCookie('locale');
+
 const btnSize = document.querySelectorAll('.size-select');
 if (btnSize) {
   btnSize.forEach((btn) => {
@@ -28,9 +30,20 @@ if (btntoppings) {
   });
 }
 
-const addToCart = (e, id) => {
+const addToCart = (e, id, userId) => {
   //convert size to boolean
-
+  if (!userId) {
+    swal.fire({
+      title: locale === 'en' ? 'Error' : 'Lỗi',
+      text:
+        locale === 'en'
+          ? 'Please login to continue'
+          : 'Vui lòng đăng nhập để tiếp tục',
+      icon: 'error',
+      confirmButtonText: 'OK',
+    });
+    return;
+  }
   const size =
     document.querySelector('.size-select.selected').value === 'true'
       ? true
@@ -58,8 +71,8 @@ const addToCart = (e, id) => {
     .then((res) => res.text())
     .then(() => {
       swal.fire({
-        title: 'Success!',
-        text: 'successfully !!',
+        title: locale === 'en' ? 'Successfully !' : 'Thành công !',
+        text: locale === 'en' ? 'successfully !!' : 'Thành công !',
         icon: 'success',
         confirmButtonText: 'OK',
       });

@@ -30,7 +30,23 @@
 
                 </td>
                 <td>
-                    <button id="{{this.status}}" class="status-btn">{{this.status}}</button>
+                    {{#switch this.status}}
+                    {{#case 'pending'}}
+                    <button id="{{this.status}}" class="status-btn status-pending">{{this.status}}</button>
+                    {{/case}}
+                    {{#case 'shipping'}}
+                    <button id="{{this.status}}" class="status-btn status-accepted">{{this.status}}</button>
+                    {{/case}}
+                    {{#case 'success'}}
+                    <button id="{{this.status}}" class="status-btn status-delivered">{{this.status}}</button>
+                    {{/case}}
+                    {{#case 'reject'}}
+                    <button id="{{this.status}}" class="status-btn status-reject">{{this.status}}</button>
+                    {{/case}}
+                    {{#case 'cancel'}}
+                    <button id="{{this.status}}" class="status-btn status-cancelled">{{this.status}}</button>
+                    {{/case}}
+                    {{/switch}}
                 </td>
                 <td><span class="upper-case">
                         {{this.payment_method}}

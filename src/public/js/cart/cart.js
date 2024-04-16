@@ -1,5 +1,5 @@
 const inputQuantities = $('.input-quantity').toArray();
-
+const locale = getCookie('locale');
 inputQuantities.forEach((inputQuantity) => {
   //add event listener onchange
   inputQuantity.addEventListener('change', function () {
@@ -30,8 +30,9 @@ deleteButtons.forEach((deleteButton) => {
       .then((response) => response.json())
       .then(() => {
         swal.fire({
-          title: 'Success!',
-          text: 'Deleted successfully !!',
+          title: locale === 'en' ? 'Success!' : 'Thành công!',
+          text:
+            locale === 'en' ? 'Deleted successfully !!' : 'Xóa thành công !!',
           icon: 'success',
           confirmButtonText: 'OK',
         });

@@ -69,7 +69,7 @@ export const  getProductHomePage = asyncHandler(async (req: Request, res: Respon
   try {
     const defaultParams: IGetAllParams = handleParamsGetAll({
       page: CONSTANT.PAGE_DEFAULT,
-      limit: CONSTANT.PRODUCT_DEFAULT_HPAGE,
+      limit: CONSTANT.PRODUCT_DEFAULT_PAGE,
     
     });
     const products = await productService.getAllProducts(defaultParams);

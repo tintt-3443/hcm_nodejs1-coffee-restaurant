@@ -120,7 +120,7 @@ export class CartsService {
         }, 0);
         const cart = {
           total: total,
-          cartItems: cartItems,
+          cartItems: cartItems || [],
         };
         return cart;
       }

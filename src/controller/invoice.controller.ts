@@ -118,7 +118,7 @@ export const updateStatusOrder = asyncHandler(
         req.flash('error', req.t('home.cant-get-product'));
         res.render('product', { flash: req.flash() });
       }
-      const invoice = await invoiceService.updateStatusOrder(invoiceId, isProcess);
+      await invoiceService.updateStatusOrder(invoiceId, isProcess);
       res.json({ success: true });
     }
      catch (error) {

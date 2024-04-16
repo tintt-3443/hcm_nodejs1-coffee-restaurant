@@ -61,6 +61,10 @@
                                     {{#if this.up_size}}
                                     <p class="topping-name">+ Up size +5000đ</p>
                                     {{/if}}
+
+                                    {{#each this.toppings}} 
+                                    <p class="topping-name">+ {{this.name}} +{{ this.price}}đ</p>
+                                    {{/each}}
                                 </div>
                                 <p class="cart-price mb-0">+{{ this.price_of_product}}</p>
                             </div>
@@ -75,7 +79,6 @@
                     <td class="align-middle text-center">
                         <p class="cart-price mb-0">{{ this.total}}</p>
                     </td>
-
                 </tr>
                 {{/each}}
             </tbody>
@@ -94,7 +97,6 @@
                     <div class="">{{invoice.total}}</div>
                 </div>
             </div>
-
         </div>
         <div class="d-flex justify-content-between w-58">
             {{#if (isAdmin role)}}
@@ -125,4 +127,9 @@
 
         </div>
     </div>
+
 </div>
+
+<script src="/js/payment/payment.js"></script>
+<script src="/js/history/history.js"></script>
+<script src='/js/sweetalert.min.js'></script>

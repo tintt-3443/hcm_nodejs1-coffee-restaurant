@@ -46,18 +46,18 @@
             <p class='title-intro'>{{t 'product.relation-product'}}</p>
             <div class='list-relation row row-cols-4'>
                 {{#each products}}
-                  <a class="underline-none" href="/product/{{this.id}}">
-                <div>
-                    <div class='card height-fluid' style='width: 16rem;'>
-                        <img src='{{this.image}}' class='card-img-top img-fluid' alt='...' />
-                        <div class='card-body'>
-                            <p class='card-text title-product'>{{this.name}}</p>
-                            <p class='card-text price-product'>{{this.VNDFormat
-                                this.price
-                                }}</p>
+                <a class="underline-none" href="/product/{{this.id}}">
+                    <div>
+                        <div class='card height-fluid' style='width: 16rem;'>
+                            <img src='{{this.image}}' class='card-img-top img-fluid' alt='...' />
+                            <div class='card-body'>
+                                <p class='card-text title-product'>{{this.name}}</p>
+                                <p class='card-text price-product'>{{this.VNDFormat
+                                    this.price
+                                    }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </a>
                 {{/each}}
             </div>
@@ -65,5 +65,6 @@
     </div>
 </div>
 
+<script src='/js/utils.js'></script>
 <script src='/js/product/product-detail.js'></script>
-<script src='/js/sweetalert.min.js'></script> 
+<script src='/js/sweetalert.min.js'></script>

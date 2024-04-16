@@ -8,6 +8,8 @@ import { ProductInstanceRepository } from '../repository/product-instance';
 import { CONSTANT } from '../constant/variable';
 import { ProductsService } from './product.service';
 import { InvoiceDetail } from '../entities/InvoiceDetail';
+import { VNDFormat } from '../utils/auth/helper';
+import { STATUS_ORDER } from '../constant/enum';
 
 export class InvoiceService {
   private invoiceRepository: InvoiceRepository;
@@ -115,6 +117,7 @@ export class InvoiceService {
           return {
             ...item,
             toppings,
+            VNDFormat: VNDFormat,
           };
         });
 
@@ -130,6 +133,55 @@ export class InvoiceService {
       }
     } catch (error) {
       return null;
+    }
+  }
+
+  public async updateStatusOrder(invoiceId: number, status: boolean) {
+    try {
+      const invoice = await this.invoiceRepository.findOne({
+        where: { id: invoiceId },
+      });
+      if (!invoice) {
+        return null;
+      }
+      switch (status) {
+        case true:
+          
+          if (invoice.status === STATUS_ORDER.PENDING) {
+            invoice.status = STATUS_ORDER.SHIPPING;
+            await this.invoiceRepository.save(invoice);
+              return invoice;
+            } else if (invoice.status === STATUS_ORDER.SHIPPING) {
+              invoice.status = STATUS_ORDER.SUCCESS;
+              await this.invoiceRepository.save(invoice);
+              return invoice;
+            }else return null;
+              break;
+        case false:
+            invoice.status = STATUS_ORDER.REJECT;
+            await this.invoiceRepository.save(invoice);
+            return invoice;
+          break;
+
+        default:
+          return null;
+      }
+      
+    } catch (error) {
+      return null;
+    }
+  }
+
+  //ADMIN
+  public async getAllOrder() {
+    try {
+      const invoices = await this.invoiceRepository.find();
+      if (!invoices) {
+        return [];
+      }
+      return invoices;
+    } catch (error) {
+      return [];
     }
   }
 }

@@ -16,14 +16,20 @@
     "submit-signup": "Sign up",
     "signin": "Sign in",
     "already-account": "Already have an account?",
-    "forgotpw": "Forgot password?"
+    "forgotpw": "Forgot password?",
+     "login-fail":"username or password is incorrect",
+    "repassword-not-match": "Password not match"
+
   },
 
   "header": {
     "story": "Story",
     "menu": "Menu",
     "blog": "Blog",
-    "contact": "Contact"
+    "contact": "Contact",
+    "profile": "Profile",
+    "order-list": "Order List",
+    "logout": "Logout"
   },
   "footer": {
     "text-intro": "Morii reminds the guests that in the world outside, whether fast or slow, whether tumultuous or weary, there are still somewhere those moments, those little things that are enough to dispel a bit of the pressure in the hurried and bustling life out there. And let Morii be the place to preserve those feelings and memories.",
@@ -36,7 +42,7 @@
     "contact": "Contact"
   },
   "home": {
-    "more-btn": "More",
+    "more-btn": "Explore More",
     "menu": "Menu"
   },
   "product": {
@@ -69,6 +75,34 @@
     "address": "Address",
     "note": "Note",
     "credit-card-number": "Credit Card Number",
-    "expiration": "Expiration"
+    "expiration": "Expiration",
+     "cancel": "Cancel",
+    "list-order": "List Order",
+    "confirm": "Confirm",
+    "delivered": "Delivered",
+    "pending": "Pending",
+    "shipping": "Shipping",
+    "success": "Delivered",
+    "reject": "Reject"
+  },
+  "history": {
+    "id": "ID",
+    "date": "Date",
+    "total": "Total",
+    "status": "Status",
+    "method": "Method",
+    "action": "Detail",
+    "date-order": "Date Order",
+    "name": "Name",
+    "phone": "Phone",
+    "address": "Address",
+    "note": "Note"
+  },
+    "admin": {
+    "dashboard": "Dashboard",
+    "order": "Order",
+    "user": "User",
+    "blog": "Blog"
   }
+
 }
