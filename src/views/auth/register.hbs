@@ -1,6 +1,6 @@
 <div class="container d-flex flex-row justify-content-center align-items-center h-100">
   <div class="form-profile-register position-relative">
-    <img src="/images/auth/x.svg" alt="login" class="img-cancel-login" />
+    <a href="/"<img src="/images/auth/x.svg" alt="login" class="img-cancel-login" /></a>
     <p class="text-center fw-bold fs-3 ">{{t 'auth.signup'}}</p>
     <div class='flash-messages'>
 
@@ -28,6 +28,13 @@
           name="repassword">
       </div>
       <button type="submit" class="btn btn-submit w-100 mt-3">{{t 'auth.submit-signup' }}</button>
+      {{#if errors}}
+        <ul>
+          {{#each errors}}
+          <li class="text-danger" >{{this.msg}}</li>
+          {{/each}}
+        </ul>
+      {{/if}}
       <p class=" text-redirect">{{t 'auth.already-account' }} <a href="/auth/login">{{t 'auth.signin' }}</a></p>
 
   </div>

@@ -37,7 +37,7 @@
             <span class="mr-17">|</span>
             <!-- Avatar -->
             <button type="button" class="btn-login">{{t 'auth.signin'}}</button>
-            <div class="btn-group">
+            <div class="btn-group mr-4">
                 <button type="button" class="btn btn-dropdown-border dropdown-toggle dropdown-toggle-split"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
@@ -50,12 +50,17 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">{{t 'header.logout'}}</a></li>
+                    <li><a class="dropdown-item btn-logout" href="">{{t 'header.logout'}}</a></li>
                 </ul>
             </div>
         </div>
         <!-- Right elements -->
+        <div class="ml-20">
+            <a href="?locale=en"> <img class="icon-i18" src="/images/flag.png" /></a>
+            <a href="?locale=vi"><img class="icon-i18" src="/images/vietnam.png" /></a>
+        </div>
     </div>
-    <a href="?locale=en">English</a> | <a href="?locale=vi">Vietnamese</a>
     <!-- Container wrapper -->
 </nav>
+
+<script src='/js/home/header.js'></script>

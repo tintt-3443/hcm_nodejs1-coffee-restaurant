@@ -3,97 +3,24 @@
         <p class="text-center text-color title-menu">{{t 'home.menu'}}</p>
     </div>
     <div class="  mw-xl">
-        <div class="d-flex justify-content-between mt-5">
-            <div class="row-menu ">
+        <div class="d-flex justify-content-between mt-5 row row-cols-2 g-5">
+            {{#each products}}
+             <a class="underline-none" href="/product/{{this.id}}">
+            <div class=" col">
                 <div class="menu-item">
                     <div>
                         <img class="image-menu"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvvid7Rti2V2O18lHOD46fsRqEkN4WLH29Ow&s"
+                            src="{{this.image}}"
                             alt="">
                     </div>
                     <div>
-                        Expresso nóng nâu đá
+                        {{this.name}}
                     </div>
-                    <div class="text-price">39.000đ</div>
+                    <div class="text-price">{{this.price}}</div>
 
                 </div>
             </div>
-            <div class="row-menu justify-content-end">
-                <div class="menu-item">
-                    <div>
-                        <img class="image-menu"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvvid7Rti2V2O18lHOD46fsRqEkN4WLH29Ow&s"
-                            alt="">
-                    </div>
-                    <div>
-                        Expresso
-                    </div>
-                    <div class="text-price">39.000đ</div>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="d-flex justify-content-between mt-5">
-            <div class="row-menu ">
-                <div class="menu-item">
-                    <div>
-                        <img class="image-menu"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvvid7Rti2V2O18lHOD46fsRqEkN4WLH29Ow&s"
-                            alt="">
-                    </div>
-                    <div>
-                        Expresso nóng nâu đá
-                    </div>
-                    <div class="text-price">39.000đ</div>
-
-                </div>
-            </div>
-            <div class="row-menu justify-content-end">
-                <div class="menu-item">
-                    <div>
-                        <img class="image-menu"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvvid7Rti2V2O18lHOD46fsRqEkN4WLH29Ow&s"
-                            alt="">
-                    </div>
-                    <div>
-                        Expresso
-                    </div>
-                    <div class="text-price">39.000đ</div>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="d-flex justify-content-between mt-5">
-            <div class="row-menu ">
-                <div class="menu-item">
-                    <div>
-                        <img class="image-menu"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvvid7Rti2V2O18lHOD46fsRqEkN4WLH29Ow&s"
-                            alt="">
-                    </div>
-                    <div>
-                        Expresso nóng nâu đá
-                    </div>
-                    <div class="text-price">39.000đ</div>
-
-                </div>
-            </div>
-            <div class="row-menu justify-content-end">
-                <div class="menu-item">
-                    <div>
-                        <img class="image-menu"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvvid7Rti2V2O18lHOD46fsRqEkN4WLH29Ow&s"
-                            alt="">
-                    </div>
-                    <div>
-                        Expresso
-                    </div>
-                    <div class="text-price">39.000đ</div>
-
-                </div>
-            </div>
-
+            </a>
+            {{/each}}
         </div>
     </div>
