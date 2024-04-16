@@ -50,5 +50,15 @@
     "add-to-card": "Thêm vào giỏ hàng",
     "des-product": "Mô tả sản phẩm",
     "relation-product": "Sản phẩm liên quan"
+  },
+  "cart": {
+    "cart": "Giỏ hàng",
+    "product-detail": "Chi tiết sản phẩm",
+    "quantity": "Số lượng",
+    "total": "Tổng cộng",
+    "remove": "Xóa",
+    "order-summary": "Tóm tắt đơn hàng",
+    "sub-total": "tạm tính",
+    "order": "Đặt hàng"
   }
 }

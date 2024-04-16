@@ -1,7 +1,6 @@
 import { IGetAllParams } from 'src/interface/interface';
 import { ProductRepository } from '../repository/product.repository';
 import { ToppingRepository } from '../repository/topping.repository';
-import { Product } from '../entities/Product';
 
 export class ProductsService {
   private productRepository: ProductRepository;
@@ -52,6 +51,13 @@ export class ProductsService {
     } catch (error) {
       return null;
     }
+  }
+
+  public getToppingByProduct(productId: number) {
+    const toppings = this.toppingRepository.find({
+      where: { products: { id: productId } },
+    });
+    return toppings;
   }
 
   public async checkProductExist(productId: number) {

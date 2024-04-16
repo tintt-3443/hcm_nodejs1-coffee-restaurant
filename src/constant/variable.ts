@@ -5,4 +5,6 @@ export const CONSTANT = {
   TOKEN_EXPIRATION: 86400 as number,
   RELATION_PRODUCT: 4 as number,
   UP_SIZE_PRICE: 5000 as number,
+  MIN_QUANTITY: 1 as number,
+  MAX_QUANTITY: 10 as number,
 };

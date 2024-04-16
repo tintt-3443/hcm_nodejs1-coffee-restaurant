@@ -11,37 +11,44 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each cart.cartItems}}
                 <tr class="row-product text-center">
                     <th scope="row" class="align-middle">
                         <div class="product-cart height-100 d-flex  align-items-center">
                             <div>
-                                <img class="product-cart__img"
-                                    src="https://product.hstatic.net/1000075078/product/1675355354_bg-tch-sua-da-no_4fbf208885ed464ab4b5e145336d42a2_large.jpg"
-                                    alt="product image">
+                                <img class="product-cart__img" src="{{this.image}}" alt="product image">
                             </div>
                             <div class="cart-product">
-                                <p class="cart-name">Hamburgers And Chips Meal</p>
+                                <p class="cart-name">{{this.name}}</p>
                                 <div class="cart-topping">
-                                    <p>+Trân châu trắng</p>
-                                    <p>+Trân châu đen</p>
+                                    {{#if this.up_size}}
+                                    <p class="topping-name">+ Up size +{{VNDFormat 5000}}</p>
+                                    {{/if}}
+
+                                    {{#each this.productInstance.toppings}}
+                                    <p class="topping-name">+ {{this.name}} +{{
+                                        this.VNDFormat this.price}}</p>
+                                    {{/each}}
                                 </div>
-                                <p class="cart-price mb-0">+33.000 đ</p>
+                                <p class="cart-price mb-0">+{{this.VNDFormat this.price}}</p>
                             </div>
                         </div>
                     </th>
                     <td class="align-middle">
                         <div class="form-outline">
-                            <input type="number" id="typeNumber" class="form-control number-input text-center" />
+                            <input type="number" id="{{this.productIstance.id}}" min="{{MIN_QUANTITY}}"
+                                max="{{MAX_QUANTITY}}" value="{{this.quantity}}"
+                                class="form-control number-input text-center" />
                         </div>
                     </td>
                     <td class="align-middle text-center">
-                        <p class="cart-price mb-0">333.000 đ</p>
+                        <p class="cart-price mb-0">{{VNDFormat this.totalProduct}}</p>
                     </td>
                     <td class="align-middle text-center">
                         <i class="fa-sharp fa-solid fa-trash"></i>
                     </td>
                 </tr>
-
+                {{/each}}
             </tbody>
         </table>
     </div>
@@ -51,11 +58,11 @@
                 <div class="order-title fs-4">{{t 'cart.order-summary'}}</div>
                 <div class="d-flex justify-content-between align-items-center pb-14">
                     <div>{{t 'cart.sub-total'}}</div>
-                    <div>1435$</div>
+                    <div>{{VNDFormat cart.total}}</div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center pt-4  ">
                     <div>{{t 'cart.total'}}</div>
-                    <div class="">1435$</div>
+                    <div class="">{{VNDFormat cart.total}}</div>
                 </div>
                 <div class="py-4">
                     <button class="btn btn-primary w-100 btn-submit">{{t 'cart.order'}}</button>
