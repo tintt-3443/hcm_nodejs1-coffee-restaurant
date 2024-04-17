@@ -7,7 +7,9 @@ import { PAYMENT_METHOD, STATUS_ORDER } from '../constant/enum';
 
 @Entity()
 export class Invoice extends Common {
-  @Column()
+  @Column({
+    default: false,
+  })
   isOnline: boolean;
 
   @Column()

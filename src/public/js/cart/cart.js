@@ -1,4 +1,4 @@
-const inputQuantities = $('.input-quantity');
+const inputQuantities = $('.input-quantity').toArray();
 
 inputQuantities.forEach((inputQuantity) => {
   //add event listener onchange
@@ -20,7 +20,7 @@ inputQuantities.forEach((inputQuantity) => {
   });
 });
 
-const deleteButtons = $('.btn-remove-cart');
+const deleteButtons = $('.btn-remove-cart').toArray();
 deleteButtons.forEach((deleteButton) => {
   deleteButton.addEventListener('click', function () {
     const id = deleteButton.getAttribute('id');

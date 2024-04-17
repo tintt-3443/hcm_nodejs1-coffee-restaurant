@@ -60,5 +60,15 @@
     "order-summary": "Tóm tắt đơn hàng",
     "sub-total": "tạm tính",
     "order": "Đặt hàng"
+  },
+  "order": {
+    "title": "Đặt hàng",
+    "name": "Tên",
+    "email": "Email",
+    "phone": "Số điện thoại",
+    "address": "Địa chỉ",
+    "note": "Ghi chú",
+    "credit-card-number": "Số thẻ",
+    "expiration": "Ngày hết hạn"
   }
 }

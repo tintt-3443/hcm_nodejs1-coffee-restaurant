@@ -44,6 +44,7 @@ export class CartsService {
           currentCart ||
           (await this.cartRepository.save({
             user: { id: params.userId },
+            total: CONSTANT.DEFAULT_TOTAL,
           }));
         const productInstance = await this.productInstanceRepository.save({
           product: { id: params.productId },
@@ -121,7 +122,21 @@ export class CartsService {
         };
         return cart;
       }
-      return [];
+      return null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  public async clearCart(userId: number) {
+    // clear cart
+    try {
+      const cart = await this.cartRepository.findOne({
+        where: { user: { id: userId } },
+      });
+      if (cart) {
+        await this.cartItemService.deleteCartItemByCart(cart.id);
+      }
     } catch (error) {
       return null;
     }

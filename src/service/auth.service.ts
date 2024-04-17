@@ -28,7 +28,6 @@ export class AuthService {
       if (!userExist) {
         return null;
       }
-
       const isCorrectPw = await checkPassword(
         userDTO.password,
         userExist.password,

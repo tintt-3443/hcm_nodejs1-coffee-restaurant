@@ -31,7 +31,6 @@ export const authenticateJWT = async (
     const decoded = (await decodeJWT(token)) as IUserSession;
     if (decoded) {
       if (req.session) {
-        req.session.user = decoded?.user;
         next();
       }
     }

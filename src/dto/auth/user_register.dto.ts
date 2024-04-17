@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, MaxLength, MinLength } from 'class-validator';
-import { validationForm } from 'src/constant/validate.regex';
+import { validationForm } from '../../constant/validate.regex';
 
 export class UserRegisterDto {
   @IsNotEmpty()

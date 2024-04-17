@@ -13,6 +13,7 @@ export class User extends Common {
   @Column()
   email: string;
 
+  //ignore
   @Column()
   password: string;
 

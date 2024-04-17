@@ -1,23 +1,15 @@
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { Common } from './Common';
-import { SIZE_PRODUCT } from '../constant/enum';
 import { Invoice } from './Invoice';
 import { ProductInstance } from './ProductInstance';
 
 @Entity()
 export class InvoiceDetail extends Common {
-  @Column({
-    nullable: true,
-    type: 'enum',
-    enum: SIZE_PRODUCT,
-    default: SIZE_PRODUCT.M,
-  })
-  size: SIZE_PRODUCT;
   @Column()
-  topping: number;
+  up_size: boolean;
 
-  @Column()
-  price_of_topping: number;
+  @Column('simple-array')
+  toppingPriceList: number[];
 
   @Column()
   price_of_product: number;
@@ -37,7 +29,7 @@ export class InvoiceDetail extends Common {
   )
   productInstance: ProductInstance;
 
-  @OneToMany(() => Invoice, (invoice: Invoice) => invoice.invoiceDetails)
+  @ManyToOne(() => Invoice, (invoice: Invoice) => invoice.invoiceDetails)
   invoice: Invoice;
 
   // METHOD

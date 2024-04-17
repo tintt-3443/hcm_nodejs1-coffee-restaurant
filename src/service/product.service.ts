@@ -1,4 +1,4 @@
-import { IGetAllParams } from 'src/interface/interface';
+import { IGetAllParams } from '../interface/interface';
 import { ProductRepository } from '../repository/product.repository';
 import { ToppingRepository } from '../repository/topping.repository';
 
