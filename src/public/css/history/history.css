@@ -16,7 +16,7 @@
 
 .status-btn {
   font-size: 0.9rem;
-  width: 30%;
+  width: 50%;
   height: 1.6rem;
   border: none;
   border-radius: 8px;
@@ -44,7 +44,7 @@
   background-color: #ffc107;
 }
 
-.status-rejected {
+.status-reject {
   background-color: #dc3545;
 }
 
@@ -54,4 +54,9 @@
 
 .status-cancelled {
   background-color: orange;
+}
+
+.w-58{
+  width: 58%;
+  padding-top: 0.5rem;
 }

@@ -14,7 +14,11 @@
                     <p>{{t 'history.method'}}: </p>
                     <p class="pl-2 upper-case fw-bold">{{invoice.payment_method}}</p>
                 </div>
-                <button class="status-btn status-pending">{{invoice.status}}</button>
+                <div class="d-flex">
+                    <p>{{t 'history.note'}}: </p>
+                    <p class="pl-2 upper-case ">{{invoice.note}}</p>
+                </div>
+                <button id="{{invoice.status}}" class="status-btn ">{{invoice.status}}</button>
             </div>
             <div class="right-col">
                 <div class="left-col">
@@ -40,7 +44,6 @@
                     <th scope="col">{{t 'cart.product-detail'}}</th>
                     <th scope="col">{{t 'cart.quantity'}}</th>
                     <th scope="col">{{t 'cart.total'}}</th>
-                    <th scope="col">{{t 'cart.remove'}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,10 +59,10 @@
                                 <p class="cart-name">{{this.productInstance.product.name}}</p>
                                 <div class="cart-topping">
                                     {{#if this.up_size}}
-                                    <p class="topping-name">+ Up size +5000</p>
+                                    <p class="topping-name">+ Up size +5000đ</p>
                                     {{/if}}
                                 </div>
-                                <p class="cart-price mb-0">+{{this.price_of_product}}</p>
+                                <p class="cart-price mb-0">+{{ this.price_of_product}}</p>
                             </div>
                         </div>
                     </th>
@@ -70,11 +73,9 @@
                         </div>
                     </td>
                     <td class="align-middle text-center">
-                        <p class="cart-price mb-0">{{this.total}}</p>
+                        <p class="cart-price mb-0">{{ this.total}}</p>
                     </td>
-                    <td class="align-middle text-center">
-                        <i class="fa-sharp fa-solid fa-trash cursor-pointer btn-remove-cart"></i>
-                    </td>
+
                 </tr>
                 {{/each}}
             </tbody>
@@ -93,6 +94,35 @@
                     <div class="">{{invoice.total}}</div>
                 </div>
             </div>
+
+        </div>
+        <div class="d-flex justify-content-between w-58">
+            {{#if (isAdmin role)}}
+            {{#if (compareStatus invoice.status STATUS_ORDER.PENDING)}}
+            <p id="{{invoice.id}}" class="cursor-pointer text-underline cancel-btn">{{t 'order.cancel'}}</p>
+            <p id="{{invoice.id}}" class="cursor-pointer text-underline confirm-btn">{{t 'order.confirm'}}</p>
+            {{/if}}
+            {{#if (compareStatus invoice.status STATUS_ORDER.SHIPPING)}}
+            <p id="{{invoice.id}}" class="cursor-pointer text-underline cancel-btn">{{t 'order.cancel'}}</p>
+            <p id="{{invoice.id}}" class="cursor-pointer text-underline success-btn">{{t 'order.delivered'}}</p>
+            {{/if}}
+            {{else}}
+            {{#if (compareStatus invoice.status STATUS_ORDER.PENDING)}}
+            <p id="{{invoice.id}}" class="cursor-pointer text-underline cancel-btn">{{t 'order.cancel'}}</p>
+            <a href="/order/history">
+                <p class="cursor-pointer underline-none">{{t 'order.list-order'}}</p>
+            </a>
+            {{/if}}
+            {{#if (compareStatus invoice.status STATUS_ORDER.SHIPPING)}}
+            <p id="{{invoice.id}}" class="cursor-pointer text-underline success-btn">{{t 'order.delivered'}}</p>
+            <a href="/order/history">
+                <p class="cursor-pointer underline-none">{{t 'order.list-order'}}</p>
+            </a>
+            {{/if}}
+
+            {{/if}}
+
+
         </div>
     </div>
 </div>

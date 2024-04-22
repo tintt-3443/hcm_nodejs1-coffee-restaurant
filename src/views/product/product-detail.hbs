@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div>
-                    <button type='button' class='btn-add' onclick="addToCart(event,'{{product.id}}')">{{t
+                    <button type='button' class='btn-add' onclick="addToCart(event,'{{product.id}}',{{userId}})">{{t
                         'product.add-to-card'
                         }}</button>
                 </div>
@@ -46,6 +46,7 @@
             <p class='title-intro'>{{t 'product.relation-product'}}</p>
             <div class='list-relation row row-cols-4'>
                 {{#each products}}
+                  <a class="underline-none" href="/product/{{this.id}}">
                 <div>
                     <div class='card height-fluid' style='width: 16rem;'>
                         <img src='{{this.image}}' class='card-img-top img-fluid' alt='...' />
@@ -57,6 +58,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
                 {{/each}}
             </div>
         </div>
