@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import path from 'path';
 import flash from 'connect-flash';
 import session from 'express-session';
@@ -66,26 +66,46 @@ app.use(flash());
 
 app.set('views', path.join(__dirname, 'views'));
 // Template engine
-app.engine('.hbs', engine({
-  extname: '.hbs',
-  helpers: {
-    switch: function(this: HandlebarsHelperThis, value: any, options: any) {
-      this.switch_value = value;
-      return options.fn(this);
-    },
-    case: function(this: HandlebarsHelperThis, value: any, options: any) {
-      if (value == this.switch_value) {
+app.engine(
+  '.hbs',
+  engine({
+    extname: '.hbs',
+    helpers: {
+      switch: function (this: HandlebarsHelperThis, value: any, options: any) {
+        this.switch_value = value;
         return options.fn(this);
-      }
+      },
+      case: function (this: HandlebarsHelperThis, value: any, options: any) {
+        if (value == this.switch_value) {
+          return options.fn(this);
+        }
+      },
+      // eq is helper to compare 2 values
+      eq: function (str1: string, str2: string) {
+        if (str1 == str2) {
+          return true;
+        } else {
+          return false;
+        }
+      },
     },
-  },
-}));
+  }),
+);
 app.set('view engine', '.hbs');
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'), () => {});
 app.use(logger('dev'));
 
 app.use(router);
+
+app.use((err: Error, req: Request, res: Response) => {
+  if (err) {
+    console.error(err.message);
+  } else {
+    res.status(500).send('Something went wrong!');
+  }
+});
+
 AppDataSource.initialize()
   .then(() => {
     console.log('Database initialized');

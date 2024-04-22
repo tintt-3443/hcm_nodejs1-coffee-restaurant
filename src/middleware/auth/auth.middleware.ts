@@ -8,17 +8,6 @@ interface IUserSession {
   };
 }
 
-export const requireLogin = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  if (req.session && req.session.user) {
-    next();
-  } else {
-    res.redirect('/auth/login');
-  }
-};
 export const authenticateJWT = async (
   req: Request,
   res: Response,
@@ -31,12 +20,12 @@ export const authenticateJWT = async (
     }
     const decoded = (await decodeJWT(token)) as IUserSession;
     if (decoded) {
-      if (req.session) {
-        next();
-      }
+      next();
+    } else {
+      res.redirect('/auth/login');
     }
   } catch (error) {
-    res.redirect('/auth/login');
+    console.log('error', error);
   }
 };
 

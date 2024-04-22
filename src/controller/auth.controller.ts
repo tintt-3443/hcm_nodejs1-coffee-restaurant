@@ -6,7 +6,6 @@ import { generateToken } from '../utils/auth/auth';
 import { validationForm } from '../constant/validate.regex';
 import { AuthService } from '../service/auth.service';
 import { UserRegisterDto } from '../dto/auth/user_register.dto';
-import { ROLE_USER } from '../constant/enum';
 
 const authService = new AuthService();
 
@@ -38,13 +37,13 @@ export const postUserCreateForm = [
     try {
       const errors = validationResult(req);
       const { password, repassword } = req.body;
-      if (!errors.isEmpty() ) {
+      if (!errors.isEmpty()) {
         res.render('auth/register', {
           errors: errors.array(),
         });
         return;
       }
- if (password !== repassword) {
+      if (password !== repassword) {
         res.render('auth/register', {
           errors: [{ msg: req.t('auth.repassword-not-match') }],
         });
@@ -53,10 +52,9 @@ export const postUserCreateForm = [
       const userCreated = await authService.RegisterUser(userDTO);
       if (!userCreated) {
         req.flash('error', req.t('home.cant-create'));
-        res.redirect('/register');
-        return;
+        res.redirect('/auth/register');
       }
-      res.redirect('auth/login');
+      res.redirect('/auth/login');
     } catch (error) {
       req.flash('error', req.t('home.cant-create'));
       res.redirect('/auth/login');
@@ -76,10 +74,7 @@ export const Login = [
     .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
     .withMessage(() => String(i18next.t('auth.user-invalid-email')))
     .escape(),
-  body('password', 'Invalid password')
-    .matches(validationForm.PASSWORD_REGEX)
-    .withMessage(() => String(i18next.t('auth.user-invalid-password')))
-    .escape(),
+  body('password', 'Invalid password').escape(),
   asyncHandler(async (req: Request, res: Response) => {
     try {
       const errors = validationResult(req);
@@ -104,12 +99,7 @@ export const Login = [
       };
       const token = generateToken(user_.email);
       //set cookie
-      res.cookie('token', token, {
-        maxAge: 1000 * 60 * 60 * 24 * 30,
-      });
-      if (user_.role == ROLE_USER.ADMIN) { 
-        res.redirect('/admin');
-      }
+      res.cookie('token', token);
       res.redirect('/');
     } catch (error) {
       req.flash('error', req.t('home.cant-create'));
@@ -125,5 +115,5 @@ export const Logout = asyncHandler((req: Request, res: Response) => {
     }
   });
   res.clearCookie('token');
-  res.json({success: true});
+  res.json({ success: true });
 });
