@@ -55,7 +55,7 @@ export const postUserCreateForm = [
       res.redirect('/auth/login');
     } catch (error) {
       req.flash('error', req.t('home.cant-create'));
-      res.redirect('/register');
+      res.redirect('/auth/login');
     }
   }),
 ];
@@ -88,7 +88,7 @@ export const Login = [
       const user_ = await authService.LoginUser(req.body);
       if (!user_) {
         req.flash('error', req.t('home.login-fail'));
-        res.redirect('/auth/login');
+        res.redirect('auth/login');
         return;
       }
       //except password

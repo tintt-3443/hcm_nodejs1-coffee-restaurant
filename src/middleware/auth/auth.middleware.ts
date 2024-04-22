@@ -15,7 +15,7 @@ export const requireLogin = (
   if (req.session && req.session.user) {
     next();
   } else {
-    res.redirect('auth/login');
+    res.redirect('/auth/login');
   }
 };
 export const authenticateJWT = async (
@@ -26,7 +26,7 @@ export const authenticateJWT = async (
   try {
     const token: string = req.cookies.token;
     if (!token) {
-      res.redirect('auth/login');
+      res.redirect('/auth/login');
     }
     const decoded = (await decodeJWT(token)) as IUserSession;
     if (decoded) {
@@ -35,6 +35,6 @@ export const authenticateJWT = async (
       }
     }
   } catch (error) {
-    res.redirect('auth/login');
+    res.redirect('/auth/login');
   }
 };

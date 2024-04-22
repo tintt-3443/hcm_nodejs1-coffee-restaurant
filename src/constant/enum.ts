@@ -20,11 +20,10 @@ export enum PAYMENT_METHOD {
 
 export enum STATUS_ORDER {
   PENDING = 'pending',
-  CONFIRM = 'confirm',
   SHIPPING = 'shipping',
   SUCCESS = 'success',
-  CANCEL = 'cancel',
-  REJECT = 'reject',
+  REJECT = 'reject', // admin cancel
+  CANCEL = 'cancel', // user cancel
 }
 
 export const enum TYPE_PRODUCT {

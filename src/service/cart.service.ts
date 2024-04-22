@@ -32,6 +32,7 @@ export class CartsService {
             currentCart.id,
             params.productId,
             params.toppings,
+            params.up_size,
           )
         : null;
       if (currentCart && cartExist) {
@@ -51,6 +52,7 @@ export class CartsService {
           toppings: params.toppings.map((id) => ({ id })),
         });
         if (newCart && productInstance) {
+
           await this.cartItemService.createNewCartItem(
             newCart.id,
             productInstance.id,
