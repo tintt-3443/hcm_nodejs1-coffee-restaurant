@@ -1,4 +1,5 @@
 const btnpayment = $('#btn-submit-payment');
+const locale = getCookie('locale');
 if (btnpayment) {
   btnpayment.on('click', function () {
     const payment = {
@@ -18,11 +19,14 @@ if (btnpayment) {
       .then((res) => res.text())
       .then(() => {
         swal.fire({
-          title: 'Success!',
-          text: 'successfully !!',
+          title: locale === 'en' ? 'Success!' : 'Thành công!',
+          text: locale === 'en' ? 'successfully !!' : 'Thành công !',
           icon: 'success',
           confirmButtonText: 'OK',
         });
+        setTimeout(() => {
+          window.location.href = '/order/history';
+        }, 1000);
       });
   });
 }

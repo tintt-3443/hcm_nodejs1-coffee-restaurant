@@ -7,6 +7,16 @@ import {
 } from '../../middleware/auth/auth.middleware';
 
 router.get('/', requireLogin, authenticateJWT, orderController.getDefaultInfor);
+router.get(
+  '/history/:id',
+  requireLogin,
+  authenticateJWT,
+  orderController.getInvoiceDetail,
+);
+router.post('/update/:id',
+  requireLogin,
+  authenticateJWT,
+  orderController.updateStatusOrder);
 router.post(
   '/payment',
   requireLogin,
@@ -14,11 +24,5 @@ router.post(
   orderController.getPayment,
 );
 router.get('/history', requireLogin, authenticateJWT, orderController.getOrder);
-router.get(
-  '/history/:id',
-  requireLogin,
-  authenticateJWT,
-  orderController.getInvoiceDetail,
-);
 
 export default router;

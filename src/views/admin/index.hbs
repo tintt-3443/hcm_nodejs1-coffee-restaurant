@@ -1,0 +1,61 @@
+    <div class="row w-100 py h-100 mt-admin">
+  <div class="col-3">
+    <!-- Tab navs -->
+    <div
+      class=" text-center w-50 h-50  border-nav"
+      id="v-tabs-tab"
+      role="tablist"
+      aria-orientation="vertical"
+    >
+      <a
+        data-mdb-tab-init
+        class="nav-link active py-2 "
+        id="v-tabs-home-tab"
+        href="#v-tabs-home"
+        role="tab"
+        aria-controls="v-tabs-home"
+        aria-selected="false"
+        >{{t 'admin.dashboard'}}</a
+      >
+       <a
+        data-mdb-tab-init
+        class="nav-link active py-2 bg-success text-white"
+        id="v-tabs-home-tab"
+        href="#v-tabs-home"
+        role="tab"
+        aria-controls="v-tabs-home"
+        aria-selected="true"
+        >{{t 'admin.order'}}</a
+      >
+       <a
+        data-mdb-tab-init
+        class="nav-link active py-2 "
+        id="v-tabs-home-tab"
+        href="#v-tabs-home"
+        role="tab"
+        aria-controls="v-tabs-home"
+        aria-selected="false"
+        >{{t 'admin.user'}}</a
+      >
+       <a
+        data-mdb-tab-init
+        class="nav-link active py-2 "
+        id="v-tabs-home-tab"
+        href="#v-tabs-home"
+        role="tab"
+        aria-controls="v-tabs-home"
+        aria-selected="false"
+        >{{t 'admin.blog'}}</a
+      >
+     
+    </div>
+    <!-- Tab navs -->
+  </div>
+
+  <div class="col-9">
+    <!-- Tab content -->
+    <div class="tab-content" id="v-tabs-tabContent">
+          {{> list}}
+    <!-- Tab content -->
+  </div>
+</div>

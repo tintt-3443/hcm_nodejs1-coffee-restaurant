@@ -10,7 +10,9 @@ export class User extends Common {
   @Column()
   name: string;
 
-  @Column()
+  @Column({
+    unique: true,
+  })
   email: string;
 
   //ignore

@@ -8,5 +8,5 @@ export const CONSTANT = {
   MIN_QUANTITY: 1 as number,
   MAX_QUANTITY: 10 as number,
   DEFAULT_TOTAL: 0 as number,
-  PRODUCT_DEFAULT_HPAGE: 6 as number,
+  PRODUCT_DEFAULT_PAGE: 6 as number,
 };
