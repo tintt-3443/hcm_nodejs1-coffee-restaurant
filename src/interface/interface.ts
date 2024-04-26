@@ -2,3 +2,18 @@ export interface IGetAllParams {
   page: number;
   limit: number;
 }
+
+
+export interface IUpdateProfile {
+  userId: number;
+  name: string;
+  email: string;
+  address: string;
+  phone: string;
+  date_of_birth: string;
+  avatar: string;
+}
+
+export interface IResultCloudinary {
+  url?: string;
+}

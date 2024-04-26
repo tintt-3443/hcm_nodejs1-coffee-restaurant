@@ -9,4 +9,5 @@ export const CONSTANT = {
   MAX_QUANTITY: 10 as number,
   DEFAULT_TOTAL: 0 as number,
   PRODUCT_DEFAULT_PAGE: 6 as number,
+  FOLDER_CLOUDINARY: 'morii' as string,
 };

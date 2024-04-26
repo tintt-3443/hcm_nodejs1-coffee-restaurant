@@ -102,7 +102,35 @@
     "dashboard": "Bảng điều khiển",
     "order": "Đơn hàng",
     "user": "Người dùng",
-    "blog": "Blog"
+    "blog": "Blog",
+    "expiration": "Ngày hết hạn"
+  },
+  "user": {
+    "profile-user": "Ảnh",
+    "detail-upload": "JPG, PNG, tối đa 1MB",
+    "btn-upload": "Tải ảnh lên",
+    "account-detail": "Thông tin tài khoản",
+    "name": "Tên",
+    "enter-name": "Nhập tên của bạn",
+    "email": "Email",
+    "enter-email": "Nhập email của bạn",
+    "address":"Địa chỉ",
+    "enter-address": "Nhập địa chỉ của bạn",
+    "phone":"Số điện thoại",
+    "enter-phone": "Nhập số điện thoại của bạn",
+    "birthday": "Ngày sinh",
+    "enter-birthday": "Nhập ngày sinh của bạn",
+    "btn-changepw": "Đổi mật khẩu",
+    "btn-savechange": "Lưu thay đổi",
+    "changepw": "Đổi mật khẩu",
+    "old-password": "Mật khẩu cũ",
+    "enter-old-password": "Nhập mật khẩu cũ của bạn",
+    "new-password": "Mật khẩu mới",	
+    "enter-new-password": "Nhập mật khẩu mới của bạn",
+    "new-password-cf": "Xác nhận mật khẩu mới",
+    "enter-confirm": "Nhập lại mật khẩu mới của bạn",
+    "close": "Đóng",
+    "save": "Lưu"
   }
 
 }

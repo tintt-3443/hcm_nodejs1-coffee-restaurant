@@ -102,7 +102,35 @@
     "dashboard": "Dashboard",
     "order": "Order",
     "user": "User",
-    "blog": "Blog"
+    "blog": "Blog",
+    "expiration": "Expiration"
+  },
+  "user": {
+    "profile-user": "Avatar",
+    "detail-upload": "PNG or JPG only, max 1MB",
+    "btn-upload": "Upload Image",
+    "account-detail": "Account Detail",
+    "name": "Name",
+    "enter-name": "Enter your name",
+    "email": "Email",
+    "enter-email": "Enter your email",
+    "address":"Address",
+    "enter-address": "Enter your address",
+    "phone":"Phone",
+    "enter-phone": "Enter your phone number",
+    "birthday": "Birthday",
+    "enter-birthday": "Enter your birthday",
+    "btn-changepw": "Change Password",
+    "btn-savechange": "Save Change",
+    "changepw": "Change Password",
+    "old-password": "Old Password",
+    "enter-old-password": "Enter your old password",
+    "new-password": "New Password",	
+    "enter-new-password": "Enter your new password",
+    "new-password-cf": "Confirm New Password",
+    "enter-confirm": "Enter your new password again",
+    "close": "Close",
+    "save": "Save"
   }
 
 }

@@ -50,8 +50,10 @@
 .height-fluid {
   height: 100%;
 }
+.height-fluid-card {
+  height: 60%;
+}
 
 .underline-none {
   text-decoration: none;
 }
-
