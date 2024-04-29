@@ -25,27 +25,38 @@ export const createPagination = (totalPages: number, currentPage: number) => {
 
   paginationHTML += '<li class="page-item">';
   if (currentPage > 1) {
-    paginationHTML += `<a class="page-link" href="?page=${encodeURIComponent(currentPage - 1)}&limit=${encodeURIComponent(CONSTANT.LIMIT_DEFAULT)}">&laquo;</a>`;
+    paginationHTML += `<a class="page-link" href="?page=${encodeURIComponent(
+      currentPage - 1,
+    )}&limit=${encodeURIComponent(CONSTANT.LIMIT_DEFAULT)}">&laquo;</a>`;
   } else {
     paginationHTML += '<span class="page-link">&laquo;</span>';
   }
   paginationHTML += '</li>';
 
-  const startPage = Math.max(1, Math.floor((currentPage - 1) / CONSTANT.TOTAL_PAGES) * CONSTANT.TOTAL_PAGES + 1);
+  const startPage = Math.max(
+    1,
+    Math.floor((currentPage - 1) / CONSTANT.TOTAL_PAGES) *
+      CONSTANT.TOTAL_PAGES +
+      1,
+  );
 
   for (let i = startPage; i <= startPage + 4; i++) {
     paginationHTML += '<li class="page-item">';
     if (i === currentPage) {
       paginationHTML += `<span class="page-link active">${i}</span>`;
     } else {
-      paginationHTML += `<a class="page-link" href="?page=${encodeURIComponent(i)}&limit=${encodeURIComponent(CONSTANT.LIMIT_DEFAULT)}">${i}</a>`;
+      paginationHTML += `<a class="page-link" href="?page=${encodeURIComponent(
+        i,
+      )}&limit=${encodeURIComponent(CONSTANT.LIMIT_DEFAULT)}">${i}</a>`;
     }
     paginationHTML += '</li>';
   }
 
   paginationHTML += '<li class="page-item">';
   if (currentPage < totalPages) {
-    paginationHTML += `<a class="page-link" href="?page=${encodeURIComponent(+currentPage + 1)}&limit=${encodeURIComponent(CONSTANT.LIMIT_DEFAULT)}">&raquo;</a>`;
+    paginationHTML += `<a class="page-link" href="?page=${encodeURIComponent(
+      +currentPage + 1,
+    )}&limit=${encodeURIComponent(CONSTANT.LIMIT_DEFAULT)}">&raquo;</a>`;
   } else {
     paginationHTML += '<span class="page-link">&raquo;</span>';
   }

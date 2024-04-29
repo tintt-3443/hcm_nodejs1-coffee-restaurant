@@ -37,12 +37,13 @@ export const authenticateAdmin = (
   try {
     if (req.session && req.session?.user?.role === ROLE_USER.ADMIN) {
       next();
-    } 
+    } else {
+      res.redirect('back');
+    }
   } catch (error) {
-    res.redirect('auth/login');
+    res.redirect('back');
   }
 };
-
 
 export const authenticateUser = (
   req: Request,
@@ -52,10 +53,10 @@ export const authenticateUser = (
   try {
     if (req.session && req.session?.user?.role == ROLE_USER.USER) {
       next();
+    } else {
+      res.redirect('back');
     }
- 
-   
   } catch (error) {
-    res.redirect('auth/login');
+    res.redirect('back');
   }
 };

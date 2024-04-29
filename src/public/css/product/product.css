@@ -16,6 +16,7 @@
   font-size: 18px;
   font-weight: 600;
   color: #111111;
+  min-height: 3rem;
 }
 
 .price-product {
@@ -27,6 +28,7 @@
 .product {
   width: 100%;
   padding-bottom: 30px;
+  position: relative;
 }
 
 .pagination {
@@ -44,16 +46,58 @@
 
 .pt-30 {
   padding-top: 100px;
-  padding-bottom: 30px !important;
+  padding-bottom: 100px !important;
 }
 
 .height-fluid {
   height: 100%;
 }
-.height-fluid-card {
+/* .height-fluid-card {
   height: 60%;
-}
+} */
 
 .underline-none {
   text-decoration: none;
+}
+
+.search-product {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  z-index: 10000;
+  width: 20%;
+  right: 126;
+  top: 230;
+}
+
+.input-search {
+  height: 30px;
+}
+
+.filter-price {
+  width: 50%;
+  z-index: 10000;
+  height: 4rem;
+  left: 420;
+  top: 230;
+}
+.filter-price input {
+  padding: 0.3rem;
+}
+
+.btn-clear-filter {
+  position: absolute;
+  left: 950;
+  top: 230;
+}
+
+.btn-primary-bg {
+  background-color: #0d6efd;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  padding: 0.2rem 0.4rem;
+  font-size: 1rem;
+  z-index: 10000000;
 }

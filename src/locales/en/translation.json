@@ -55,7 +55,8 @@
     "pick-topping": "Pick Topping",
     "add-to-card": "Add to card",
     "des-product": "Description",
-    "relation-product": "Related Product"
+    "relation-product": "Related Product",
+    "clear-filter": "Clear Filter"
   },
   "cart": {
     "cart": "Cart",

@@ -7,6 +7,11 @@ import {
 } from '../../middleware/auth/auth.middleware';
 
 router.use(authenticateAdmin);
-router.get('/', authenticateJWT, adminController.getDashboard);
+router.get(
+  '/',
+  authenticateJWT,
+  authenticateAdmin,
+  adminController.getDashboard,
+);
 
 export default router;
