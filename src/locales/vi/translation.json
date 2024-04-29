@@ -54,7 +54,8 @@
     "pick-topping": "Chọn Topping",
     "add-to-card": "Thêm vào giỏ hàng",
     "des-product": "Mô tả sản phẩm",
-    "relation-product": "Sản phẩm liên quan"
+    "relation-product": "Sản phẩm liên quan",
+    "clear-filter": "Xóa bộ lọc"
   },
   "cart": {
     "cart": "Giỏ hàng",

@@ -1,8 +1,11 @@
 export interface IGetAllParams {
   page: number;
   limit: number;
+  keyword?: string;
+  minRange?: number;
+  maxRange?: number;
+  typeId?: number;
 }
-
 
 export interface IUpdateProfile {
   userId: number;

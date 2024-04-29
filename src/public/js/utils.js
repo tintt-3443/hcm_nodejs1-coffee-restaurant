@@ -8,3 +8,18 @@ function getCookie(cname) {
   }
   return '';
 }
+
+function buildURLWithQuery(currentURL, newQueryObject) {
+  const parsedURL = new URL(currentURL);
+
+  const mergedQuery = {
+    ...Object.fromEntries(parsedURL.searchParams),
+    ...newQueryObject,
+  };
+
+  const newSearchParams = new URLSearchParams(mergedQuery);
+
+  const newURL = `${parsedURL.protocol}//${parsedURL.host}${parsedURL.pathname}?${newSearchParams}`;
+
+  return newURL;
+}

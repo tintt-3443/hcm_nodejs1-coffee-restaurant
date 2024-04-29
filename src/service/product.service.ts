@@ -1,3 +1,4 @@
+import { Brackets } from 'typeorm';
 import { IGetAllParams } from '../interface/interface';
 import { ProductRepository } from '../repository/product.repository';
 import { ToppingRepository } from '../repository/topping.repository';
@@ -13,14 +14,43 @@ export class ProductsService {
 
   public async getAllProducts(params: IGetAllParams) {
     try {
-      const products =
-        (await this.productRepository.find({
-          skip: (params.page - 1) * params.limit,
-          take: params.limit,
-          loadRelationIds: {
-            relations: ['type'],
+      const keywords = params?.keyword;
+      const query = this.productRepository
+        .createQueryBuilder('product')
+        .select();
+      if (keywords) {
+        query.andWhere(
+          new Brackets((qb) => {
+            qb.where('MATCH(product.name) AGAINST( :keyword IN BOOLEAN MODE)', {
+              keyword: keywords + '*',
+            }).orWhere(
+              'MATCH(product.description) AGAINST(:keyword IN BOOLEAN MODE)',
+              {
+                keyword: keywords + '*',
+              },
+            );
+          }),
+        );
+      }
+      if (params?.minRange || params?.maxRange) {
+        query.andWhere(
+          'product.price >= :minRange AND product.price <= :maxRange',
+          {
+            minRange: params.minRange || 0,
+            maxRange: params.maxRange || Number.MAX_VALUE,
           },
-        })) || [];
+        );
+      }
+
+      query.leftJoinAndSelect('product.type', 'type');
+      if (params?.typeId) {
+        query.andWhere('type.id = :typeId', { typeId: params.typeId });
+      }
+      const products = await query
+        .orderBy('product.id', 'DESC')
+        .limit(params.limit)
+        .offset((params.page - 1) * params.limit)
+        .getMany();
       return products;
     } catch (error) {
       return null;

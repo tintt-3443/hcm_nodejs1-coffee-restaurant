@@ -92,12 +92,9 @@ if (btnUpdateProfile) {
           });
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   });
 }
-
 const btnChangePassword = $('#btn-change-pw');
 if (btnChangePassword) {
   btnChangePassword.on('click', function () {
@@ -143,8 +140,6 @@ if (btnChangePassword) {
           });
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   });
 }
