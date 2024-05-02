@@ -1,0 +1,132 @@
+<div class='h-100 '>
+    <div>
+        <button type="button" value="clear" class="btn btn-filter-clear btn-secondary">{{t 'admin.all'}}</button>
+        <button type="button" value="pending" class="btn btn-filter-status btn-primary">{{t 'admin.pending'}}</button>
+        <button type="button" value="shipping" class="btn btn-filter-status btn-warning color-white">
+            {{t 'admin.shiping'}}</button>
+        <button type="button" value="success" class="btn btn-filter-status btn-success">{{t 'admin.success'}}</button>
+        <button type="button" value="reject" class="btn btn-filter-status btn-danger">{{t 'admin.rệct'}}</button>
+        <button type="button" value="cancel" class="btn btn-filter-status btn-dark">{{t 'admin.cancel'}}</button>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <div class=" filter-price-invoice">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" id="minRange" min="0"
+                                placeholder="{{t 'admin.min-range'}}">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" id="maxRange" min="0"
+                                placeholder="{{t 'admin.max-range'}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-secondary btn-sm dropdown-toggle h-50" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa-solid fa-filter"></i>
+            </button>
+            <div class="dropdown-menu ">
+                <div class="d-flex flex-column justify-content-center h6 p-2 w-100">
+                    <label class="fs-small" for="DESC">{{t 'admin.order-by'}}</label>
+                    <div class="w-100">
+                        <input type="radio" class="w-25" name="arrange" id="DESC" value="false" checked>
+                        <label class="fs-small" for="DESC">{{t 'admin.date-closest'}}</label>
+                    </div>
+                    <div class="w-100">
+                        <input type="radio" class="w-25" name="arrange" id="ASC" value="true">
+                        <label class="fs-small" for="ASC">{{t 'admin.date-far'}}</label>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="fs-small" for="date">{{t 'admin.specify-date'}}</label>
+                        <input class="my-2" type="date" name="date" id="date-filter" value="dateCustom">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+            <tr>
+                <th>{{t 'history.id'}}</th>
+                <th>{{t 'history.date'}}</th>
+                <th>{{t 'history.total'}}</th>
+                <th>{{t 'history.status'}}</th>
+                <th>{{t 'history.method'}}</th>
+                <th>{{t 'history.action'}}</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each invoice}}
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">{{this.id}}</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{this.created_at}}</p>
+
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{this.total}}</p>
+
+                </td>
+                <td>
+                    {{#switch this.status}}
+                    {{#case 'pending'}}
+                    <button id="{{this.status}}" class="status-btn status-pending">{{this.status}}</button>
+                    {{/case}}
+                    {{#case 'shipping'}}
+                    <button id="{{this.status}}" class="status-btn status-accepted">{{this.status}}</button>
+                    {{/case}}
+                    {{#case 'success'}}
+                    <button id="{{this.status}}" class="status-btn status-delivered">{{this.status}}</button>
+                    {{/case}}
+                    {{#case 'reject'}}
+                    <button id="{{this.status}}" class="status-btn status-reject">{{this.status}}</button>
+                    {{/case}}
+                    {{#case 'cancel'}}
+                    <button id="{{this.status}}" class="status-btn status-cancelled">{{this.status}}</button>
+                    {{/case}}
+                    {{/switch}}
+                </td>
+                <td><span class="upper-case">
+                        {{this.payment_method}}
+                    </span></td>
+                <td>
+                    <a href="/order/history/{{this.id}}"><button type="button" class="btn btn-link btn-sm btn-rounded ">
+                            <i class="fa-solid fa-ellipsis-vertical color-black"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+
+    </table>
+    <div class="mw-xl pagination mt-5">
+        <nav aria-label="Page navigation example ">
+            <div class="pagination" id="pagination">
+                {{{pagination}}}
+            </div>
+        </nav>
+    </div>
+</div>
+
+{{!--
+<script src="/js/admin/admin.js"></script> --}}
+<script src="/js/utils.js"></script>
+<script src="/js/admin/admin.invoice.js"></script>
+<script src='/js/sweetalert.min.js'></script>

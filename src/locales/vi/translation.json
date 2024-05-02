@@ -104,7 +104,19 @@
     "order": "Đơn hàng",
     "user": "Người dùng",
     "blog": "Blog",
-    "expiration": "Ngày hết hạn"
+    "expiration": "Ngày hết hạn",
+    "all": "Tất cả",
+    "pending": "Chờ xác nhận",
+    "shipping": "Đang giao hàng",
+    "delivered": "Đã giao hàng",
+    "success": "Đã nhận hàng",
+    "reject": "Đã hủy",
+    "min-range": "Giá tối thiểu",
+    "max-range": "Giá tối đa",
+    "order-by": "Sắp xếp theo:",
+    "date-closest": "Ngày gần nhất",
+    "date-far": "Ngày cũ nhất",
+    "specify-date": "Ngày cụ thể"
   },
   "user": {
     "profile-user": "Ảnh",

@@ -1,16 +1,31 @@
-.mt-admin{
-    padding-top: 100px;
-    padding-bottom: 50px;
+.mt-admin {
+  padding-top: 100px;
+  padding-bottom: 50px;
 }
 
-.border-nav{
-    border-right: 1px solid #e0e0e0;
+.border-nav {
+  border-right: 1px solid #e0e0e0;
 }
 
 .py-2-ad {
-    height: 3.5rem;
+  height: 3.5rem;
 }
 
-.text-underline{
-    text-decoration: underline;
+.text-underline {
+  text-decoration: underline;
+}
+
+.filter-price-invoice {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.color-black {
+  color: black;
+}
+
+.fs-small {
+  font-size: 0.9rem;
 }
