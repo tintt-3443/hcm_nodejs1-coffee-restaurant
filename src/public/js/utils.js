@@ -11,15 +11,42 @@ function getCookie(cname) {
 
 function buildURLWithQuery(currentURL, newQueryObject) {
   const parsedURL = new URL(currentURL);
+  const searchParams = parsedURL.searchParams;
 
-  const mergedQuery = {
-    ...Object.fromEntries(parsedURL.searchParams),
-    ...newQueryObject,
-  };
+  if (newQueryObject.hasOwnProperty('status')) {
+    const statusValues = Array.isArray(newQueryObject['status'])
+      ? newQueryObject['status']
+      : [newQueryObject['status']];
+    const currentStatusParams = searchParams.getAll('status[]');
+    for (const statusValue of statusValues) {
+      if (currentStatusParams.includes(statusValue)) {
+        searchParams.delete('status[]');
+        for (const param of currentStatusParams) {
+          if (param !== statusValue) {
+            searchParams.append('status[]', param);
+          }
+        }
+      } else {
+        searchParams.append('status[]', statusValue);
+      }
+    }
+    delete newQueryObject['status'];
+  }
 
-  const newSearchParams = new URLSearchParams(mergedQuery);
+  for (const [key, value] of Object.entries(newQueryObject)) {
+    searchParams.set(key, value);
+  }
 
-  const newURL = `${parsedURL.protocol}//${parsedURL.host}${parsedURL.pathname}?${newSearchParams}`;
-
+  const newURL = `${parsedURL.protocol}//${parsedURL.host}${
+    parsedURL.pathname
+  }?${searchParams.toString()}`;
   return newURL;
 }
+
+const getValueFromQueryString = (key) => {
+  const urlParams = new URL(window.location.href).searchParams;
+  if (urlParams.has(key)) {
+    return urlParams.get(key);
+  }
+  return '';
+};

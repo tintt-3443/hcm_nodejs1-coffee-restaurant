@@ -52,8 +52,15 @@
   background-color: #28a745;
 }
 
-
-.w-58{
+.w-58 {
   width: 58%;
   padding-top: 0.5rem;
+}
+
+.color-white {
+  color: #fff;
+}
+
+.btn-default {
+  background-color: #146d4d;
 }

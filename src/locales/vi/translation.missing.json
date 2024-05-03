@@ -1,7 +1,8 @@
 {
   "home": {
     "title": "home.title",
-    "login-fail": "home.login-fail"
+    "login-fail": "home.login-fail",
+    "cant-create": "home.cant-create"
   },
   "auth": {
     "singin": "auth.singin"

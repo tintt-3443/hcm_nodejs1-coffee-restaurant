@@ -10,6 +10,7 @@ import { ProductsService } from './product.service';
 import { InvoiceDetail } from '../entities/InvoiceDetail';
 import { VNDFormat } from '../utils/auth/helper';
 import { STATUS_ORDER } from '../constant/enum';
+import { InvoiceAdminDto } from '../dto/admin/admin.dto';
 
 export class InvoiceService {
   private invoiceRepository: InvoiceRepository;
@@ -125,7 +126,6 @@ export class InvoiceService {
           invoiceDetailFormatPromises,
         );
 
-
         return {
           invoice: invoiceExist,
           invoiceDetails: invoiceDetailFormat,
@@ -146,40 +146,85 @@ export class InvoiceService {
       }
       switch (status) {
         case true:
-          
           if (invoice.status === STATUS_ORDER.PENDING) {
             invoice.status = STATUS_ORDER.SHIPPING;
             await this.invoiceRepository.save(invoice);
-              return invoice;
-            } else if (invoice.status === STATUS_ORDER.SHIPPING) {
-              invoice.status = STATUS_ORDER.SUCCESS;
-              await this.invoiceRepository.save(invoice);
-              return invoice;
-            }else return null;
-              break;
-        case false:
-            invoice.status = STATUS_ORDER.REJECT;
+            return invoice;
+          } else if (invoice.status === STATUS_ORDER.SHIPPING) {
+            invoice.status = STATUS_ORDER.SUCCESS;
             await this.invoiceRepository.save(invoice);
             return invoice;
+          } else return null;
+          break;
+        case false:
+          invoice.status = STATUS_ORDER.REJECT;
+          await this.invoiceRepository.save(invoice);
+          return invoice;
           break;
 
         default:
           return null;
       }
-      
     } catch (error) {
       return null;
     }
   }
 
   //ADMIN
-  public async getAllOrder() {
+  public async getAllOrders() {
     try {
       const invoices = await this.invoiceRepository.find();
-      if (!invoices) {
-        return [];
+      return invoices || [];
+    } catch (error) {
+      return [];
+    }
+  }
+
+  public async getOrders(options: InvoiceAdminDto) {
+    try {
+      const query = this.invoiceRepository.createQueryBuilder('invoice');
+      if (options.status !== undefined) {
+        query.andWhere('invoice.status IN (:...status)', {
+          status: [...options.status],
+        });
+      } else {
+        const defaultStatus: STATUS_ORDER[] = [
+          STATUS_ORDER.CANCEL,
+          STATUS_ORDER.PENDING,
+          STATUS_ORDER.SHIPPING,
+          STATUS_ORDER.SUCCESS,
+          STATUS_ORDER.REJECT,
+        ];
+        query.andWhere('invoice.status IN (:...status)', {
+          status: defaultStatus,
+        });
       }
-      return invoices;
+      if (options.startDate && options.endDate) {
+        query.andWhere('invoice.created_at BETWEEN :startDate AND :endDate', {
+          startDate: options.startDate,
+          endDate: options.endDate,
+        });
+      }
+      if (options?.minRange || options?.maxRange) {
+        query.andWhere(
+          'invoice.total >= :minRange AND invoice.total <= :maxRange',
+          {
+            minRange: options.minRange || 0,
+            maxRange: options.maxRange || Number.MAX_VALUE,
+          },
+        );
+      }
+
+      let order = {};
+      if (options.page && options.limit) {
+        query.skip((options?.page - 1) * options?.limit);
+        query.take(options?.limit);
+      }
+      order = { created_at: options.sortASC ? 'ASC' : 'DESC' };
+      query.orderBy(order);
+      const invoices = await query.getMany();
+
+      return invoices || [];
     } catch (error) {
       return [];
     }

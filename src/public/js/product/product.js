@@ -14,14 +14,6 @@ if (btns) {
   });
 }
 
-const getValueFromQueryString = (key) => {
-  const urlParams = new URL(window.location.href).searchParams;
-  if (urlParams.has(key)) {
-    return urlParams.get(key);
-  }
-  return '';
-};
-
 const btnSearch = $('#btn-search');
 if (btnSearch) {
   btnSearch.on('click', function () {

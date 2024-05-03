@@ -104,7 +104,19 @@
     "order": "Order",
     "user": "User",
     "blog": "Blog",
-    "expiration": "Expiration"
+    "expiration": "Expiration",
+    "all": "All",
+    "pending": "Pending",
+    "shipping": "Shipping",
+    "delivered": "Delivered",
+    "success": "Success",
+    "reject": "Reject",
+    "mỉn-range": "Min Range",
+    "max-range": "Max Range",
+    "order-by": "Order by:",
+    "date-closest": "Closest Date",
+    "date-far": "Farthest Date",
+    "specify-date": "Spectify Date"
   },
   "user": {
     "profile-user": "Avatar",
