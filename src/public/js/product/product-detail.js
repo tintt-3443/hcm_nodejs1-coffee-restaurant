@@ -30,9 +30,10 @@ if (btntoppings) {
   });
 }
 
-const addToCart = (e, id, userId) => {
+const addToCart = (e, id) => {
+  const token = getCookie('token');
   //convert size to boolean
-  if (!userId) {
+  if (!token) {
     swal.fire({
       title: locale === 'en' ? 'Error' : 'Lỗi',
       text:

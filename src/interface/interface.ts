@@ -20,3 +20,10 @@ export interface IUpdateProfile {
 export interface IResultCloudinary {
   url?: string;
 }
+
+export interface ICreateRating {
+  userId: number;
+  productId: number;
+  rating_point: number;
+  comment: string;
+}

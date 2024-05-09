@@ -21,10 +21,15 @@ export class Product extends Common {
   @Column()
   image: string;
 
-  @Column()
+  @Column({
+    type: 'float',
+    default: 0,
+  })
   rating_avg: number;
 
-  @Column()
+  @Column({
+    default: 0,
+  })
   rating_overall: number;
 
   // FOREIGN KEY

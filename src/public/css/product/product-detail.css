@@ -76,3 +76,8 @@
   opacity: 0.7;
   color: #146d4d;
 }
+
+.avatar-comment {
+  width: 3.5rem;
+  height: 3.5rem;
+}

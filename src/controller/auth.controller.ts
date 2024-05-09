@@ -6,6 +6,7 @@ import { generateToken } from '../utils/auth/auth';
 import { validationForm } from '../constant/validate.regex';
 import { AuthService } from '../service/auth.service';
 import { UserRegisterDto } from '../dto/auth/user_register.dto';
+import { ROLE_USER } from '../constant/enum';
 
 const authService = new AuthService();
 
@@ -100,7 +101,9 @@ export const Login = [
       const token = generateToken(user_.email);
       //set cookie
       res.cookie('token', token);
-      res.redirect('/');
+      if (user_.role === ROLE_USER.ADMIN) {
+        res.redirect('/admin');
+      } else res.redirect('/');
     } catch (error) {
       req.flash('error', req.t('home.cant-create'));
       res.redirect('/auth/register');

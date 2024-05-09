@@ -8,7 +8,9 @@ if (btnLogout) {
       },
     })
       .then((res) => res.text())
-      .then(() => {});
+      .then(() => {
+        window.location.href = '/auth/login';
+      });
   });
 }
 const btnI18 = $('#languageSelect');

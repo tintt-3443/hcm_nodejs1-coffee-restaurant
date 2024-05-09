@@ -13,7 +13,7 @@ export class Discount extends Common {
   @Column({ type: 'date', nullable: true })
   start_at: Date;
   @Column({ type: 'date', nullable: true })
-  date_of_birth: Date;
+  end_at: Date;
 
   // FOREIGN KEY
   @OneToMany(() => Invoice, (invoice: Invoice) => invoice.discount)
