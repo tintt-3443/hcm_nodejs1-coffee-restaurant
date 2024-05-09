@@ -1,5 +1,5 @@
 import { BlogDto } from '../dto/admin/admin.dto';
-import { ICreateBlog, IGetAllParams } from '../interface/interface';
+import { IGetAllParams } from '../interface/interface';
 import { BlogRepository } from '../repository/blog.repository';
 import { ProductRepository } from '../repository/product.repository';
 export class BlogService {

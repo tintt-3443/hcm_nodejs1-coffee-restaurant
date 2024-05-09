@@ -144,7 +144,11 @@
     "admin": "Admin",
     "logout": "Logout",
     "shiping": "Shipping",
-    "add-blog": "Add Blog"
+    "add-blog": "Add Blog",
+    "revenue": "Revenue",
+    "filter-month": "By month",
+    "filter-year": "By year",
+    "confirm-del-blog": "Are you sure you want to delete this blog?"
   },
   "user": {
     "profile-user": "Avatar",

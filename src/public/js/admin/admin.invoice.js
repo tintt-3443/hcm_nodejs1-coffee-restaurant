@@ -31,7 +31,6 @@ if (maxPrice) {
 
       // Redirect to the new URL
       window.location.href = url;
-
     }
   });
   const maxPriceFromQueryString = getValueFromQueryString('maxRange');
@@ -136,4 +135,3 @@ if (btnDeleteProducts?.length > 0) {
     });
   });
 }
-

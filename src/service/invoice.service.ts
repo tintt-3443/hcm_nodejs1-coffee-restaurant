@@ -10,8 +10,7 @@ import { ProductsService } from './product.service';
 import { InvoiceDetail } from '../entities/InvoiceDetail';
 import { VNDFormat } from '../utils/auth/helper';
 import { STATUS_ORDER } from '../constant/enum';
-import { InvoiceAdminDto } from '../dto/admin/admin.dto';
-import CronJob from 'node-cron';
+import { InvoiceAdminDto, StatisticDashboardDto } from '../dto/admin/admin.dto';
 import { UserRepository } from '../repository/user.repository';
 import { ProductRepository } from '../repository/product.repository';
 export class InvoiceService {
@@ -259,29 +258,116 @@ export class InvoiceService {
     }
   }
 
-  public async getStatistic() {
+  public async getStatistic(params: StatisticDashboardDto) {
     try {
-      const countsUser = await this.userRepository.count();
-      const countProducts = await this.productRepository.count();
-      const countInvoices = await this.invoiceRepository.count();
-      const orderSuccess = await this.invoiceRepository.count({
-        where: { status: STATUS_ORDER.SUCCESS },
+      const query = this.invoiceRepository
+        .createQueryBuilder('invoice')
+        .select('COUNT(invoice.id)', 'SL')
+
+        .addSelect('SUM(invoice.total)', 'TotalRevenue');
+      const queryOrderSucess = this.invoiceRepository
+        .createQueryBuilder('invoice')
+        .select('COUNT(invoice.id)', 'SL');
+      const queryOrderFail = this.invoiceRepository
+        .createQueryBuilder('invoice')
+        .select('COUNT(invoice.id)', 'SL');
+      if (params.startDate && params.endDate) {
+        if (params.endDate < params.startDate) {
+          params.startDate = params.endDate;
+
+          query.andWhere('invoice.created_at BETWEEN :startDate AND :endDate', {
+            startDate: params.startDate,
+            endDate: params.endDate,
+          });
+          queryOrderSucess.andWhere(
+            'invoice.created_at BETWEEN :startDate AND :endDate',
+            {
+              startDate: params.startDate,
+              endDate: params.endDate,
+            },
+          );
+          queryOrderFail.andWhere(
+            'invoice.created_at BETWEEN :startDate AND :endDate',
+            {
+              startDate: params.startDate,
+              endDate: params.endDate,
+            },
+          );
+        } else {
+          query.andWhere('invoice.created_at BETWEEN :startDate AND :endDate', {
+            startDate: params.startDate,
+            endDate: params.endDate,
+          });
+          queryOrderFail.andWhere(
+            'invoice.created_at BETWEEN :startDate AND :endDate',
+            {
+              startDate: params.startDate,
+              endDate: params.endDate,
+            },
+          );
+          queryOrderSucess.andWhere(
+            'invoice.created_at BETWEEN :startDate AND :endDate',
+            {
+              startDate: params.startDate,
+              endDate: params.endDate,
+            },
+          );
+        }
+      } else {
+        if (params.type !== undefined) {
+          if (params.type === 'month') {
+            // group by month
+            query.addSelect('MONTH(invoice.updated_at)', 'Column');
+            query.addGroupBy('MONTH(invoice.updated_at)');
+          } else if (params.type === 'year') {
+            query.addSelect('YEAR(invoice.updated_at)', 'Column');
+            query.addGroupBy('YEAR(invoice.updated_at)');
+          }
+        }
+      }
+
+      queryOrderSucess.andWhere('invoice.status = :status', {
+        status: STATUS_ORDER.SUCCESS,
       });
-      const orderReject = await this.invoiceRepository.count({
-        where: { status: STATUS_ORDER.REJECT },
+      queryOrderFail.andWhere('invoice.status = :status', {
+        status: STATUS_ORDER.REJECT,
       });
-      const revenue = await this.statisticRevenue();
+
+      const year = params.year || new Date().getFullYear();
+      query.andWhere('YEAR(invoice.updated_at) = :year', { year: year });
+      queryOrderSucess.andWhere('YEAR(invoice.updated_at) = :year', {
+        year: year,
+      });
+      queryOrderFail.andWhere('YEAR(invoice.updated_at) = :year', {
+        year: year,
+      });
+
+      const orderSuccess = await queryOrderSucess.getRawMany();
+      const orderReject = await queryOrderFail.getRawMany();
+      const rs = await query.getRawMany();
+      const totalRevenue = rs.length > 0 ? rs[0]?.TotalRevenue : 0;
+      const totalOrder = rs.length > 0 ? rs[0]?.SL : 0;
       const statistic = {
-        countsUser,
-        countProducts,
-        countInvoices,
-        orderSuccess,
-        orderReject,
-        revenue,
+        totalRevenue,
+        totalOrder,
+        orderSuccess: orderSuccess.length > 0 ? orderSuccess[0]?.SL : 0,
+        orderReject: orderReject.length > 0 ? orderReject[0]?.SL : 0,
+        revenues: rs,
       };
       return statistic;
     } catch (error) {
       console.log(error);
+    }
+  }
+  public async getListYear() {
+    try {
+      return await this.invoiceRepository
+        .createQueryBuilder('invoice')
+        .select('YEAR(invoice.updated_at)', 'Year')
+        .groupBy('YEAR(invoice.updated_at)')
+        .getRawMany();
+    } catch (error) {
+      return null;
     }
   }
 }
