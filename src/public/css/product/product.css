@@ -65,7 +65,7 @@
   justify-content: flex-end;
   align-items: center;
   position: absolute;
-  z-index: 10000;
+  z-index: 999;
   width: 20%;
   right: 126;
   top: 230;
@@ -77,7 +77,7 @@
 
 .filter-price {
   width: 50%;
-  z-index: 10000;
+  z-index: 1000;
   height: 4rem;
   left: 420;
   top: 230;
@@ -99,5 +99,10 @@
   border: none;
   padding: 0.2rem 0.4rem;
   font-size: 1rem;
-  z-index: 10000000;
+  z-index: 1001;
+}
+
+.ml-start {
+  margin-right: 0.5rem;
+  margin-bottom: 0.3rem;
 }

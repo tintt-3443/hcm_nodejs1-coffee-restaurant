@@ -1,0 +1,72 @@
+<div class="container d-flex justify-content-center align-items-center">
+
+    <div class="card-rating p-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="ratings">
+                <span class="fs-3 fw-medium">{{statisticRating.averageRating}}</span>
+
+                <i class="fa fa-star rating-color"></i>
+            </div>
+            <h5 class="review-count fw-medium">{{statisticRating.numberOfRatings}} {{t 'rating.review'}}</h5>
+        </div>
+
+
+        <div class="mt-5 d-flex justify-content-between align-items-center">
+            <h5 class="review-stat fs-4 fw-medium">{{t 'rating.total'}}: {{ statisticRating.ratingCounts.[5] }}</h5>
+            <div class="small-ratings">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+            </div>
+
+        </div>
+
+        <div class="mt-1 d-flex justify-content-between align-items-center">
+            <h5 class="review-stat fs-4 fw-medium">{{t 'rating.total'}}: {{statisticRating.ratingCounts.[4]}}</h5>
+            <div class="small-ratings">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star"></i>
+            </div>
+        </div>
+        <div class="mt-1 d-flex justify-content-between align-items-center">
+            <h5 class="review-stat fs-4 fw-medium">{{t 'rating.total'}}: {{statisticRating.ratingCounts.[3]}}</h5>
+            <div class="small-ratings">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star"></i>
+            </div>
+        </div>
+        <div class="mt-1 d-flex justify-content-between align-items-center">
+            <h5 class="review-stat fs-4 fw-medium">{{t 'rating.total'}}: {{statisticRating.ratingCounts.[2]}}</h5>
+            <div class="small-ratings">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star"></i>
+            </div>
+        </div>
+        <div class="mt-1 d-flex justify-content-between align-items-center">
+            <h5 class="review-stat fs-4 fw-medium">{{t 'rating.total'}}: {{statisticRating.ratingCounts.[1]}}</h5>
+            <div class="small-ratings">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star"></i>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+</div>

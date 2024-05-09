@@ -1,3 +1,41 @@
+<div class="modal fade" id="ModalRating" tabindex="-1" aria-labelledby="Rating Product" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{t 'rating.modal-title'}}</h1>
+                <button type="button" id="close-modal" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="rating d-flex mt-2" data-mdb-toggle="rating">
+                    <div>
+                        <i class="far fa-star rating-item fa-sm text-warning fs-4 ml-start"></i>
+                    </div>
+                    <div>
+                        <i class="far fa-star rating-item fa-sm text-warning fs-4 ml-start"></i>
+                    </div>
+                    <div>
+                        <i class="far fa-star rating-item fa-sm text-warning fs-4 ml-start"></i>
+                    </div>
+                    <div>
+                        <i class="far fa-star rating-item fa-sm text-warning fs-4 ml-start"></i>
+                    </div>
+                    <div>
+                        <i class="far fa-star rating-item fa-sm text-warning fs-4 ml-start"></i>
+                    </div>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">{{t 'rating.input-comment'}}</label>
+                    <textarea class="form-control" id="comment-form" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{t 'rating.close'}}</button>
+                <button type="button" id="save-rating" class="btn btn-primary">{{t 'rating.save-change'}}</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="cart w-100 mw-xl">
     <div class="cart-list  ">
         <div class="status-order">
@@ -18,7 +56,23 @@
                     <p>{{t 'history.note'}}: </p>
                     <p class="pl-2 upper-case ">{{invoice.note}}</p>
                 </div>
-                <button id="{{invoice.status}}" class="status-btn ">{{invoice.status}}</button>
+                {{#switch invoice.status}}
+                {{#case 'pending'}}
+                <button id="{{invoice.status}}" class="status-btn status-pending">{{invoice.status}}</button>
+                {{/case}}
+                {{#case 'shipping'}}
+                <button id="{{invoice.status}}" class="status-btn status-accepted">{{invoice.status}}</button>
+                {{/case}}
+                {{#case 'success'}}
+                <button id="{{invoice.status}}" class="status-btn status-delivered">{{invoice.status}}</button>
+                {{/case}}
+                {{#case 'reject'}}
+                <button id="{{invoice.status}}" class="status-btn status-rejected">{{invoice.status}}</button>
+                {{/case}}
+                {{#case 'cancel'}}
+                <button id="{{invoice.status}}" class="status-btn status-cancelled">{{invoice.status}}</button>
+                {{/case}}
+                {{/switch}}
             </div>
             <div class="right-col">
                 <div class="left-col">
@@ -44,13 +98,14 @@
                     <th scope="col">{{t 'cart.product-detail'}}</th>
                     <th scope="col">{{t 'cart.quantity'}}</th>
                     <th scope="col">{{t 'cart.total'}}</th>
+                    <th scope="col">{{t 'cart.rating'}}</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each invoiceDetails}}
                 <tr class="row-product text-center">
                     <th scope="row" class="align-middle">
-                        <div class="product-cart height-100 d-flex  align-items-center">
+                        <div class="product-cart d-flex  align-items-center">
                             <div>
                                 <img class="product-cart__img" src="{{this.productInstance.product.image}}"
                                     alt="product image">
@@ -62,7 +117,7 @@
                                     <p class="topping-name">+ Up size +5000đ</p>
                                     {{/if}}
 
-                                    {{#each this.toppings}} 
+                                    {{#each this.toppings}}
                                     <p class="topping-name">+ {{this.name}} +{{ this.price}}đ</p>
                                     {{/each}}
                                 </div>
@@ -79,13 +134,19 @@
                     <td class="align-middle text-center">
                         <p class="cart-price mb-0">{{ this.total}}</p>
                     </td>
+                    <td class="align-middle text-center">
+                        <button id="{{this.productInstance.product.id}}" size="small"
+                            class="btn btn-primary btn-rating-product" data-bs-toggle="modal"
+                            data-bs-target="#ModalRating" data-rating="{{json this.rating}}">{{t
+                            'rating.history'}}</button>
+                    </td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
     </div>
     <div class="cart-bill">
-        <div class="cart-order">
+        <div class="cart-order-bill">
             <div class="mw-xs">
                 <div class="order-title fs-4">{{t 'cart.order-summary'}}</div>
                 <div class="d-flex justify-content-between align-items-center pb-14">
@@ -116,7 +177,7 @@
             </a>
             {{/if}}
             {{#if (compareStatus invoice.status STATUS_ORDER.SHIPPING)}}
-            <p id="{{invoice.id}}" class="cursor-pointer text-underline success-btn">{{t 'order.delivered'}}</p>
+
             <a href="/order/history">
                 <p class="cursor-pointer underline-none">{{t 'order.list-order'}}</p>
             </a>
@@ -130,6 +191,8 @@
 
 </div>
 
+<script src='/js/utils.js'></script>
+<script src="/js/history/rating.js"></script>
 <script src="/js/payment/payment.js"></script>
 <script src="/js/history/history.js"></script>
 <script src='/js/sweetalert.min.js'></script>

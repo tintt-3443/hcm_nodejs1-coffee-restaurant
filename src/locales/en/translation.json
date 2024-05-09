@@ -97,7 +97,14 @@
     "name": "Name",
     "phone": "Phone",
     "address": "Address",
-    "note": "Note"
+    "note": "Note",
+    "email": "Email",
+    "role": "Role",
+    "image": "Image",
+    "price": "Price",
+    "rating_avg": "Rating Average",
+    "title": "Title",
+    "description": "Description"
   },
     "admin": {
     "dashboard": "Dashboard",
@@ -144,6 +151,14 @@
     "enter-confirm": "Enter your new password again",
     "close": "Close",
     "save": "Save"
+  },
+   "rating": {
+    "star": "Star",
+    "comment": "Comment",
+    "btn-rating": "Rating",
+    "btn-cancel": "Cancel",
+    "total": "Total",
+    "review": "Review"
   }
 
 }

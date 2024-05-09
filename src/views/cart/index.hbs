@@ -16,7 +16,7 @@
                 {{#each cart.cartItems}}
                 <tr class="row-product text-center">
                     <th scope="row" class="align-middle">
-                        <div class="product-cart height-100 d-flex  align-items-center">
+                        <div class="product-cart  d-flex  align-items-center">
                             <div>
                                 <img class="product-cart__img" src="{{this.image}}" alt="product image">
                             </div>
@@ -83,5 +83,6 @@
 </div>
 
 {{! Path: public/js/cart/cart.js }}
+<script src="/js/utils.js"></script>
 <script src="/js/cart/cart.js"></script>
 <script src='/js/sweetalert.min.js'></script>

@@ -95,3 +95,12 @@ export const flatObject = (input: any): { [key: string]: object } => {
     {},
   );
 };
+
+export const formatDate = (date: Date) => {
+  const options = {
+    // timeZone: 'Asia/Ho_Chi_Minh', // Đặt múi giờ cho múi giờ Việt Nam
+    hour12: false, // Đặt cờ này để sử dụng định dạng 24 giờ
+  };
+  const dateFormat = date.toLocaleString('vi-VN', options);
+  return dateFormat;
+};

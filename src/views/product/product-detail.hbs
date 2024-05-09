@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div>
-                    <button type='button' class='btn-add' onclick="addToCart(event,'{{product.id}}',{{userId}})">{{t
+                    <button type='button' class='btn-add' onclick="addToCart(event,'{{product.id}}')">{{t
                         'product.add-to-card'
                         }}</button>
                 </div>
@@ -62,7 +62,45 @@
                 {{/each}}
             </div>
         </div>
+        <div>
+            <p class="title-comment mt-4 fw-bold fs-2">{{rating.title}}</p>
+            <div class="d-flex">
+                <div>
+                    {{> list-review.product}}
+                </div>
+                <div class=" w-100">
+                    {{#each ratings}}
+                    <div class="card mt-2 my-1rem">
+                        <div class="card-header">
+                            <div class="d-flex">
+                                <div>
+                                    <img src="{{this.user.avatar}}" class="rounded-circle shadow-4 avatar-comment"
+                                        alt="Avatar" />
+                                </div>
+                                <div class="ml-rating">
+                                    <p class="mb-0">{{this.user.name}}</p>
+                                    {{#times 5}}
+                                    {{#if (lte @index this.rating_point)}}
+                                    <i class="fa fa-star rating-color"></i>
+                                    {{else}}
+                                    <i class="far fa-star rating-color"></i>
+                                    {{/if}}
+                                    {{/times}}
+                                    <p class="mt-2">{{this.dateFormat}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{this.comment}}
+                            </p>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <script src='/js/utils.js'></script>

@@ -97,7 +97,14 @@
     "name": "Tên",
     "phone": "Số điện thoại",
     "address": "Địa chỉ",
-    "note": "Ghi chú"
+    "note": "Ghi chú",
+    "email": "Email",
+    "role": "Vai trò",
+    "image": "Hỉnh ảnh",
+    "price": "Giá",
+    "rating_avg": "Đánh giá trung bình",
+    "title": "Tiêu đề",
+    "description": "Miêu tả"
   },
   "admin": {
     "dashboard": "Bảng điều khiển",
@@ -144,6 +151,15 @@
     "enter-confirm": "Nhập lại mật khẩu mới của bạn",
     "close": "Đóng",
     "save": "Lưu"
+  },
+  "rating": {
+    "rating": "Đánh giá",
+    "star": "Sao",
+    "comment": "Bình luận",
+    "btn-rating": "Đánh giá",
+    "btn-cancel": "Hủy",
+    "total": "Tổng cộng",
+    "review": "Đánh giá"
   }
 
 }
