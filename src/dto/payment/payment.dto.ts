@@ -6,7 +6,6 @@ export class PaymentDto {
   user_id: number;
   @IsNotEmpty()
 
-  //ref
   @IsNotEmpty()
   name: string;
 

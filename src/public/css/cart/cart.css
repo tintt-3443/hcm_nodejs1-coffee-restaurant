@@ -70,6 +70,14 @@
   padding: 20px 40px;
 }
 
+.cart-order-bill {
+  background-color: #f8f9fa;
+  height: 80%;
+  width: 60%;
+  border-radius: 20px;
+  padding: 20px 40px;
+}
+
 .order-title {
   padding-bottom: 14px;
   border-bottom: 1px solid #e9ecef;

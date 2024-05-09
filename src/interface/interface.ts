@@ -27,3 +27,10 @@ export interface ICreateRating {
   rating_point: number;
   comment: string;
 }
+
+export interface ICreateBlog {
+  title: string;
+  description?: string;
+  image?: string;
+  content: string;
+}

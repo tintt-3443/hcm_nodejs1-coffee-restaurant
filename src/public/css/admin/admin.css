@@ -29,3 +29,22 @@
 .fs-small {
   font-size: 0.9rem;
 }
+
+.h-100vh {
+  height: 80vh;
+}
+
+.detail-user-admin {
+  background-color: #fff;
+  border: none;
+}
+
+.mr-btn {
+  margin-right: 1rem;
+}
+
+.side-bar {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  height: 97vh;
+}

@@ -27,7 +27,7 @@ deleteButtons.forEach((deleteButton) => {
     fetch(`/cart/delete/${id}`, {
       method: 'DELETE',
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then(() => {
         swal.fire({
           title: locale === 'en' ? 'Success!' : 'Thành công!',

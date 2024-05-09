@@ -1,0 +1,120 @@
+<div class="container-xl  mt-10">
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">{{t 'user.profile-user'}}</div>
+                <div class="card-body text-center">
+                    <img class="img-account-profile rounded-circle mb-2" id="profilePicture" src="{{user.avatar}}"
+                        alt="">
+                    <div class="small font-italic text-muted mb-4">{{t 'user.detail-upload'}}</div>
+                    <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;">
+                    <button class="btn btn-primary" id="btn-uploadImg" type="button">{{t 'user.btn-upload'}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">{{t 'user.account-detail'}}</div>
+                <div class="card-body">
+                    <!-- Form Group (username)-->
+                    <div class="mb-3">
+                        <label class="small mb-1" for="name">{{t 'user.name'}}</label>
+                        <input class="form-control" id="name" name="name" type="text"
+                            placeholder="{{t 'user.enter-name'}}" value="{{user.name}}">
+                        <div class="d-none text-danger" id="error-msg-name"></div>
+
+                    </div>
+                    <!-- Form Row-->
+                    <div class="mb-3">
+                        <label class="small mb-1" for="email">{{t 'user.email'}}</label>
+                        <input class="form-control" id="email" name="email" type="text"
+                            placeholder="{{t 'user.enter-email'}}" value="{{user.email}}">
+                        <div class="d-none text-danger" id="error-msg-email"></div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label class="small mb-1" for="address">{{t 'user.address'}}</label>
+                        <input class="form-control" id="address" name="address" type="text"
+                            placeholder="{{t 'user.enter-address'}}" value="{{user.address}}">
+                        <div class="d-none text-danger" id="error-msg-address"></div>
+                    </div>
+                    <!-- Form Row        -->
+
+                    <!-- Form Group (email address)-->
+                    <!-- Form Row-->
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (phone number)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="phone">{{t 'user.phone'}}</label>
+                            <input class="form-control" id="phone" type="tel" placeholder="{{t 'user.enter-phone'}}"
+                                name="phone" value="{{user.phone}}">
+                            <div class="d-none text-danger" id="error-msg-phone"></div>
+                        </div>
+                        <!-- Form Group (birthday)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="date_of_birth">{{t 'user.birthday'}}</label>
+                            <input class="form-control" id="date_of_birth" type="date"
+                                placeholder="{{t 'user.enter-birthday'}}" name="date_of_birth"
+                                value="{{user.date_of_birth}}">
+                            <div class="d-none text-danger" id="error-msg-date_of_birth"></div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary mr-btn" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">{{t 'user.btn-changepw'}}</button>
+                        <!-- Save changes button-->
+                        <button class="btn btn-primary" value="{{user.id}}" id="btn-update-profile" type="submit">
+                            {{t 'user.btn-savechange'}}</button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal  fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">{{t 'user.changepw'}}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="oldPassword">{{t 'user.old-password'}}</label>
+                                        <input class="form-control" id="oldPassword" type="password"
+                                            placeholder="{{t 'user.enter-old-password'}}" name="oldPassword">
+                                        <div class="d-none text-danger" id="error-msg-oldPassword"></div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="small mb-1" for="newPassword">{{t 'user.new-password'}}</label>
+                                        <input class="form-control" id="newPassword" type="password"
+                                            placeholder="{{t 'user.new-password'}}" name="newPassword">
+                                        <div class="d-none text-danger" id="error-msg-newPassword"></div>
+                                        <div class="mb-3">
+                                            <label class="small mb-1" for="confirmPassword">{{t
+                                                'user.new-password-cf'}}</label>
+                                            <input class="form-control" id="confirmPassword" type="password"
+                                                placeholder="{{t 'user.enter-confirm'}}" name="confirmPassword">
+                                            <div class="d-none text-danger" id="error-msg-confirmPassword"></div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    onclick="ClearErrorMsg(['oldPassword', 'newPassword', 'confirmPassword'])"
+                                                    data-bs-dismiss="modal">{{t 'user.close'}}</button>
+                                                <button value="{{user.id}}" id="btn-change-pw" type="button"
+                                                    class="btn btn-primary">{{t 'user.save'}}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/utils.js"></script>
+<script src="/js/user/user.js"></script>

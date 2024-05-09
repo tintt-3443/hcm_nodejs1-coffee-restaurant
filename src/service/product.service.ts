@@ -2,6 +2,8 @@ import { Brackets } from 'typeorm';
 import { IGetAllParams } from '../interface/interface';
 import { ProductRepository } from '../repository/product.repository';
 import { ToppingRepository } from '../repository/topping.repository';
+import { ProductAdminDto } from '../dto/admin/admin.dto';
+import { CONSTANT } from 'src/constant/variable';
 
 export class ProductsService {
   private productRepository: ProductRepository;
@@ -95,5 +97,60 @@ export class ProductsService {
       where: { id: productId },
     });
     return productExist;
+  }
+  public async updateProduct(params: ProductAdminDto) {
+    try {
+      const id = params?.productId;
+      const product = await this.productRepository.findOne({
+        where: { id: undefined },
+      });
+
+      if (product && id !== undefined) {
+        const productUpdated = this.productRepository.create({
+          id: product.id,
+          ...params,
+        });
+        await this.productRepository.save(productUpdated);
+      } else {
+        const productUpdated = this.productRepository.create({
+          ...params,
+        });
+        await this.productRepository.save(productUpdated);
+      }
+
+      return product;
+    } catch (error) {
+      console.log('Error update product', error);
+      return null;
+    }
+  }
+
+  public async deleteProduct(id: number) {
+    try {
+      const product = await this.productRepository.findOne({
+        where: { id },
+      });
+      if (product) {
+        await this.productRepository.delete({ id });
+        return product;
+      }
+      return null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  public async getProductDefaultPage() {
+    try {
+      const query = this.productRepository
+        .createQueryBuilder('product')
+        .select();
+      query.orderBy('rating_avg', 'DESC');
+      query.limit(CONSTANT.DEFAULT_PRODUCT_HOMEPAGE);
+      const products = await query.getMany();
+      return products;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
