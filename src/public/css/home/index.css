@@ -36,7 +36,7 @@ body {
   color: #146d4d;
   font-weight: bold;
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 45px;
 }
 
 .menu-item {
@@ -79,8 +79,7 @@ body {
 }
 
 .blog-item {
-  margin: 0 20px;
-  flex: 1;
+  /* margin: 0 20px; */
 }
 
 .bg-color {
@@ -88,6 +87,14 @@ body {
   color: #fff;
 }
 
-.h-20-r{
+.h-20-r {
   height: 20rem;
+}
+
+.truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }

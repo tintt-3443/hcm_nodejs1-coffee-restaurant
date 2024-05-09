@@ -2,7 +2,8 @@
   "home": {
     "title": "home.title",
     "login-fail": "home.login-fail",
-    "cant-create": "home.cant-create"
+    "cant-create": "home.cant-create",
+    "product-not-found": "home.product-not-found"
   },
   "auth": {
     "singin": "auth.singin"
@@ -11,5 +12,19 @@
     "profile": "header.profile",
     "order-list": "header.order-list",
     "logout": "header.logout"
+  },
+  "admin": {
+    "admin": "admin.admin",
+    "logout": "admin.logout",
+    "shiping": "admin.shiping",
+    "add-blog": "admin.add-blog"
+  },
+  "blog": {
+    "blog-detail": "blog.blog-detail",
+    "title": "blog.title",
+    "enter-title": "blog.enter-title",
+    "image": "blog.image",
+    "description": "blog.description",
+    "enter-description": "blog.enter-description"
   }
 }

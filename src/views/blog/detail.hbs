@@ -1,0 +1,20 @@
+<div class="h-50 ">
+    <img src="{{blog.image}}" alt="blog-image" class="w-100 h-100 ">
+</div>
+<div id="{{blog.id}}" class="d-flex justify-content-center flex-column align-items-center w-100  mw-xl my-4  id-blog">
+
+    <div class="w-50  ">
+        <div class="blog-title fs-2 fw-semibold color-black mb-1">
+            {{{ blog.title }}}
+        </div>
+        <div class="blog-description fw-medium">
+            {{{ blog.description}}}
+        </div>
+        <div class="blog-content ">
+            {{{blog.content}}}
+        </div>
+    </div>
+
+</div>
+
+<script src="/js/blog/detail.js"></script>

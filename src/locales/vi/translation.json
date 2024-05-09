@@ -141,7 +141,11 @@
     "detail-upload": "Chi tiết upload",
     "enter-description": "Nhập miêu tả",
     "enter-price": "Nhập giá",
-    "cancel":"Hủy đơn hàng"
+    "cancel":"Hủy đơn hàng",    
+    "admin": "Admin",
+    "logout": "Đăng xuất",
+    "shiping": "Đang giao",
+    "add-blog": "Blog"
   },
   "user": {
     "profile-user": "Ảnh",
@@ -182,5 +186,13 @@
     "input-comment": "Bình luận",
      "close": "Đóng",
     "save-change": "Lưu"
+  },
+  "blog": {
+    "blog-detail": "Chi tiết",
+    "title": "Tiêu đề",
+    "enter-title": "Nhập tiêu đề",
+    "image": "Hình ảnh",
+    "description": "Miêu tả",
+    "enter-description": "Nhập miêu tả"
   }
 }

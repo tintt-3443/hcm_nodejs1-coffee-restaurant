@@ -120,7 +120,6 @@ export class ProductsService {
       });
       return true;
     } catch (error) {
-      console.log('Error update product', error);
       return null;
     }
   }

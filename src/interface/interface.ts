@@ -20,10 +20,3 @@ export interface IUpdateProfile {
 export interface IResultCloudinary {
   url?: string;
 }
-
-export interface ICreateBlog {
-  title: string;
-  description?: string;
-  image?: string;
-  content: string;
-}
