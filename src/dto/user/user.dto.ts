@@ -6,6 +6,7 @@ import {
   IsISO8601,
   MinLength,
   MaxLength,
+  IsNumber,
 } from 'class-validator';
 import { validationForm } from '..//../constant/validate.regex';
 
@@ -70,4 +71,19 @@ export class UserChangePassword {
   @MinLength(validationForm.PASSWORD_MIN_LENGTH)
   @MaxLength(validationForm.PASSWORD_MAX_LENGTH)
   confirmPassword: string;
+}
+
+export class createRatingDto {
+  @IsNotEmpty()
+  @IsNumber()
+  userId: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  productId: number;
+
+  @IsNotEmpty()
+  rating_point: number;
+
+  comment: string;
 }

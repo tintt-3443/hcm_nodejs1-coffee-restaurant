@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
-import { ICreateRating } from '../interface/interface';
 import { RatingService } from '../service/rating.service';
+import { createRatingDto } from 'src/dto/user/user.dto';
+import { validate } from 'class-validator';
 
 const ratingService = new RatingService();
 export const createRating = asyncHandler(
@@ -21,12 +22,17 @@ export const createRating = asyncHandler(
         await ratingService.updateRating(ratingExist);
         res.json({ status: true });
       }
-      const params: ICreateRating = {
+      const params: createRatingDto = {
         rating_point: rating,
         comment,
         userId: user?.id,
         productId,
       };
+      const errs = await validate(params);
+      if (errs.length > 0) {
+        res.json({ status: false, errs: errs });
+        return;
+      }
       await ratingService.createRating(params);
       res.json({ status: true });
     } catch (error) {

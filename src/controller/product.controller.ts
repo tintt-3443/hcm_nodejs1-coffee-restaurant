@@ -81,13 +81,11 @@ export const getProductDetail = asyncHandler(
 export const getProductHomePage = asyncHandler(
   async (req: Request, res: Response) => {
     try {
-      const defaultParams: IGetAllParams = handleParamsGetAll({
-        page: CONSTANT.PAGE_DEFAULT,
-        limit: CONSTANT.PRODUCT_DEFAULT_PAGE,
-      });
-      const products = await productService.getAllProducts(defaultParams);
+      const user = req.session.user;
+      const products = await productService.getProductDefaultPage();
       res.render('home', {
         products: products?.map((product) => ({ ...product, VNDFormat })),
+        user,
       });
     } catch (error) {
       req.flash('error', req.t('home.cant-get-product'));

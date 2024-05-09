@@ -1,0 +1,76 @@
+<div class="d-flex flex-column flex-shrink-0  text-bg-dark side-bar" style="width: 280px;">
+    <a href="/admin"
+        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-nonitem-sidebar e">
+        <svg class="bi  pe-none me-2" width="40" height="32">
+            <use xlink:href="#bootstrap"></use>
+        </svg>
+        <span class="fs-4">{{t 'admin.sidebar'}}</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="/admin" class="item-sidebar nav-link active text-white" aria-current="page">
+                <svg class="bi  pe-none me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2"></use>
+                </svg>
+                {{t 'admin.dashboard'}}
+            </a>
+        </li>
+        <li>
+            <a href="/admin/order" class="item-sidebar nav-link text-white">
+                <svg class="bi  pe-none me-2" width="16" height="16">
+                    <use xlink:href="#table"></use>
+                </svg>
+                {{t 'admin.invoice'}}
+            </a>
+        </li>
+        <li>
+            <a href="/admin/product" class="item-sidebar nav-link text-white">
+                <svg class="bi  pe-none me-2" width="16" height="16">
+                    <use xlink:href="#grid"></use>
+                </svg>
+                {{t 'admin.product'}}
+            </a>
+        </li>
+        <li>
+            <a href="/admin/user" class="item-sidebar nav-link text-white">
+                <svg class="bi  pe-none me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                {{t 'admin.customer'}}
+            </a>
+        </li>
+        <li>
+            <a href="/admin/blog" class="item-sidebar nav-link text-white">
+                <svg class="bi  pe-none me-2" width="16" height="16">
+                    <use xlink:href="#grid"></use>
+                </svg>
+                {{t 'admin.blog'}}
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <div class="d-flex">
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="" width="32" height="32"
+                    class="rounded-circle me-2">
+                <strong>{{t 'admin.admin'}}</strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" style="">
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item btn-logout-sidebar">{{t 'admin.logout'}}</a></li>
+            </ul>
+        </div>
+        <div class="ml-20">
+            <a href="?locale=en"> <img class="icon-i18" src="/images/flag.png" /></a>
+            <a href="?locale=vi"><img class="icon-i18" src="/images/vietnam.png" /></a>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/admin/admin-sidebar.js"></script>

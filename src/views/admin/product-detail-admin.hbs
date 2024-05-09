@@ -1,0 +1,76 @@
+<div class="container-xl  mt-10">
+    <!-- Account page navigation-->
+    <div class="row">
+        <div class="col-xl-4">
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">{{t 'product.detail-product'}}</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image-->
+                    <img class="img-account-profile rounded-circle mb-2" id="profilePicture" src="{{product.image}}"
+                        alt="">
+                    <!-- Profile picture help block-->
+                    <div class="small font-italic text-muted mb-4">{{t 'product.detail-upload'}}</div>
+                    <!-- Profile picture upload button-->
+                    <input type="file" id="fileInput-product" name="file" accept="image/*" style="display: none;">
+                    <button class="btn btn-primary" id="btn-uploadImg-product" type="button">{{t
+                        'product.btn-upload'}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">{{t 'product.detail'}}</div>
+                <div class="card-body">
+                    <!-- Form Group (username)-->
+                    <div class="mb-3">
+                        <label class="small mb-1" for="product.name">{{t 'product.name'}}</label>
+                        <input class="form-control" id="product-name" name="product-name" type="text"
+                            placeholder="{{t 'product.enter-name'}}" value="{{product.name}}">
+                        <div class="d-none text-danger" id="error-msg-name"></div>
+
+                    </div>
+                    <!-- Form Row-->
+                    <div class="mb-3">
+                        <label class="small mb-1" for="product.description">{{t 'product.description'}}</label>
+                        <textarea class="form-control" id="product-desc" name="product-desc" type="text"
+                            placeholder="{{t 'product.enter-description'}}" value="">{{product.description}}</textarea>
+                        <div class="d-none text-danger" id="error-msg-email"></div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label class="small mb-1" for="product-price">{{t 'product.price'}}</label>
+                        <input class="form-control" id="product-price" name="product-price" type="text"
+                            placeholder="{{t 'product.enter-price'}}" value="{{product.price}}">
+                        <div class="d-none text-danger" id="error-msg-address"></div>
+                    </div>
+                    <!-- Form Row        -->
+
+                    <!-- Form Group (email address)-->
+                    <!-- Form Row-->
+                    {{#if product.rating_avg}}
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (phone number)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="product.rating_avg">{{t 'product.rating_avg'}}</label>
+                            <input class="form-control" id="product.rating_avg" type="tel"
+                                placeholder="{{t 'product.enter-rating-avg'}}" name="product.rating_avg"
+                                value="{{product.rating_avg}}" disabled>
+                            <div class="d-none text-danger" id="error-msg-phone"></div>
+                        </div>
+                    </div>
+                    {{/if}}
+                    <!-- Save changes button--> --}}
+                    <button class="btn btn-primary" value="{{product.id}}" id="btn-update-product-admin" type="submit">
+                        {{t 'product.btn-savechange'}}</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+<script src="/js/utils.js"></script>
+<script src="/js/admin/admin-product.js"></script>

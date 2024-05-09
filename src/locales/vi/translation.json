@@ -123,7 +123,24 @@
     "order-by": "Sắp xếp theo:",
     "date-closest": "Ngày gần nhất",
     "date-far": "Ngày cũ nhất",
-    "specify-date": "Ngày cụ thể"
+    "specify-date": "Ngày cụ thể",
+    "sidebar": "Trang điều khiển",
+    "invoice": "Hóa đơn",
+    "product": "Sản phẩm",
+    "customer": "Khách hàng",
+    "add-product": "Thêm sản phẩm",
+    "del-product": "Xóa sản phẩm",
+    "confirm-del-product": "Bạn có chắc chắn muốn xóa sản phẩm này?",
+    "delete": "Xóa",
+    "quantity-users": "Tổng số lượng người dùng",
+    "quantity-products": "Tổng số lượng sản phẩm",
+    "quantity-invoices": "Tổng số lượng hóa đơn",
+    "quantity-order-reject": "Tổng hóa đơn bị hủy",
+    "quantity-order-success": "Tổng hóa đơn thành công",
+    "detail-product": "Chi tiết sản phẩm",
+    "detail-upload": "Chi tiết upload",
+    "enter-description": "Nhập miêu tả",
+    "enter-price": "Nhập giá"
   },
   "user": {
     "profile-user": "Ảnh",
@@ -159,7 +176,10 @@
     "btn-rating": "Đánh giá",
     "btn-cancel": "Hủy",
     "total": "Tổng cộng",
-    "review": "Đánh giá"
+    "review": "Đánh giá",
+    "modal-title": "Đánh giá sản phẩm",
+    "input-comment": "Bình luận",
+     "close": "Đóng",
+    "save-change": "Lưu"
   }
-
 }

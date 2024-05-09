@@ -2,6 +2,8 @@ import { Brackets } from 'typeorm';
 import { IGetAllParams } from '../interface/interface';
 import { ProductRepository } from '../repository/product.repository';
 import { ToppingRepository } from '../repository/topping.repository';
+import { ProductAdminDto } from '../dto/admin/admin.dto';
+import { CONSTANT } from '../constant/variable';
 
 export class ProductsService {
   private productRepository: ProductRepository;
@@ -46,6 +48,7 @@ export class ProductsService {
       if (params?.typeId) {
         query.andWhere('type.id = :typeId', { typeId: params.typeId });
       }
+      query.andWhere('product.isActive = true');
       const products = await query
         .orderBy('product.id', 'DESC')
         .limit(params.limit)
@@ -60,7 +63,7 @@ export class ProductsService {
   public async getProductDetail(id: number) {
     try {
       const product = await this.productRepository.findOne({
-        where: { id },
+        where: { id, isActive: true },
         loadRelationIds: {
           relations: ['type'],
         },
@@ -95,5 +98,62 @@ export class ProductsService {
       where: { id: productId },
     });
     return productExist;
+  }
+  public async saveProduct(params: ProductAdminDto) {
+    try {
+      const id = params?.productId;
+      const product = await this.productRepository.findOne({
+        where: { id: id, isActive: true },
+      });
+
+      if (product && product.id === id) {
+        const productUpdated = this.productRepository.create({
+          id: product.id,
+          ...params,
+        });
+        await this.productRepository.save(productUpdated);
+        return true;
+      }
+      await this.productRepository.save({
+        ...product,
+        ...params,
+      });
+      return true;
+    } catch (error) {
+      console.log('Error update product', error);
+      return null;
+    }
+  }
+
+  public async deleteProduct(id: number) {
+    try {
+      const product = await this.productRepository.findOne({
+        where: { id },
+      });
+      if (product) {
+        await this.productRepository.save({
+          ...product,
+          isActive: false,
+        });
+        return product;
+      }
+      return null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  public async getProductDefaultPage() {
+    try {
+      const query = this.productRepository
+        .createQueryBuilder('product')
+        .select();
+      query.orderBy('rating_avg', 'DESC');
+      query.limit(CONSTANT.DEFAULT_PRODUCT_HOMEPAGE);
+      const products = await query.getMany();
+      return products;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

@@ -1,5 +1,6 @@
-import { IsOptional } from 'class-validator';
+import { IsNumber, IsOptional, IsString, Min } from 'class-validator';
 import { STATUS_ORDER } from '../../constant/enum';
+import { CONSTANT } from '../../constant/variable';
 
 export class InvoiceAdminDto {
   @IsOptional()
@@ -12,4 +13,23 @@ export class InvoiceAdminDto {
   maxRange?: number | undefined;
   page?: number;
   limit?: number;
+}
+
+export class ProductAdminDto {
+  @IsOptional()
+  @IsNumber()
+  productId?: number;
+
+  @IsString()
+  name?: string;
+
+  @IsString()
+  description?: string;
+
+  price?: number;
+
+  @IsOptional()
+  image?: string;
+  @IsOptional()
+  file?: string | undefined;
 }

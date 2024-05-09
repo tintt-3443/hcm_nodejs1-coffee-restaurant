@@ -2,6 +2,7 @@ import { UserRepository } from '../repository/user.repository';
 import { User } from '../entities/User';
 import { UserChangePassword, UserUpdateDto } from '../dto/user/user.dto';
 import { checkPassword, hashPassword } from '../utils/auth/auth';
+import { IGetAllParams } from '../interface/interface';
 export class UserService {
   private userRepository: UserRepository;
   //create constructor
@@ -63,6 +64,20 @@ export class UserService {
       return user || null;
     } catch (error) {
       return null;
+    }
+  }
+
+  public async getAllUsers(params: IGetAllParams) {
+    try {
+      const query = this.userRepository.createQueryBuilder('user').select();
+      const users = await query
+        .orderBy('user.id', 'DESC')
+        .limit(params?.limit)
+        .offset((params?.page - 1) * params?.limit)
+        .getMany();
+      return users;
+    } catch (error) {
+      console.log(error);
     }
   }
 }

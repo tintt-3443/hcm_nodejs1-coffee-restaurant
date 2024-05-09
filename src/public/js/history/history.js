@@ -1,5 +1,5 @@
 const btnCancels = $('.cancel-btn').toArray();
-const locale = getCookie('locale');
+const locale_history = getCookie('locale');
 btnCancels.forEach((btn) => {
   btn.addEventListener('click', () => {
     const id = btn.getAttribute('id');
@@ -14,9 +14,11 @@ btnCancels.forEach((btn) => {
       .then((res) => res.text())
       .then(() => {
         swal.fire({
-          title: locale === 'en' ? 'Success!' : 'Thành công!',
+          title: locale_history === 'en' ? 'Success!' : 'Thành công!',
           text:
-            locale === 'vi' ? 'Cancel successfully !!' : 'Hủy thành công !!',
+            locale_history === 'vi'
+              ? 'Cancel successfully !!'
+              : 'Hủy thành công !!',
           icon: 'success',
           confirmButtonText: 'OK',
         });
@@ -43,9 +45,9 @@ btnConfirms.forEach((btn) => {
       .then((res) => res.text())
       .then(() => {
         swal.fire({
-          title: locale === 'en' ? 'Success!' : 'Thành công!',
+          title: locale_history === 'en' ? 'Success!' : 'Thành công!',
           text:
-            locale === 'en'
+            locale_history === 'en'
               ? 'Confirm successfully !!'
               : 'Xác nhận thành công !!',
           icon: 'success',
@@ -74,8 +76,8 @@ btnSuccess.forEach((btn) => {
       .then((res) => res.text())
       .then(() => {
         swal.fire({
-          title: locale === 'en' ? 'Success!' : 'Thành công!',
-          text: locale === 'en' ? 'Successfully !!' : 'Thành công !!',
+          title: locale_history === 'en' ? 'Success!' : 'Thành công!',
+          text: locale_history === 'en' ? 'Successfully !!' : 'Thành công !!',
           icon: 'success',
           confirmButtonText: 'OK',
         });
