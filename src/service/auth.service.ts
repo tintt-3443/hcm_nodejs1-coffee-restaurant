@@ -6,16 +6,20 @@ export class AuthService {
   userRepository = new UserRepository();
   public async RegisterUser(userDTO: UserRegisterDto) {
     try {
+      const userExists = await this.userRepository.findOne({
+        where: { email: userDTO.email },
+      });
+      if (userExists) {
+        return null;
+      }
       const hashedPassword: string = await hashPassword(userDTO.password);
       const user = this.userRepository.create({
         ...userDTO,
         password: hashedPassword,
       });
-      if (!user) {
-        return null;
-      }
       return await this.userRepository.save(user);
     } catch (error) {
+      console.log(error);
       return null;
     }
   }

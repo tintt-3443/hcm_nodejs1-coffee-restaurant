@@ -52,7 +52,6 @@ export class CartsService {
           toppings: params.toppings.map((id) => ({ id })),
         });
         if (newCart && productInstance) {
-
           await this.cartItemService.createNewCartItem(
             newCart.id,
             productInstance.id,
@@ -84,13 +83,13 @@ export class CartsService {
         );
         //add VNDFormat
         // calculation price all toppings
-        const totalToppingPrice = toppings.reduce((acc, topping) => {
+        const totalToppingPrice = toppings?.reduce((acc, topping) => {
           return acc + topping.price;
         }, 0);
         // calculation total product includes
         //(price product, price toppings, price up_size)
         const totalProduct =
-          (item?.productInstance?.product?.price + totalToppingPrice) *
+          (item?.productInstance?.product?.price + (totalToppingPrice || 0)) *
             item?.quantity +
           (item?.up_size ? CONSTANT.UP_SIZE_PRICE : 0);
         // flat object to easy get value
@@ -101,7 +100,7 @@ export class CartsService {
           productInstance: {
             idInstance: item.productInstance.id,
             price: item.productInstance.product.price,
-            toppings: toppings.map((topping) => ({
+            toppings: toppings?.map((topping) => ({
               ...flatObject(topping),
               VNDFormat,
             })),
