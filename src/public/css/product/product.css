@@ -71,6 +71,15 @@
   top: 230;
 }
 
+.range-price {
+  height: 50%;
+}
+
+.search-product-admin {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 .input-search {
   height: 30px;
 }

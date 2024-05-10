@@ -47,7 +47,6 @@ export const getCartByUser = asyncHandler(
 
 export const updateCart = asyncHandler(async (req: Request, res: Response) => {
   try {
-    //check logged
     const quantity = Number(req.body?.quantity);
     const productInstanceId = Number(req.params?.id);
     const params: ParamsUpdateCartDto = {
@@ -65,7 +64,6 @@ export const updateCart = asyncHandler(async (req: Request, res: Response) => {
 
 export const deleteCart = asyncHandler(async (req: Request, res: Response) => {
   try {
-    //check logged
     const user = req.session?.user;
     if (!user) {
       req.flash('error', req.t('cart.login-to-delete-cart'));

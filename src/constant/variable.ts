@@ -11,4 +11,5 @@ export const CONSTANT = {
   PRODUCT_DEFAULT_PAGE: 6 as number,
   FOLDER_CLOUDINARY: 'morii' as string,
   MIN_PRICE: 0 as number,
+  DEFAULT_PRODUCT_HOMEPAGE: 6 as number,
 };

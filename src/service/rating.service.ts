@@ -1,7 +1,7 @@
-import { ICreateRating } from 'src/interface/interface';
 import { RatingRepository } from '../repository/rating.repository';
 import { ProductRepository } from '../repository/product.repository';
 import { Rating } from '../entities/Rating';
+import { createRatingDto } from '../dto/user/user.dto';
 
 export class RatingService {
   private ratingRepository: RatingRepository;
@@ -12,7 +12,7 @@ export class RatingService {
     this.productRepository = new ProductRepository();
   }
 
-  public async createRating(params: ICreateRating) {
+  public async createRating(params: createRatingDto) {
     try {
       const productExist = await this.productRepository.findOne({
         where: { id: params.productId },

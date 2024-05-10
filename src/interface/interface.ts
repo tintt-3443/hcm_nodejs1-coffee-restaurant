@@ -21,9 +21,9 @@ export interface IResultCloudinary {
   url?: string;
 }
 
-export interface ICreateRating {
-  userId: number;
-  productId: number;
-  rating_point: number;
-  comment: string;
+export interface ICreateBlog {
+  title: string;
+  description?: string;
+  image?: string;
+  content: string;
 }

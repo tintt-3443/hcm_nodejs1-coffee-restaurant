@@ -3,11 +3,10 @@ if (btnOpenRating) {
   btnOpenRating.forEach((btn) => {
     btn.addEventListener('click', () => {
       const values = btn.getAttribute('data-rating');
-      const ratingData = JSON.parse(values); // Chuyển đổi chuỗi JSON thành một đối tượng JavaScript
-      const $ratingContainer = $('.rating'); // Chọn container chứa sao
-      $ratingContainer.empty(); // Xóa bỏ các sao cũ trước khi thêm mới
+      const ratingData = JSON.parse(values); JavaScript
+      const $ratingContainer = $('.rating'); 
+      $ratingContainer.empty(); 
 
-      // Tạo sao dựa trên rating_point
       if (ratingData?.rating_point) {
         for (let i = 0; i < ratingData.rating_point; i++) {
           $ratingContainer.append(
@@ -15,7 +14,6 @@ if (btnOpenRating) {
           );
         }
 
-        // Tạo sao trống cho phần còn lại
         for (let i = ratingData.rating_point; i < 5; i++) {
           $ratingContainer.append(
             '<div><i class="far fa-star rating-item fa-sm text-warning fs-4 ml-start"></i></div>',

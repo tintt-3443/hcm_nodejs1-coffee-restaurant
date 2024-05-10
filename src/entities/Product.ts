@@ -32,6 +32,11 @@ export class Product extends Common {
   })
   rating_overall: number;
 
+  @Column({
+    default: true,
+  })
+  isActive: boolean;
+
   // FOREIGN KEY
   invoiceDetails: InvoiceDetail[];
 
