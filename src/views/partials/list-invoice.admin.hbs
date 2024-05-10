@@ -5,7 +5,7 @@
         <button type="button" value="shipping" class="btn btn-filter-status btn-warning color-white">
             {{t 'admin.shiping'}}</button>
         <button type="button" value="success" class="btn btn-filter-status btn-success">{{t 'admin.success'}}</button>
-        <button type="button" value="reject" class="btn btn-filter-status btn-danger">{{t 'admin.rệct'}}</button>
+        <button type="button" value="reject" class="btn btn-filter-status btn-danger">{{t 'admin.reject'}}</button>
         <button type="button" value="cancel" class="btn btn-filter-status btn-dark">{{t 'admin.cancel'}}</button>
     </div>
 
@@ -106,8 +106,9 @@
                         {{this.payment_method}}
                     </span></td>
                 <td>
-                    <a href="/order/history/{{this.id}}"><button type="button" class="btn btn-link btn-sm btn-rounded ">
-                            <i class="fa-solid fa-ellipsis-vertical color-black"></i>
+                    <a href="/admin/order/history/{{this.id}}"><button type="button"
+                            class="btn btn-link btn-sm btn-rounded ">
+                            <i id="btn-search" class="fas fa-search color-black"></i>
                         </button>
                     </a>
                 </td>
@@ -125,8 +126,6 @@
     </div>
 </div>
 
-{{!--
-<script src="/js/admin/admin.js"></script> --}}
 <script src="/js/utils.js"></script>
 <script src="/js/admin/admin.invoice.js"></script>
 <script src='/js/sweetalert.min.js'></script>

@@ -1,0 +1,45 @@
+<div>
+    <div class="row">
+        <div class="col-4 ">
+            <p class="fw-bold">{{t 'admin.quantity-users'}}</p>
+            <p class="">{{data.countsUser}}</p>
+        </div>
+        <div class="col-4 ">
+            <p class="fw-bold">{{t 'admin.quantity-products'}}</p>
+            <p class="">{{data.countProducts}}</p>
+        </div>
+        <div class="col-4 ">
+
+        </div>
+        <div class="col-4 ">
+            <p class="fw-bold">{{t 'admin.quantity-invoices'}}</p>
+            <p class="">{{data.countInvoices}}</p>
+        </div>
+        <div class="col-4 ">
+            <p class="fw-bold">{{t 'admin.quantity-order-success'}}</p>
+            <p class="">{{data.orderSuccess}}</p>
+        </div>
+        <div class="col-4 ">
+            <p class="fw-bold">{{t 'admin.quantity-order-reject'}}</p>
+            <p class="">{{data.orderReject}}</p>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div class="row">
+    {{#each data.revenue}}
+    <div class="col-4 ">
+        <p>Tháng {{this.Month}}</p>
+        <p class="">{{ this.TotalRevenue}}</p>
+    </div>
+    {{/each}}
+</div>
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="/js/admin/dashboard.js"></script>

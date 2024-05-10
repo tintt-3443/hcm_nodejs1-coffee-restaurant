@@ -11,10 +11,14 @@ import { InvoiceDetail } from '../entities/InvoiceDetail';
 import { VNDFormat } from '../utils/auth/helper';
 import { STATUS_ORDER } from '../constant/enum';
 import { InvoiceAdminDto } from '../dto/admin/admin.dto';
-
+import CronJob from 'node-cron';
+import { UserRepository } from '../repository/user.repository';
+import { ProductRepository } from '../repository/product.repository';
 export class InvoiceService {
   private invoiceRepository: InvoiceRepository;
   private invoiceDetailRepository: InvoiceDetailRepository;
+  private userRepository: UserRepository;
+  private productRepository: ProductRepository;
   private cartService: CartsService;
   private productInstanceRepository: ProductInstanceRepository;
   private productService: ProductsService;
@@ -22,6 +26,8 @@ export class InvoiceService {
   constructor() {
     this.invoiceRepository = new InvoiceRepository();
     this.invoiceDetailRepository = new InvoiceDetailRepository();
+    this.userRepository = new UserRepository();
+    this.productRepository = new ProductRepository();
     this.cartService = new CartsService();
     this.productInstanceRepository = new ProductInstanceRepository();
     this.productService = new ProductsService();
@@ -156,6 +162,7 @@ export class InvoiceService {
             return invoice;
           } else return null;
           break;
+
         case false:
           invoice.status = STATUS_ORDER.REJECT;
           await this.invoiceRepository.save(invoice);
@@ -171,8 +178,14 @@ export class InvoiceService {
   }
 
   //ADMIN
-  public async getAllOrders() {
+  public async getAllOrders(status?: STATUS_ORDER) {
     try {
+      if (status) {
+        const invoices = await this.invoiceRepository.find({
+          where: { status: status },
+        });
+        return invoices || [];
+      }
       const invoices = await this.invoiceRepository.find();
       return invoices || [];
     } catch (error) {
@@ -227,6 +240,48 @@ export class InvoiceService {
       return invoices || [];
     } catch (error) {
       return [];
+    }
+  }
+
+  public async statisticRevenue() {
+    try {
+      const query = this.invoiceRepository
+        .createQueryBuilder('invoice')
+        .select('MONTH(invoice.updated_at)', 'Month')
+        .addSelect('SUM(invoice.total)', 'TotalRevenue')
+        .where('YEAR(invoice.updated_at) = :year', { year: 2024 }) // Filter by year
+        .groupBy('MONTH(invoice.updated_at)')
+        .orderBy('Month', 'ASC');
+      const revenues = await query.getRawMany();
+      return revenues;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public async getStatistic() {
+    try {
+      const countsUser = await this.userRepository.count();
+      const countProducts = await this.productRepository.count();
+      const countInvoices = await this.invoiceRepository.count();
+      const orderSuccess = await this.invoiceRepository.count({
+        where: { status: STATUS_ORDER.SUCCESS },
+      });
+      const orderReject = await this.invoiceRepository.count({
+        where: { status: STATUS_ORDER.REJECT },
+      });
+      const revenue = await this.statisticRevenue();
+      const statistic = {
+        countsUser,
+        countProducts,
+        countInvoices,
+        orderSuccess,
+        orderReject,
+        revenue,
+      };
+      return statistic;
+    } catch (error) {
+      console.log(error);
     }
   }
 }

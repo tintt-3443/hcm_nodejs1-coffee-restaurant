@@ -12,6 +12,10 @@ import i18nextBackend from 'i18next-fs-backend';
 import { engine } from 'express-handlebars';
 import hbs from 'hbs';
 import { initializeTransactionalContext } from 'typeorm-transactional';
+import {
+  UpdateStatusInvoice,
+  ininitScheduledJobs,
+} from './controller/admin/schedule.revenue';
 
 interface HandlebarsHelperThis {
   switch_value: any;
@@ -88,6 +92,26 @@ app.engine(
           return false;
         }
       },
+      lte: function (num1: number, num2: number) {
+        if (num1 <= num2) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      times: function (n: number, block: any) {
+        let accum = '';
+        for (let i = 1; i <= n; ++i) {
+          block.data.index = i;
+          block.data.first = i === 0;
+          block.data.last = i === n - 1;
+          accum += block.fn(this);
+        }
+        return accum;
+      },
+      json: function (context: any) {
+        return JSON.stringify(context);
+      },
     },
   }),
 );
@@ -112,6 +136,10 @@ AppDataSource.initialize()
   })
   .catch((error: Error) => console.log('Database connect failed: ', error));
 // Start server
+
+ininitScheduledJobs();
+UpdateStatusInvoice();
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
