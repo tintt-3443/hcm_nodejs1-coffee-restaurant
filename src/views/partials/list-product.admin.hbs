@@ -1,0 +1,121 @@
+<div class='h-100 '>
+    <div class="d-flex justify-content-between">
+        <div class=" filter-price-invoice">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <input type="text" class="form-control range-price" id="minRange" min="0"
+                                placeholder="{{t 'admin.min-range'}}">
+                        </div>
+                        <div class="col d-flex align-items-center">
+                            <input type="text" class="form-control range-price" id="maxRange" min="0"
+                                placeholder="{{t 'admin.max-range'}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="input-group rounded search-product-admin">
+            <input type="text" class="form-control  input-search" id="search" placeholder="Search">
+            <span class="input-group-text border-0 cursor-pointer" id="search-addon">
+                <i id="btn-search" class="fas fa-search"></i>
+            </span>
+        </div>
+        <div class=" filter-price-invoice  d-flex justify-content-end">
+            <div class="">
+                <div class="mr-btn">
+                    <a href="/admin/product/create" class="btn btn-primary ">{{t 'admin.add-product'}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+            <tr>
+                <th>{{t 'history.id'}}</th>
+                <th>{{t 'history.name'}}</th>
+                <th>{{t 'history.image'}}</th>
+                <th>{{t 'history.price'}}</th>
+                <th>{{t 'history.rating_avg'}}</th>
+                <th>{{t 'history.action'}}</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">{{this.id}}</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{this.name}}</p>
+
+                </td>
+                <td>
+                    <img src="{{this.image}}" alt="" style="width: 50px; height: 50px;">
+
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{this.price}}</p>
+
+                </td>
+                <td><span class="upper-case">
+                        {{this.rating_avg}}
+                    </span></td>
+                <td>
+                    <div class="dropend d-flex ">
+                        <a href="/admin/product/{{this.id}}">
+
+                            <i class="fa-solid fa-search color-black"></i>
+
+                        </a>
+                        <div class=" pl-2 cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="fa-solid fa-trash"></i>
+
+                        </div>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="btn-confirm-delete"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="btn-confirm-delete">
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Đóng"></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button id="{{this.id}}" type="button"
+                                            class="btn btn-danger btn-delete-product">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+
+    </table>
+    <div class="mw-xl pagination mt-5">
+        <nav aria-label="Page navigation example ">
+            <div class="pagination" id="pagination">
+                {{{pagination}}}
+            </div>
+        </nav>
+    </div>
+</div>
+
+<script src="/js/utils.js"></script>
+<script src="/js/admin/admin-product.js"></script>
+<script src='/js/sweetalert.min.js'></script>

@@ -140,7 +140,8 @@
     "detail-product": "Chi tiết sản phẩm",
     "detail-upload": "Chi tiết upload",
     "enter-description": "Nhập miêu tả",
-    "enter-price": "Nhập giá"
+    "enter-price": "Nhập giá",
+    "cancel":"Hủy đơn hàng"
   },
   "user": {
     "profile-user": "Ảnh",

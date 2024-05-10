@@ -139,7 +139,8 @@
     "detail-product": "Product Details",
     "detail-upload": "Upload Details",
     "enter-description": "Enter description",
-    "enter-price": "Enter price"
+    "enter-price": "Enter price",
+    "cancel": "Cancel"
   },
   "user": {
     "profile-user": "Avatar",

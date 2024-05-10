@@ -3,7 +3,7 @@ import { IGetAllParams } from '../interface/interface';
 import { ProductRepository } from '../repository/product.repository';
 import { ToppingRepository } from '../repository/topping.repository';
 import { ProductAdminDto } from '../dto/admin/admin.dto';
-import { CONSTANT } from 'src/constant/variable';
+import { CONSTANT } from '../constant/variable';
 
 export class ProductsService {
   private productRepository: ProductRepository;

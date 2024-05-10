@@ -32,7 +32,6 @@ if (maxPrice) {
       // Redirect to the new URL
       window.location.href = url;
 
-      // Update the value of maxPrice input from query parameter
     }
   });
   const maxPriceFromQueryString = getValueFromQueryString('maxRange');
@@ -64,10 +63,8 @@ function clearStatusQueryParam(url) {
   const parsedURL = new URL(url);
   const searchParams = parsedURL.searchParams;
 
-  // Xóa tất cả các query param có tên là "status[]"
   searchParams.delete('status[]');
 
-  // Trả về URL mới
   return `${parsedURL.protocol}//${parsedURL.host}${
     parsedURL.pathname
   }?${searchParams.toString()}`;
@@ -115,3 +112,28 @@ if (dateFilter) {
     $('#date-filter').val(dateFromQueryString);
   }
 }
+
+const btnDeleteProducts = $('.btn-delete-product').toArray();
+if (btnDeleteProducts?.length > 0) {
+  btnDeleteProducts.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('id');
+      fetch(`/admin/product/delete/${id}`, {
+        method: 'DELETE',
+      })
+        .then((response) => response.text())
+        .then(() => {
+          swal.fire({
+            title: 'Success!',
+            text: 'Deleted successfully !!',
+            icon: 'success',
+            confirmButtonText: 'OK',
+          });
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        });
+    });
+  });
+}
+

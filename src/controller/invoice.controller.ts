@@ -5,9 +5,11 @@ import { InvoiceService } from '../service/invoice.service';
 import { CartsService } from '../service/cart.service';
 import { VNDFormat } from '../utils/auth/helper';
 import { ROLE_USER, STATUS_ORDER } from '../constant/enum';
+import { RatingService } from '../service/rating.service';
 
 const invoiceService = new InvoiceService();
 const cartService = new CartsService();
+const ratingService = new RatingService();
 export const getPayment = asyncHandler(async (req: Request, res: Response) => {
   try {
     const paramsPayment: PaymentDto = {
@@ -67,6 +69,7 @@ export const getOrder = asyncHandler(async (req: Request, res: Response) => {
 export const getInvoiceDetail = asyncHandler(
   async (req: Request, res: Response) => {
     try {
+      const user = req.session?.user;
       const invoiceId = Number(req.params.id);
       if (!invoiceId) {
         req.flash('error', req.t('home.cant-get-product'));
@@ -81,26 +84,39 @@ export const getInvoiceDetail = asyncHandler(
             'vi-VN',
           ),
         };
-        const compareStatus = (statusA: string, statusB: string) => { 
+        const compareStatus = (statusA: string, statusB: string) => {
           return statusA == statusB;
         };
-        const isAdmin = (role: ROLE_USER) => { 
-          return role ==  ROLE_USER.ADMIN;
+        const isAdmin = (role: ROLE_USER) => {
+          return role == ROLE_USER.ADMIN;
         };
+        const promiseRating = data?.invoiceDetails.map(async (detail) => {
+          const rating = await ratingService.getRatingByUser(
+            user?.id,
+            detail?.productInstance?.product?.id,
+          );
+          return {
+            ...detail,
+            rating: rating,
+          };
+        });
+
+        const invoiceDetails = await Promise.all(promiseRating);
+
         res.render('history-order/detail', {
-    role: req.session?.user?.role,
-    isAdmin: isAdmin,
-    compareStatus: compareStatus,
-    STATUS_ORDER: STATUS_ORDER,
-    VNDFormat: VNDFormat,
-    invoice: invoiceFormat,
-    invoiceDetails: data?.invoiceDetails.map(detail => ({
-        ...detail,
-        total: VNDFormat(detail.total),
-        price_of_product: VNDFormat(detail.price_of_product),
-    })),
-    flash: req.flash(),
-}); 
+          role: req.session?.user?.role,
+          isAdmin: isAdmin,
+          compareStatus: compareStatus,
+          STATUS_ORDER: STATUS_ORDER,
+          VNDFormat: VNDFormat,
+          invoice: invoiceFormat,
+          invoiceDetails: invoiceDetails.map((detail) => ({
+            ...detail,
+            total: VNDFormat(detail.total),
+            price_of_product: VNDFormat(detail.price_of_product),
+          })),
+          flash: req.flash(),
+        });
       }
     } catch (error) {
       req.flash('error', req.t('home.cant-get-product'));
@@ -110,7 +126,7 @@ export const getInvoiceDetail = asyncHandler(
 );
 
 export const updateStatusOrder = asyncHandler(
-  async (req: Request, res: Response) => { 
+  async (req: Request, res: Response) => {
     try {
       const invoiceId = Number(req.params.id);
       const isProcess = req.body?.status;
@@ -120,12 +136,10 @@ export const updateStatusOrder = asyncHandler(
       }
       await invoiceService.updateStatusOrder(invoiceId, isProcess);
       res.json({ success: true });
-    }
-     catch (error) {
+    } catch (error) {
       req.flash('error', req.t('home.cant-get-product'));
       res.render('product', { flash: req.flash() });
     }
-
-  });
-
+  },
+);
 
