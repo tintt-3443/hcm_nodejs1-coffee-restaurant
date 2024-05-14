@@ -109,8 +109,10 @@ export class RatingService {
         numberOfRatings > 0
           ? (totalRatingPoints / numberOfRatings).toFixed(2)
           : 0;
-      productExist.rating_avg = Number(totalRatingPoints / numberOfRatings);
-      await this.productRepository.save(productExist);
+      if (numberOfRatings > 0) {
+        productExist.rating_avg = Number(totalRatingPoints / numberOfRatings);
+        await this.productRepository.save(productExist);
+      }
       return {
         ratingCounts,
         averageRating,
