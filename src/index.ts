@@ -63,7 +63,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     secret: 'morricoffee',
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 720000 },
   }),
 );
 app.use(flash());

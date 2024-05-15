@@ -48,3 +48,8 @@
   padding-bottom: 0 !important;
   height: 97vh;
 }
+
+p img {
+  display: block;
+  margin: 0 auto;
+}

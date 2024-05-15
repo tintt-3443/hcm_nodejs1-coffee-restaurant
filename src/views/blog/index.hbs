@@ -1,0 +1,31 @@
+<div class="py-4">
+    <div class="blog mw-xl  d-block ">
+        <div>
+            <p class="text-center text-color title-menu">Morii Blog</p>
+        </div>
+        <div class=" container ">
+            <div class="row row-cols-3 g-5">
+                {{#each blogs}}
+                <a href="/blog/{{this.id}}" class="underline-none">
+                    <div class="col">
+                        <div class="card blog-item cursor-pointer h-100">
+                            <img src="{{this.image}}" class="card-img-top h-20-r w-100" alt="...">
+                            <div class="card-body fw-bold ">
+                                <p class="card-text truncate-text">{{this.title}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+    <div class="mw-xl pagination mt-5">
+        <nav aria-label="Page navigation example ">
+            <div class="pagination" id="pagination">
+                {{{pagination}}}
+            </div>
+        </nav>
+    </div>
+</div>

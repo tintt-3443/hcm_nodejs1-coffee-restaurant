@@ -9,25 +9,19 @@ import {
 } from '../../utils/auth/helper';
 import { ROLE_USER, STATUS_ORDER } from '../../constant/enum';
 import { CONSTANT } from '../../constant/variable';
-import { InvoiceAdminDto, ProductAdminDto } from '../../dto/admin/admin.dto';
+import {
+  BlogDto,
+  InvoiceAdminDto,
+  ProductAdminDto,
+} from '../../dto/admin/admin.dto';
 import { plainToClass } from 'class-transformer';
 import { isArray, validate } from 'class-validator';
 import { UserService } from '../../service/user.service';
-import { ICreateBlog, IGetAllParams } from '../../interface/interface';
+import { IGetAllParams } from '../../interface/interface';
 import { ProductsService } from '../../service/product.service';
 import { RatingService } from '../../service/rating.service';
 import cloudinary from '../../config/cloudinary.config';
 import { BlogService } from '../../service/blog.service';
-
-interface MyQueryParams {
-  sortASC?: string;
-  status?: string;
-  date?: string;
-  minRange?: string;
-  maxRange?: string;
-  page?: number;
-  limit?: number;
-}
 
 const invoiceService = new InvoiceService();
 const userService = new UserService();
@@ -321,12 +315,13 @@ export const getBlogCreate = asyncHandler(
 
 export const createBlog = asyncHandler(async (req: Request, res: Response) => {
   try {
-    const params: ICreateBlog = {
+    const params: BlogDto = {
       title: req.body?.title,
       description: req.body?.description,
       image: req.body?.image,
       content: req.body?.content,
     };
+
     const errs = await validate(params);
     if (errs.length > 0) {
       const errors = errs.map((e) => {
@@ -335,12 +330,13 @@ export const createBlog = asyncHandler(async (req: Request, res: Response) => {
           msg: req.t(Object.values({ ...e?.constraints })),
         };
       });
-      res.render('admin/blog-admin', { errors });
+      res.json({ status: 'fail', errors });
       return;
     }
     const blog = await blogService.createBlog(params);
     if (!blog) {
-      req.flash('error', req.t('home.product-not-found'));
+      req.flash('error', req.t('blog.cant-create-blog'));
+      res.json({ status: 'fail' });
     }
     res.json({ status: 'success' });
   } catch (error) {

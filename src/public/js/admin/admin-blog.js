@@ -9,7 +9,7 @@ ClassicEditor.create(document.querySelector('#editor'))
   });
 
 const btnSubmit = $('#btn-submit-blog');
-
+const locale = getCookie('locale');
 if (btnSubmit) {
   btnSubmit.on('click', function () {
     const fileInput = document.getElementById('fileInputBlog');
@@ -28,7 +28,15 @@ if (btnSubmit) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log('data', data);
+        Swal.fire({
+          title: locale == 'vi' ? 'Thông báo' : 'Notify',
+          text: locale == 'vi' ? 'Tạo blog thành công' : 'Successfully',
+          icon: 'success',
+        });
+
+        setTimeout(() => {
+          window.location.href = '/admin/blog';
+        }, 2000);
       })
       .catch((err) => {
         console.log('err', err);

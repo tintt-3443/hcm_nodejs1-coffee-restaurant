@@ -140,7 +140,11 @@
     "detail-upload": "Upload Details",
     "enter-description": "Enter description",
     "enter-price": "Enter price",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "admin": "Admin",
+    "logout": "Logout",
+    "shiping": "Shipping",
+    "add-blog": "Add Blog"
   },
   "user": {
     "profile-user": "Avatar",
@@ -180,5 +184,13 @@
     "input-comment": "Comment for rating",
     "close": "Close",
     "save-change": "Save"
+  },
+  "blog":{
+    "blog-detail": "Blog Detail",
+    "title": "Title",
+    "enter-title": "Enter title",
+    "image": "Image",
+    "description": "Description",
+    "enter-description": "Enter description",
   }
 }
