@@ -36,7 +36,7 @@ export class RatingService {
 
   public async getRating(productId: number) {
     try {
-      const productExist = this.productRepository.findOne({
+      const productExist = await this.productRepository.findOne({
         where: { id: productId },
       });
       if (!productExist) {
@@ -119,7 +119,6 @@ export class RatingService {
         numberOfRatings,
       };
     } catch (error) {
-      console.error(error);
       return null;
     }
   }
@@ -135,7 +134,6 @@ export class RatingService {
       const rs = await this.ratingRepository.save(rating);
       return rs;
     } catch (error) {
-      console.log(error);
       return null;
     }
   }

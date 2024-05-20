@@ -31,6 +31,7 @@ export class CartItemService {
 
   public async updateCart(cartItemUpdate: CartItem, quantity: number) {
     try {
+      if (quantity < 0) return null;
       await this.cartItemRepository.save({
         ...cartItemUpdate,
         quantity: quantity,
@@ -49,12 +50,14 @@ export class CartItemService {
       const cartItem = await this.cartItemRepository.findOne({
         where: { productInstance: { id: params?.productInstanceId } },
       });
-      cartItem
-        ? await this.cartItemRepository.save({
-            ...cartItem,
-            quantity: params?.quantity,
-          })
-        : null;
+      if (cartItem) {
+        const updatedCartItem = await this.cartItemRepository.save({
+          ...cartItem,
+          quantity: params?.quantity,
+        });
+        return updatedCartItem;
+      }
+      return null;
     } catch (error) {
       return null;
     }
@@ -74,6 +77,7 @@ export class CartItemService {
         },
         relations: ['productInstance', 'productInstance.product'],
       });
+      if (listCartItem.length === 0) return null;
       const cartItem = listCartItem.find((item) => {
         return (
           item.toppingList.toString() == toppings.toString() &&
@@ -91,7 +95,9 @@ export class CartItemService {
       const cartItem = await this.cartItemRepository.findOne({
         where: { productInstance: { id: productInstanceId } },
       });
-      cartItem ? await this.cartItemRepository.remove(cartItem) : null;
+      if (!cartItem) return null;
+      await this.cartItemRepository.remove(cartItem);
+      return true;
     } catch (error) {
       return null;
     }
@@ -102,7 +108,9 @@ export class CartItemService {
       const cartItems = await this.cartItemRepository.find({
         where: { cart: { id: cartId } },
       });
-      cartItems ? await this.cartItemRepository.remove(cartItems) : null;
+      if (cartItems.length === 0) return null;
+      await this.cartItemRepository.remove(cartItems);
+      return true;
     } catch (error) {
       return null;
     }

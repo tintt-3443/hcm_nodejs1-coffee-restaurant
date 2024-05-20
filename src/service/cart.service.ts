@@ -47,6 +47,7 @@ export class CartsService {
             user: { id: params.userId },
             total: CONSTANT.DEFAULT_TOTAL,
           }));
+
         const productInstance = await this.productInstanceRepository.save({
           product: { id: params.productId },
           toppings: params.toppings.map((id) => ({ id })),
@@ -57,7 +58,7 @@ export class CartsService {
             productInstance.id,
             params,
           );
-        }
+        } else return null;
       }
     } catch (error) {
       return null;
@@ -137,7 +138,9 @@ export class CartsService {
       });
       if (cart) {
         await this.cartItemService.deleteCartItemByCart(cart.id);
+        return true;
       }
+      return false;
     } catch (error) {
       return null;
     }
