@@ -1,5 +1,6 @@
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString, Min } from 'class-validator';
 import { STATUS_ORDER } from '../../constant/enum';
+import { CONSTANT } from '../../constant/variable';
 
 export class InvoiceAdminDto {
   @IsOptional()
@@ -46,4 +47,20 @@ export class BlogDto {
 
   @IsString()
   content: string;
+}
+export class StatisticDashboardDto {
+  @IsOptional()
+  startDate?: Date;
+
+  @IsOptional()
+  endDate?: Date;
+
+  @IsOptional()
+  type?: string;
+
+  @IsOptional()
+  year?: number;
+
+  @IsOptional()
+  specifyDate?: Date;
 }

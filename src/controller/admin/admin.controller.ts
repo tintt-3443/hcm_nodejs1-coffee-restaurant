@@ -13,6 +13,7 @@ import {
   BlogDto,
   InvoiceAdminDto,
   ProductAdminDto,
+  StatisticDashboardDto,
 } from '../../dto/admin/admin.dto';
 import { plainToClass } from 'class-transformer';
 import { isArray, validate } from 'class-validator';
@@ -31,27 +32,88 @@ const blogService = new BlogService();
 export const getDashboard = asyncHandler(
   async (req: Request, res: Response) => {
     try {
-      const data = await invoiceService.getStatistic();
+      const params = req.query;
+      const paramsValidate: StatisticDashboardDto =
+        handleParamDashboard(params);
 
-      if (data) {
-        const revenue_ = data?.revenue?.map((item) => {
+      const errs = await validate(paramsValidate);
+
+      if (errs.length > 0) {
+        const errors = errs.map((e) => {
           return {
-            ...item,
-            TotalRevenue: VNDFormat(item?.TotalRevenue),
+            name: e.property,
+            msg: req.t(Object.values({ ...e?.constraints })),
           };
         });
-        data.revenue = revenue_;
-        res.render('admin', {
-          isLoggedIn: true,
-          data: data,
-          flash: req.flash(),
-        });
+        res.render('admin', { errors });
+        return;
       }
+      const listYear = await invoiceService.getListYear();
+      const data = await invoiceService.getStatistic(params);
+      if (data?.totalRevenue) {
+        data.totalRevenue = VNDFormat(data?.totalRevenue);
+      }
+      res.render('admin', {
+        data,
+        listYear,
+      });
     } catch (error) {
       console.log(error);
     }
   },
 );
+
+const parseDateStartOfDay = (dateString: string) => {
+  const date = new Date(dateString);
+  if (!isNaN(date.getTime())) {
+    date.setHours(0, 0, 0, 0);
+    return date;
+  }
+  return undefined;
+};
+
+const parseDateEndOfDay = (dateString: string) => {
+  const date = new Date(dateString);
+  if (!isNaN(date.getTime())) {
+    date.setHours(23, 59, 59, 999);
+    return date;
+  }
+  return undefined;
+};
+
+const handleParamDashboard = (params: any) => {
+  let startDate: Date | undefined = undefined;
+  let endDate: Date | undefined = undefined;
+  const type = params?.type as string;
+
+  if (params?.startDate && typeof params.startDate === 'string') {
+    startDate = parseDateStartOfDay(params.startDate);
+  }
+
+  if (params?.endDate && typeof params.endDate === 'string') {
+    endDate = parseDateEndOfDay(params.endDate);
+  }
+
+  if (startDate && !endDate) {
+    endDate = parseDateEndOfDay(params.startDate);
+  }
+
+  if (endDate && !startDate) {
+    startDate = parseDateStartOfDay(params.endDate);
+  }
+
+  if (startDate && endDate) {
+    startDate = parseDateStartOfDay(params.startDate);
+    endDate = parseDateEndOfDay(params.endDate);
+  }
+
+  return {
+    startDate,
+    endDate,
+    type: type,
+  };
+};
+
 export const getOrder = asyncHandler(async (req: Request, res: Response) => {
   try {
     const paramDto = plainToClass(InvoiceAdminDto, req.query);
@@ -296,10 +358,27 @@ export const deleteProduct = asyncHandler(
 export const statisticRevenue = asyncHandler(
   async (req: Request, res: Response) => {
     try {
-      const revenue = await invoiceService.statisticRevenue();
+      const params = req.query;
+      const paramsValidate: StatisticDashboardDto =
+        handleParamDashboard(params);
+      const errs = await validate(paramsValidate);
+
+      if (errs.length > 0) {
+        const errors = errs.map((e) => {
+          return {
+            name: e.property,
+            msg: req.t(Object.values({ ...e?.constraints })),
+          };
+        });
+        res.json({ status: 'fail', errors });
+      }
+
+      const data = await invoiceService.getStatistic(params);
+      if (data?.totalRevenue) {
+        data.totalRevenue = VNDFormat(data?.totalRevenue);
+      }
       res.json({
-        revenue: revenue,
-        status: 'success',
+        revenue: data?.revenues,
       });
     } catch (error) {}
   },
@@ -321,7 +400,6 @@ export const createBlog = asyncHandler(async (req: Request, res: Response) => {
       image: req.body?.image,
       content: req.body?.content,
     };
-
     const errs = await validate(params);
     if (errs.length > 0) {
       const errors = errs.map((e) => {
