@@ -28,17 +28,13 @@ export class BlogService {
 
   public async getBlogs(params: IGetAllParams) {
     try {
-      try {
-        return await this.blogRepository
-          .createQueryBuilder('blog')
-          .select()
-          .orderBy('blog.id', 'DESC')
-          .limit(params.limit)
-          .offset((params.page - 1) * params.limit)
-          .getMany();
-      } catch (error) {
-        return null;
-      }
+      return await this.blogRepository
+        .createQueryBuilder('blog')
+        .select()
+        .orderBy('blog.id', 'DESC')
+        .limit(params.limit)
+        .offset((params.page - 1) * params.limit)
+        .getMany();
     } catch (error) {
       return null;
     }

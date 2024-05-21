@@ -20,8 +20,8 @@ describe('Register', () => {
   it('should return user if register successfully', async () => {
     const userDTO: UserRegisterDto = {
       username: 'Tran Trong Tin',
-      email: 'test11@gmail.com',
-      password: 'Test123@!!123',
+      email: 'test111@gmail.com',
+      password: 'Test1213@!!123',
     };
 
     const user = await authService.RegisterUser(userDTO);
@@ -59,8 +59,8 @@ describe('Login', () => {
   it('should return user when logged successfully ', async () => {
     const params = {
       username: 'test',
-      password: 'Testlogin@!!123',
-      email: 'Testlogin@example.com',
+      password: 'Testlogin@!!1234',
+      email: 'Testloginnn@example.com',
     };
     await authService.RegisterUser(params);
     const user = await authService.LoginUser({
