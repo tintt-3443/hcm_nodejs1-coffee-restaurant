@@ -8,7 +8,7 @@ import { Cart } from './Cart';
 @Entity()
 export class User extends Common {
   @Column()
-  name: string;
+  username: string;
 
   @Column({
     unique: true,

@@ -64,9 +64,6 @@ export class ProductsService {
     try {
       const product = await this.productRepository.findOne({
         where: { id, isActive: true },
-        loadRelationIds: {
-          relations: ['type'],
-        },
       });
       return product;
     } catch (error) {
@@ -86,8 +83,12 @@ export class ProductsService {
     }
   }
 
-  public getToppingByProduct(productId: number) {
-    const toppings = this.toppingRepository.find({
+  public async getToppingByProduct(productId: number) {
+    const productExist = await this.checkProductExist(productId);
+    if (!productExist) {
+      return null;
+    }
+    const toppings = await this.toppingRepository.find({
       where: { products: { id: productId } },
     });
     return toppings;
@@ -111,14 +112,14 @@ export class ProductsService {
           id: product.id,
           ...params,
         });
-        await this.productRepository.save(productUpdated);
-        return true;
+        const product_ = await this.productRepository.save(productUpdated);
+        return product_;
       }
-      await this.productRepository.save({
+      const product_ = await this.productRepository.save({
         ...product,
         ...params,
       });
-      return true;
+      return product_;
     } catch (error) {
       return null;
     }
@@ -147,12 +148,13 @@ export class ProductsService {
       const query = this.productRepository
         .createQueryBuilder('product')
         .select();
+      query.andWhere('product.isActive = :isActive', { isActive: true });
       query.orderBy('rating_avg', 'DESC');
       query.limit(CONSTANT.DEFAULT_PRODUCT_HOMEPAGE);
       const products = await query.getMany();
       return products;
     } catch (error) {
-      console.log(error);
+      return null;
     }
   }
 }
