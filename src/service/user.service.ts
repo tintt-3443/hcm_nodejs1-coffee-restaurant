@@ -75,9 +75,10 @@ export class UserService {
         .limit(params?.limit)
         .offset((params?.page - 1) * params?.limit)
         .getMany();
+      if (!users) return null;
       return users;
     } catch (error) {
-      console.log(error);
+      return null;
     }
   }
 }

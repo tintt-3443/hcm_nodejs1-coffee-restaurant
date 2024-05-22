@@ -4,9 +4,9 @@ import { CONSTANT } from '../../constant/variable';
 
 export class InvoiceAdminDto {
   @IsOptional()
-  date: Date;
-  startDate: Date | undefined;
-  endDate: Date | undefined;
+  date?: Date;
+  startDate?: Date | undefined;
+  endDate?: Date | undefined;
   status?: STATUS_ORDER[] | undefined;
   sortASC?: boolean | undefined;
   minRange?: number | undefined;
